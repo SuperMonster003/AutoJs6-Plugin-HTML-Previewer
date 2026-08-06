@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_html_preview">HTML をプレビュー</string>
+    <string name="app_name">AutoJs6 プラグイン - HTML プレビュー</string>
+    <string name="dialog_button_cancel">キャンセル</string>
+    <string name="dialog_button_confirm">確認</string>
+    <string name="error_html_file_too_large">HTML ファイルが %1$s のプレビュー制限を超えています</string>
+    <string name="plugin_description">HTML ファイルの安全な読み取り専用プレビュー</string>
+    <string name="text_cannot_open_link">リンクを開けません</string>
+    <string name="text_cannot_read_file">HTML ファイルを読み取れません</string>
+    <string name="text_fullscreen_mode">全画面モード</string>
+    <string name="text_preview">プレビュー</string>
+    <string name="text_refresh">再読み込み</string>
+    <string name="text_settings">設定</string>
+    <string name="text_start_in_fullscreen_mode">全画面モードで開始</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_html_preview">Preview HTML</string>
+    <string name="app_name">AutoJs6 Plugin - HTML Preview</string>
+    <string name="dialog_button_cancel">Cancel</string>
+    <string name="dialog_button_confirm">Confirm</string>
+    <string name="error_html_file_too_large">The HTML file exceeds the %1$s preview limit</string>
+    <string name="plugin_description">Secure read-only preview for HTML files</string>
+    <string name="text_cannot_open_link">Cannot open the link</string>
+    <string name="text_cannot_read_file">Cannot read the HTML file</string>
+    <string name="text_fullscreen_mode">Fullscreen mode</string>
+    <string name="text_preview">Preview</string>
+    <string name="text_refresh">Refresh</string>
+    <string name="text_settings">Settings</string>
+    <string name="text_start_in_fullscreen_mode">Start in fullscreen mode</string>
+</resources>

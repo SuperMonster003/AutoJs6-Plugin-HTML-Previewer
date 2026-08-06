@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_refresh"
+        android:title="@string/text_refresh"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_fullscreen_mode"
+        android:checkable="true"
+        android:title="@string/text_fullscreen_mode"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_html_preview_settings"
+        android:title="@string/text_settings"
+        app:showAsAction="never" />
+
+</menu>

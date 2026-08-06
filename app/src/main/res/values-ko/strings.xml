@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_html_preview">HTML 미리보기</string>
+    <string name="app_name">AutoJs6 플러그인 - HTML 미리보기</string>
+    <string name="dialog_button_cancel">취소</string>
+    <string name="dialog_button_confirm">확인</string>
+    <string name="error_html_file_too_large">HTML 파일이 %1$s 미리보기 제한을 초과합니다</string>
+    <string name="plugin_description">HTML 파일의 안전한 읽기 전용 미리보기</string>
+    <string name="text_cannot_open_link">링크를 열 수 없습니다</string>
+    <string name="text_cannot_read_file">HTML 파일을 읽을 수 없습니다</string>
+    <string name="text_fullscreen_mode">전체 화면 모드</string>
+    <string name="text_preview">미리보기</string>
+    <string name="text_refresh">새로 고침</string>
+    <string name="text_settings">설정</string>
+    <string name="text_start_in_fullscreen_mode">전체 화면 모드로 시작</string>
+</resources>

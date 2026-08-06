@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_html_preview">預覽 HTML</string>
+    <string name="app_name">AutoJs6 外掛 - HTML 預覽</string>
+    <string name="dialog_button_cancel">取消</string>
+    <string name="dialog_button_confirm">確認</string>
+    <string name="error_html_file_too_large">HTML 檔案超過 %1$s 的預覽限制</string>
+    <string name="plugin_description">安全唯讀預覽 HTML 檔案</string>
+    <string name="text_cannot_open_link">無法開啟連結</string>
+    <string name="text_cannot_read_file">無法讀取 HTML 檔案</string>
+    <string name="text_fullscreen_mode">全螢幕模式</string>
+    <string name="text_preview">預覽</string>
+    <string name="text_refresh">重新整理</string>
+    <string name="text_settings">設定</string>
+    <string name="text_start_in_fullscreen_mode">以全螢幕模式啟動</string>
+</resources>

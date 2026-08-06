@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_html_preview">Предпросмотр HTML</string>
+    <string name="app_name">Плагин AutoJs6 - Просмотр HTML</string>
+    <string name="dialog_button_cancel">Отмена</string>
+    <string name="dialog_button_confirm">Подтвердить</string>
+    <string name="error_html_file_too_large">Файл HTML превышает ограничение просмотра %1$s</string>
+    <string name="plugin_description">Безопасный просмотр файлов HTML только для чтения</string>
+    <string name="text_cannot_open_link">Не удалось открыть ссылку</string>
+    <string name="text_cannot_read_file">Не удалось прочитать файл HTML</string>
+    <string name="text_fullscreen_mode">Полноэкранный режим</string>
+    <string name="text_preview">Предпросмотр</string>
+    <string name="text_refresh">Обновить</string>
+    <string name="text_settings">Настройки</string>
+    <string name="text_start_in_fullscreen_mode">Запускать в полноэкранном режиме</string>
+</resources>
