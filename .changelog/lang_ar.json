@@ -1,0 +1,21 @@
+{
+  "changelog_label_hint": "تلميح",
+  "changelog_label_feature": "ميزة",
+  "changelog_label_fix": "إصلاح",
+  "changelog_label_improvement": "تحسين",
+  "changelog_label_dependency": "اعتماد",
+  "$data": {
+    "v1.0.0": {
+      "released_date": "2026/08/06",
+      "feature": [
+        "مكون HTML Preview بالمعرف `html-preview` والمحرك `explorer-action` والمتغير `default`",
+        "إجراء قائمة إضافية للقراءة فقط لملف واحد في مستكشف AutoJs6 الرئيسي عبر `org.autojs.plugin.EXPLORER_ACTION`",
+        "تنفيذ عبر `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` مع إذن قراءة مؤقت لـ content URI الخاص بالملف والمجلد الأصل",
+        "تنقية HTML بإزالة البرامج النصية وسمات معالجات الأحداث والإطارات والكائنات المضمنة وعناوين الموارد غير الآمنة قبل العرض",
+        "تحميل مضبوط للموارد النسبية وموارد data وصور HTTPS المسموح بها مع نمط ثابت وتحديث وملء الشاشة",
+        "سياسة WebView معززة باستخدام CSP وتنقل URI مضبوط وتعطيل JavaScript والتخزين وحدود الإدخال",
+        "ترجمة معلومات المكون والواجهة والتعليمات و README و changelog إلى الإسبانية والفرنسية والروسية والعربية واليابانية والكورية والإنجليزية والصينية المبسطة وصينية هونغ كونغ التقليدية وصينية تايوان التقليدية"
+      ]
+    }
+  }
+}

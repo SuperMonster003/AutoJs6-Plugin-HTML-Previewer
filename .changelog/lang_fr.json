@@ -1,0 +1,21 @@
+{
+  "changelog_label_hint": "Conseil",
+  "changelog_label_feature": "Fonctionnalité",
+  "changelog_label_fix": "Correction",
+  "changelog_label_improvement": "Amélioration",
+  "changelog_label_dependency": "Dépendance",
+  "$data": {
+    "v1.0.0": {
+      "released_date": "2026/08/06",
+      "feature": [
+        "Plugin HTML Preview avec ID `html-preview`, moteur `explorer-action` et variante `default`",
+        "Action de menu secondaire en lecture seule pour un fichier dans l'explorateur AutoJs6 principal via `org.autojs.plugin.EXPLORER_ACTION`",
+        "Exécution via `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` avec accès temporaire en lecture aux URI de contenu du fichier et du dossier parent",
+        "Nettoyage HTML supprimant les scripts, attributs de gestionnaires d'événements, cadres, objets intégrés et adresses de ressources non sûres avant affichage",
+        "Chargement contrôlé des ressources relatives, ressources data et images HTTPS autorisées avec style fixe, actualisation et plein écran",
+        "Politique WebView renforcée avec CSP, navigation URI contrôlée, JavaScript et stockage désactivés et entrée limitée",
+        "Métadonnées, interface, instructions, README et changelog localisés en espagnol, français, russe, arabe, japonais, coréen, anglais, chinois simplifié, chinois traditionnel de Hong Kong et chinois traditionnel de Taïwan"
+      ]
+    }
+  }
+}

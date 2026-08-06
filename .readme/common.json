@@ -1,0 +1,13 @@
+{
+  "repo_url": "https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview",
+  "repo_slug": "SuperMonster003/AutoJs6-Plugin-HTML-Preview",
+  "icon_alt": "autojs6-plugin-html-preview-ic-launcher",
+  "docs_autojs6_url": "https://docs.autojs6.com",
+  "format_reference_url": "https://html.spec.whatwg.org",
+  "plugin_action": "org.autojs.plugin.EXPLORER_ACTION",
+  "plugin_execute_action": "org.autojs.plugin.EXPLORER_ACTION_EXECUTE",
+  "plugin_id": "html-preview",
+  "plugin_engine": "explorer-action",
+  "plugin_variant": "default",
+  "supported_formats": "html, htm, shtm, shtml, xht, xhtml"
+}
