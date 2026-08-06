@@ -1,0 +1,4 @@
+-keep class io.github.supermonster003.autojs6.plugin.htmlpreview.** { *; }
+-keep class org.autojs.plugin.common.api.PluginInfo { *; }
+-keep class org.autojs.plugin.explorer.api.** { *; }
+-dontwarn kotlinx.parcelize.Parcelize
