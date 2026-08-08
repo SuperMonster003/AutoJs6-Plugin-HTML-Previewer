@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-html-preview-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-preview-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>Complemento seguro de vista previa de HTML para el explorador AutoJs6</p>
+  <p>Complemento del gestor de archivos. Vista previa segura de solo lectura de archivos HTML</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Preview?label=Release"/></a>
@@ -39,7 +39,7 @@ El README.md actual admite los siguientes idiomas:
 
 ******
 
-El complemento AutoJs6 HTML Preview añade una acción de vista previa de HTML de solo lectura para un archivo al explorador AutoJs6. Sanea y muestra el contenido web en un visor dedicado sin integrar la implementación en la aplicación anfitriona.
+HTML Preview añade al gestor de archivos una acción de vista previa de HTML de solo lectura para un único archivo. Limpia y muestra el contenido web en un visor dedicado sin integrar la implementación en la aplicación anfitriona.
 
 ******
 
@@ -71,7 +71,7 @@ html, htm, shtm, shtml, xht, xhtml
 
 ******
 
-AutoJs6 descubre y ejecuta el complemento con las siguientes identidades:
+El anfitrión descubre y ejecuta el complemento con las siguientes identidades:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -81,7 +81,7 @@ engine: explorer-action
 variant: default
 ```
 
-La versión 1 se limita a una acción secundaria de solo lectura para un archivo en el explorador AutoJs6 principal.
+La versión 1 se limita a una acción secundaria de solo lectura para un único archivo en el gestor de archivos.
 
 ******
 
@@ -97,12 +97,19 @@ El visor sanea el documento, desactiva JavaScript, el almacenamiento WebView, la
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `Corrección` Enlace de servicio nulo que impedía la activación en el centro de complementos
+* `Mejora` Nombre, descripción y documentación de usuario más claros
+
 # v1.0.0
 
 ###### 2026/08/06
 
 * `Función` Complemento HTML Preview con ID `html-preview`, motor `explorer-action` y variante `default`
-* `Función` Acción secundaria de solo lectura para un archivo en el explorador AutoJs6 principal mediante `org.autojs.plugin.EXPLORER_ACTION`
+* `Función` Acción secundaria de solo lectura para un archivo en el gestor de archivos mediante `org.autojs.plugin.EXPLORER_ACTION`
 * `Función` Ejecución mediante `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` con acceso temporal de lectura a los URI de contenido del archivo y del directorio principal
 * `Función` Saneamiento HTML que elimina scripts, atributos de controladores de eventos, marcos, objetos incrustados y direcciones de recursos no seguras antes de mostrar
 * `Función` Carga controlada de recursos relativos, recursos data e imágenes HTTPS permitidas con estilo fijo, actualización y pantalla completa

@@ -1,4 +1,4 @@
-Use HTML Preview desde el explorador principal de AutoJs6:
+Use HTML Preview desde el gestor de archivos:
 
 1. Instale y active el complemento `HTML Preview`.
 2. Abra el menú secundario de un archivo HTML compatible.
@@ -10,4 +10,4 @@ Extensiones compatibles: `html`, `htm`, `shtm`, `shtml`, `xht`, `xhtml`.
 
 El visor sanea el contenido antes de mostrarlo. Elimina scripts, atributos de controladores de eventos, marcos, objetos incrustados y direcciones de recursos no seguras. JavaScript, el almacenamiento WebView, las cookies y el acceso directo a archivos permanecen desactivados.
 
-La versión 1 solo admite acciones de solo lectura para un archivo en el explorador principal de AutoJs6.
+La versión 1 solo admite acciones de solo lectura para un archivo en el gestor de archivos.

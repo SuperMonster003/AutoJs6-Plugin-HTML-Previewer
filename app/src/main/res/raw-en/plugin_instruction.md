@@ -1,4 +1,4 @@
-Use HTML Preview from the main AutoJs6 Explorer:
+Use HTML Preview from the file manager:
 
 1. Install and enable the `HTML Preview` plugin.
 2. Open the overflow menu for one supported HTML file.
@@ -10,4 +10,4 @@ Supported extensions: `html`, `htm`, `shtm`, `shtml`, `xht`, `xhtml`.
 
 The viewer sanitizes content before display. It removes scripts, event handler attributes, frames, embedded objects, and unsafe resource addresses. JavaScript, WebView storage, cookies, and direct file access remain disabled.
 
-Version 1 supports only single-file read-only actions in the main AutoJs6 Explorer.
+Version 1 supports only single-file read-only actions in the file manager.

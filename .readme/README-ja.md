@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-html-preview-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-preview-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>AutoJs6 エクスプローラー用の安全な HTML プレビュープラグイン</p>
+  <p>ファイルマネージャープラグイン. HTML ファイルを安全に読み取り専用でプレビュー</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Preview?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-AutoJs6 HTML Preview プラグインは AutoJs6 エクスプローラーに単一ファイル用の読み取り専用 HTML プレビューアクションを追加します. Web コンテンツをサニタイズし, ホストアプリに実装を組み込まず専用ビューアーで表示します.
+HTML Preview はファイルマネージャーに単一ファイル用の読み取り専用 HTML プレビューアクションを追加します. Web コンテンツをサニタイズし, ホストアプリに実装を組み込まず専用ビューアーで表示します.
 
 ******
 
@@ -71,7 +71,7 @@ html, htm, shtm, shtml, xht, xhtml
 
 ******
 
-AutoJs6 は次の識別情報でプラグインを検出して実行します:
+ホストは次の識別情報でプラグインを検出して実行します:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -81,7 +81,7 @@ engine: explorer-action
 variant: default
 ```
 
-バージョン 1 は AutoJs6 のメインエクスプローラーにある単一ファイル用の読み取り専用オーバーフローアクションに限定されます.
+バージョン 1 はファイルマネージャーにある単一ファイル用の読み取り専用オーバーフローアクションに限定されます.
 
 ******
 
@@ -97,12 +97,19 @@ variant: default
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `修正` プラグインセンターでの有効化を妨げていたサービスの null バインディング
+* `改善` より簡潔なプラグイン名, 説明, ユーザードキュメント
+
 # v1.0.0
 
 ###### 2026/08/06
 
 * `機能` プラグイン ID `html-preview`, エンジン `explorer-action`, バリアント `default` の HTML Preview プラグイン
-* `機能` `org.autojs.plugin.EXPLORER_ACTION` による AutoJs6 メインエクスプローラーの単一ファイル用読み取り専用オーバーフローアクション
+* `機能` `org.autojs.plugin.EXPLORER_ACTION` によるファイルマネージャーの単一ファイル用読み取り専用オーバーフローアクション
 * `機能` `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` による実行とファイルおよび親ディレクトリ content URI への一時読み取り権限
 * `機能` 表示前にスクリプト/イベントハンドラー属性/フレーム/埋め込みオブジェクト/安全でないリソースアドレスを削除する HTML サニタイズ
 * `機能` 許可された相対リソース/data リソース/HTTPS 画像の制御された読み込みと固定スタイル/再読み込み/全画面コントロール

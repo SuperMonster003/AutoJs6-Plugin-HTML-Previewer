@@ -5,11 +5,20 @@
   "changelog_label_improvement": "改善",
   "changelog_label_dependency": "依存関係",
   "$data": {
+    "v1.0.1": {
+      "released_date": "2026/08/08",
+      "fix": [
+        "プラグインセンターでの有効化を妨げていたサービスの null バインディング"
+      ],
+      "improvement": [
+        "より簡潔なプラグイン名, 説明, ユーザードキュメント"
+      ]
+    },
     "v1.0.0": {
       "released_date": "2026/08/06",
       "feature": [
         "プラグイン ID `html-preview`, エンジン `explorer-action`, バリアント `default` の HTML Preview プラグイン",
-        "`org.autojs.plugin.EXPLORER_ACTION` による AutoJs6 メインエクスプローラーの単一ファイル用読み取り専用オーバーフローアクション",
+        "`org.autojs.plugin.EXPLORER_ACTION` によるファイルマネージャーの単一ファイル用読み取り専用オーバーフローアクション",
         "`org.autojs.plugin.EXPLORER_ACTION_EXECUTE` による実行とファイルおよび親ディレクトリ content URI への一時読み取り権限",
         "表示前にスクリプト/イベントハンドラー属性/フレーム/埋め込みオブジェクト/安全でないリソースアドレスを削除する HTML サニタイズ",
         "許可された相対リソース/data リソース/HTTPS 画像の制御された読み込みと固定スタイル/再読み込み/全画面コントロール",

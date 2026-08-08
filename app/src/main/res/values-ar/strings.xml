@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_html_preview">معاينة HTML</string>
-    <string name="app_name">مكون AutoJs6 - معاينة HTML</string>
+    <string name="app_name">معاينة HTML</string>
     <string name="dialog_button_cancel">إلغاء</string>
     <string name="dialog_button_confirm">تأكيد</string>
     <string name="error_html_file_too_large">يتجاوز ملف HTML حد المعاينة %1$s</string>
-    <string name="plugin_description">معاينة آمنة للقراءة فقط لملفات HTML</string>
+    <string name="plugin_description">ملحق مدير الملفات. معاينة آمنة للقراءة فقط لملفات HTML</string>
     <string name="text_cannot_open_link">تعذر فتح الرابط</string>
     <string name="text_cannot_read_file">تعذرت قراءة ملف HTML</string>
     <string name="text_fullscreen_mode">وضع ملء الشاشة</string>

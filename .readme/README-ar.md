@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-html-preview-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-preview-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>مكون آمن لمعاينة HTML في مستكشف AutoJs6</p>
+  <p>ملحق مدير الملفات. معاينة آمنة للقراءة فقط لملفات HTML</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Preview?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-يضيف مكون AutoJs6 HTML Preview إجراء معاينة HTML للقراءة فقط لملف واحد في مستكشف AutoJs6. ينقي محتوى الويب ويعرضه في عارض مخصص من دون تضمين التنفيذ في التطبيق المضيف.
+يضيف HTML Preview إلى مدير الملفات إجراء معاينة HTML للقراءة فقط لملف واحد. ينقي محتوى الويب ويعرضه في عارض مخصص من دون تضمين التنفيذ في التطبيق المضيف.
 
 ******
 
@@ -71,7 +71,7 @@ html, htm, shtm, shtml, xht, xhtml
 
 ******
 
-يكتشف AutoJs6 المكون وينفذه باستخدام المعرفات التالية:
+يكتشف المضيف الملحق وينفذه باستخدام المعرفات التالية:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -81,7 +81,7 @@ engine: explorer-action
 variant: default
 ```
 
-يقتصر الإصدار 1 على إجراء قائمة إضافية للقراءة فقط لملف واحد في مستكشف AutoJs6 الرئيسي.
+يقتصر الإصدار 1 على إجراء قائمة إضافية للقراءة فقط لملف واحد في مدير الملفات.
 
 ******
 
@@ -97,12 +97,19 @@ variant: default
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `إصلاح` ربط الخدمة الفارغ الذي منع التفعيل في مركز الملحقات
+* `تحسين` اسم ووصف ووثائق مستخدم أكثر وضوحا
+
 # v1.0.0
 
 ###### 2026/08/06
 
 * `ميزة` مكون HTML Preview بالمعرف `html-preview` والمحرك `explorer-action` والمتغير `default`
-* `ميزة` إجراء قائمة إضافية للقراءة فقط لملف واحد في مستكشف AutoJs6 الرئيسي عبر `org.autojs.plugin.EXPLORER_ACTION`
+* `ميزة` إجراء قائمة إضافية للقراءة فقط لملف واحد في مدير الملفات عبر `org.autojs.plugin.EXPLORER_ACTION`
 * `ميزة` تنفيذ عبر `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` مع إذن قراءة مؤقت لـ content URI الخاص بالملف والمجلد الأصل
 * `ميزة` تنقية HTML بإزالة البرامج النصية وسمات معالجات الأحداث والإطارات والكائنات المضمنة وعناوين الموارد غير الآمنة قبل العرض
 * `ميزة` تحميل مضبوط للموارد النسبية وموارد data وصور HTTPS المسموح بها مع نمط ثابت وتحديث وملء الشاشة

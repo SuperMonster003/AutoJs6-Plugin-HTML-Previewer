@@ -1,4 +1,4 @@
-Utilisez HTML Preview depuis l'explorateur AutoJs6 principal:
+Utilisez HTML Preview depuis le gestionnaire de fichiers:
 
 1. Installez et activez le plugin `HTML Preview`.
 2. Ouvrez le menu secondaire d'un fichier HTML pris en charge.
@@ -10,4 +10,4 @@ Extensions prises en charge: `html`, `htm`, `shtm`, `shtml`, `xht`, `xhtml`.
 
 La visionneuse nettoie le contenu avant affichage. Elle supprime les scripts, les attributs de gestionnaires d'événements, les cadres, les objets intégrés et les adresses de ressources non sûres. JavaScript, le stockage WebView, les cookies et l'accès direct aux fichiers restent désactivés.
 
-La version 1 prend uniquement en charge les actions de lecture seule sur un fichier dans l'explorateur AutoJs6 principal.
+La version 1 prend uniquement en charge les actions de lecture seule sur un fichier dans le gestionnaire de fichiers.

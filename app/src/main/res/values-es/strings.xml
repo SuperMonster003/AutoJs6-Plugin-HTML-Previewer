@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_html_preview">Vista previa de HTML</string>
-    <string name="app_name">Complemento AutoJs6 - Vista previa de HTML</string>
+    <string name="app_name">Vista previa de HTML</string>
     <string name="dialog_button_cancel">Cancelar</string>
     <string name="dialog_button_confirm">Confirmar</string>
     <string name="error_html_file_too_large">El archivo HTML supera el límite de vista previa de %1$s</string>
-    <string name="plugin_description">Vista previa segura de solo lectura para archivos HTML</string>
+    <string name="plugin_description">Complemento del gestor de archivos. Vista previa segura de solo lectura de archivos HTML</string>
     <string name="text_cannot_open_link">No se puede abrir el enlace</string>
     <string name="text_cannot_read_file">No se puede leer el archivo HTML</string>
     <string name="text_fullscreen_mode">Modo de pantalla completa</string>

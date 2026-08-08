@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-html-preview-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-preview-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>Plugin de prévisualisation HTML sécurisé pour l'explorateur AutoJs6</p>
+  <p>Plugin de gestionnaire de fichiers. Aperçu sécurisé en lecture seule des fichiers HTML</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Preview?label=Release"/></a>
@@ -39,7 +39,7 @@ Le fichier README.md actuel prend en charge les langues suivantes:
 
 ******
 
-Le plugin AutoJs6 HTML Preview ajoute une action de prévisualisation HTML en lecture seule pour un fichier dans l'explorateur AutoJs6. Il nettoie et affiche le contenu web dans une visionneuse dédiée sans intégrer cette fonction dans l'application hôte.
+HTML Preview ajoute au gestionnaire de fichiers une action de prévisualisation HTML en lecture seule pour un seul fichier. Le contenu web est nettoyé et affiché dans une visionneuse dédiée sans intégrer cette fonction à l'application hôte.
 
 ******
 
@@ -71,7 +71,7 @@ html, htm, shtm, shtml, xht, xhtml
 
 ******
 
-AutoJs6 découvre et exécute le plugin avec les identités suivantes:
+L'hôte découvre et exécute le plugin avec les identités suivantes:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -81,7 +81,7 @@ engine: explorer-action
 variant: default
 ```
 
-La version 1 est limitée à une action de menu secondaire en lecture seule pour un fichier dans l'explorateur AutoJs6 principal.
+La version 1 est limitée à une action de menu secondaire en lecture seule pour un seul fichier dans le gestionnaire de fichiers.
 
 ******
 
@@ -97,12 +97,19 @@ La visionneuse nettoie le document, désactive JavaScript, le stockage WebView, 
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `Correctif` Liaison de service nulle qui empêchait l'activation dans le centre de plugins
+* `Amélioration` Nom, description et documentation utilisateur plus clairs
+
 # v1.0.0
 
 ###### 2026/08/06
 
 * `Fonctionnalité` Plugin HTML Preview avec ID `html-preview`, moteur `explorer-action` et variante `default`
-* `Fonctionnalité` Action de menu secondaire en lecture seule pour un fichier dans l'explorateur AutoJs6 principal via `org.autojs.plugin.EXPLORER_ACTION`
+* `Fonctionnalité` Action de menu secondaire en lecture seule pour un fichier dans le gestionnaire de fichiers via `org.autojs.plugin.EXPLORER_ACTION`
 * `Fonctionnalité` Exécution via `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` avec accès temporaire en lecture aux URI de contenu du fichier et du dossier parent
 * `Fonctionnalité` Nettoyage HTML supprimant les scripts, attributs de gestionnaires d'événements, cadres, objets intégrés et adresses de ressources non sûres avant affichage
 * `Fonctionnalité` Chargement contrôlé des ressources relatives, ressources data et images HTTPS autorisées avec style fixe, actualisation et plein écran

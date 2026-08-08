@@ -4,12 +4,19 @@
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `Fix` Null service binding that prevented activation in Plugin Center
+* `Improvement` Clearer plugin name, description, and user documentation
+
 # v1.0.0
 
 ###### 2026/08/06
 
 * `Feature` HTML Preview plugin with plugin ID `html-preview`, engine `explorer-action`, and variant `default`
-* `Feature` Single-file read-only overflow action in the main AutoJs6 Explorer through `org.autojs.plugin.EXPLORER_ACTION`
+* `Feature` Single-file read-only overflow action in the file manager through `org.autojs.plugin.EXPLORER_ACTION`
 * `Feature` Activity execution through `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` with temporary read access to file and parent directory content URIs
 * `Feature` HTML sanitization that removes scripts, event handler attributes, frames, embedded objects, and unsafe resource addresses before display
 * `Feature` Guarded loading of permitted relative resources, data resources, and HTTPS images with fixed styling, refresh, and fullscreen controls

@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-html-preview-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-preview-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>Безопасный плагин предпросмотра HTML для проводника AutoJs6</p>
+  <p>Плагин файлового менеджера. Безопасный просмотр файлов HTML только для чтения</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Preview?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-Плагин AutoJs6 HTML Preview добавляет в проводник AutoJs6 действие для просмотра одного файла HTML только для чтения. Веб-содержимое очищается и отображается в отдельном средстве просмотра без встраивания реализации в приложение-хост.
+HTML Preview добавляет в файловый менеджер действие для просмотра одного файла HTML только для чтения. Веб-содержимое очищается и отображается в отдельном средстве просмотра без встраивания реализации в приложение-хост.
 
 ******
 
@@ -71,7 +71,7 @@ html, htm, shtm, shtml, xht, xhtml
 
 ******
 
-AutoJs6 обнаруживает и запускает плагин по следующим идентификаторам:
+Хост обнаруживает и запускает плагин по следующим идентификаторам:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -81,7 +81,7 @@ engine: explorer-action
 variant: default
 ```
 
-Версия 1 ограничена действием дополнительного меню только для чтения одного файла в основном проводнике AutoJs6.
+Версия 1 ограничена действием дополнительного меню только для чтения одного файла в файловом менеджере.
 
 ******
 
@@ -97,12 +97,19 @@ variant: default
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `Исправление` Нулевая привязка службы, препятствовавшая включению в центре плагинов
+* `Улучшение` Более ясные название, описание и пользовательская документация
+
 # v1.0.0
 
 ###### 2026/08/06
 
 * `Функция` Плагин HTML Preview с ID `html-preview`, движком `explorer-action` и вариантом `default`
-* `Функция` Действие дополнительного меню только для чтения одного файла в основном проводнике AutoJs6 через `org.autojs.plugin.EXPLORER_ACTION`
+* `Функция` Действие дополнительного меню только для чтения одного файла в файловом менеджере через `org.autojs.plugin.EXPLORER_ACTION`
 * `Функция` Запуск через `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` с временным доступом на чтение URI содержимого файла и родительского каталога
 * `Функция` Очистка HTML с удалением скриптов, атрибутов обработчиков событий, фреймов, встроенных объектов и небезопасных адресов ресурсов перед отображением
 * `Функция` Контролируемая загрузка разрешенных относительных ресурсов, ресурсов data и изображений HTTPS с фиксированным стилем, обновлением и полноэкранным режимом

@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-html-preview-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-preview-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>AutoJs6 탐색기용 보안 HTML 미리보기 플러그인</p>
+  <p>파일 관리자 플러그인. HTML 파일의 안전한 읽기 전용 미리보기</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Preview?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-AutoJs6 HTML Preview 플러그인은 AutoJs6 탐색기에 단일 파일 읽기 전용 HTML 미리보기 작업을 추가합니다. 웹 콘텐츠를 정리한 뒤 호스트 앱에 구현을 포함하지 않고 전용 뷰어에서 표시합니다.
+HTML Preview는 파일 관리자에 단일 파일 읽기 전용 HTML 미리보기 작업을 추가합니다. 웹 콘텐츠를 정리한 뒤 호스트 앱에 구현을 포함하지 않고 전용 뷰어에서 표시합니다.
 
 ******
 
@@ -71,7 +71,7 @@ html, htm, shtm, shtml, xht, xhtml
 
 ******
 
-AutoJs6는 다음 식별 정보로 플러그인을 검색하고 실행합니다:
+호스트는 다음 식별 정보로 플러그인을 검색하고 실행합니다:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -81,7 +81,7 @@ engine: explorer-action
 variant: default
 ```
 
-버전 1은 AutoJs6 기본 탐색기의 단일 파일 읽기 전용 더보기 작업으로 제한됩니다.
+버전 1은 파일 관리자의 단일 파일 읽기 전용 더보기 작업으로 제한됩니다.
 
 ******
 
@@ -97,12 +97,19 @@ variant: default
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `수정` 플러그인 센터 활성화를 막던 null 서비스 바인딩
+* `개선` 더 간결한 플러그인 이름, 설명 및 사용자 문서
+
 # v1.0.0
 
 ###### 2026/08/06
 
 * `기능` 플러그인 ID `html-preview`, 엔진 `explorer-action`, 변형 `default`인 HTML Preview 플러그인
-* `기능` `org.autojs.plugin.EXPLORER_ACTION`을 통한 AutoJs6 기본 탐색기의 단일 파일 읽기 전용 더보기 작업
+* `기능` `org.autojs.plugin.EXPLORER_ACTION`을 통한 파일 관리자의 단일 파일 읽기 전용 더보기 작업
 * `기능` `org.autojs.plugin.EXPLORER_ACTION_EXECUTE`을 통한 실행과 파일 및 상위 디렉터리 content URI 임시 읽기 권한
 * `기능` 표시 전에 스크립트/이벤트 처리기 속성/프레임/포함된 개체/안전하지 않은 리소스 주소를 제거하는 HTML 정리
 * `기능` 허용된 상대 리소스/data 리소스/HTTPS 이미지의 제어된 불러오기와 고정 스타일/새로 고침/전체 화면 제어

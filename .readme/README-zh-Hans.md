@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-html-preview-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-preview-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>用于 AutoJs6 文件浏览器的安全 HTML 预览插件</p>
+  <p>文件管理器插件. 安全只读预览 HTML 文件</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Preview?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-AutoJs6 HTML Preview 插件为 AutoJs6 文件浏览器增加单文件只读 HTML 预览动作. 插件在独立查看器中净化并显示网页内容, 无需将预览实现嵌入宿主应用.
+HTML Preview 为文件管理器提供单文件只读 HTML 预览动作. 网页内容在独立查看器中净化并显示, 无需将预览实现嵌入宿主应用.
 
 ******
 
@@ -71,7 +71,7 @@ html, htm, shtm, shtml, xht, xhtml
 
 ******
 
-AutoJs6 使用以下标识发现并执行插件:
+宿主通过以下标识发现并执行插件:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -81,7 +81,7 @@ engine: explorer-action
 variant: default
 ```
 
-版本 1 仅支持 AutoJs6 主文件浏览器中的单文件只读溢出菜单动作.
+版本 1 仅支持文件管理器中的单文件只读溢出菜单动作.
 
 ******
 
@@ -97,12 +97,19 @@ variant: default
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `修复` 插件中心启用时因服务返回空绑定而失败的问题
+* `优化` 更简洁的插件名称, 描述和用户文档
+
 # v1.0.0
 
 ###### 2026/08/06
 
 * `新增` HTML Preview 插件, 插件 ID 为 `html-preview`, 引擎为 `explorer-action`, 变体为 `default`
-* `新增` 通过 `org.autojs.plugin.EXPLORER_ACTION` 为 AutoJs6 主文件浏览器提供单文件只读溢出菜单动作
+* `新增` 通过 `org.autojs.plugin.EXPLORER_ACTION` 为文件管理器提供单文件只读溢出菜单动作
 * `新增` 通过 `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` 接收文件和父目录 content URI 的临时读取权限
 * `新增` 显示前移除脚本/事件处理属性/框架/嵌入对象和不安全资源地址的 HTML 净化
 * `新增` 按受控请求规则加载允许的相对资源/data 资源/HTTPS 图片, 并提供固定样式/刷新/全屏控制

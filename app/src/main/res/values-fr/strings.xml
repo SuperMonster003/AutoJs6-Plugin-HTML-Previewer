@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_html_preview">Prévisualiser HTML</string>
-    <string name="app_name">Plugin AutoJs6 - Aperçu HTML</string>
+    <string name="app_name">Aperçu HTML</string>
     <string name="dialog_button_cancel">Annuler</string>
     <string name="dialog_button_confirm">Confirmer</string>
     <string name="error_html_file_too_large">Le fichier HTML dépasse la limite de prévisualisation de %1$s</string>
-    <string name="plugin_description">Aperçu sécurisé en lecture seule des fichiers HTML</string>
+    <string name="plugin_description">Plugin de gestionnaire de fichiers. Aperçu sécurisé en lecture seule des fichiers HTML</string>
     <string name="text_cannot_open_link">Ouverture du lien impossible</string>
     <string name="text_cannot_read_file">Lecture du fichier HTML impossible</string>
     <string name="text_fullscreen_mode">Mode plein écran</string>

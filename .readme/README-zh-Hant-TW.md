@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-html-preview-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-preview-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>用於 AutoJs6 檔案瀏覽器的安全 HTML 預覽外掛</p>
+  <p>檔案管理器外掛程式. 安全唯讀預覽 HTML 檔案</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Preview/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Preview?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-AutoJs6 HTML Preview 外掛為 AutoJs6 檔案瀏覽器加入單一檔案唯讀 HTML 預覽動作. 外掛在獨立檢視器中淨化並顯示網頁內容, 無需將預覽實作嵌入宿主應用程式.
+HTML Preview 為檔案管理器提供單一檔案唯讀 HTML 預覽動作. 網頁內容在獨立檢視器中淨化並顯示, 無需將預覽實作嵌入主程式.
 
 ******
 
@@ -71,7 +71,7 @@ html, htm, shtm, shtml, xht, xhtml
 
 ******
 
-AutoJs6 使用以下識別資訊探索並執行外掛:
+主程式透過以下識別資訊探索並執行外掛程式:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -81,7 +81,7 @@ engine: explorer-action
 variant: default
 ```
 
-版本 1 僅支援 AutoJs6 主檔案瀏覽器中的單一檔案唯讀更多選單動作.
+版本 1 僅支援檔案管理器中的單一檔案唯讀更多選單動作.
 
 ******
 
@@ -97,12 +97,19 @@ variant: default
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `修復` 外掛程式中心啟用時因服務傳回空繫結而失敗的問題
+* `優化` 更簡潔的外掛程式名稱, 描述和使用者文件
+
 # v1.0.0
 
 ###### 2026/08/06
 
 * `新增` HTML Preview 外掛, 外掛 ID 為 `html-preview`, 引擎為 `explorer-action`, 變體為 `default`
-* `新增` 透過 `org.autojs.plugin.EXPLORER_ACTION` 為 AutoJs6 主檔案瀏覽器提供單一檔案唯讀更多選單動作
+* `新增` 透過 `org.autojs.plugin.EXPLORER_ACTION` 為檔案管理器提供單一檔案唯讀更多選單動作
 * `新增` 透過 `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` 接收檔案和上層目錄 content URI 的暫時讀取權限
 * `新增` 顯示前移除腳本/事件處理屬性/框架/嵌入物件和不安全資源位址的 HTML 淨化
 * `新增` 依受控請求規則載入允許的相對資源/data 資源/HTTPS 圖片, 並提供固定樣式/重新整理/全螢幕控制

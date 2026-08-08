@@ -25,6 +25,14 @@ import org.junit.runner.RunWith
 class PluginContractInstrumentationTest {
 
     @Test
+    fun serviceReturnsBinderForExplicitActionlessBinding() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val intent = Intent().setComponent(ComponentName(context, ExplorerActionService::class.java))
+
+        assertNotNull(ExplorerActionService().onBind(intent))
+    }
+
+    @Test
     fun pluginInfoDeclaresAbiIndependentExplorerEngine() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val info = context.htmlPreviewPluginInfo()
