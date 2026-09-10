@@ -6,7 +6,6 @@ import android.net.Uri
 import org.autojs.plugin.explorer.api.ExplorerActionIntentExtras
 import org.autojs.plugin.explorer.api.ExplorerActionIntentValues
 import org.autojs.plugin.explorer.api.ExplorerActionPluginActions
-import org.autojs.plugin.explorer.api.ExplorerActionProtocol
 import java.util.Locale
 
 internal data class HtmlPreviewerRequest(
@@ -26,13 +25,19 @@ internal object HtmlPreviewerIntentPolicy {
 
     fun resolve(intent: Intent): HtmlPreviewerRequest? {
         if (intent.action != ExplorerActionPluginActions.EXECUTE) return null
-        if (intent.getStringExtra(ExplorerActionIntentExtras.ACTION_ID) != HtmlPreviewerPlugin.ID) return null
+        if (intent.getStringExtra(ExplorerActionIntentExtras.ACTION_ID) !in
+            setOf(HtmlPreviewerPlugin.ID, HtmlPreviewerPlugin.PRIMARY_ACTION_ID)) return null
         if (
             intent.getIntExtra(ExplorerActionIntentExtras.PROTOCOL_VERSION, Int.MIN_VALUE) !=
-            ExplorerActionProtocol.VERSION
+            HtmlPreviewerPlugin.PROTOCOL_VERSION
         ) {
             return null
         }
+        val hostVersionCode = intent.getLongExtra(
+            ExplorerActionIntentExtras.HOST_VERSION_CODE,
+            Long.MIN_VALUE,
+        )
+        if (!HtmlPreviewerExplorerCompatibility.acceptsHostVersionCode(hostVersionCode)) return null
         if (
             intent.getStringExtra(ExplorerActionIntentExtras.SOURCE_SURFACE) !=
             ExplorerActionIntentValues.SOURCE_SURFACE_MAIN
@@ -50,7 +55,7 @@ internal object HtmlPreviewerIntentPolicy {
         if (!HtmlPreviewerPathPolicy.isDescendant(parentUri, documentUri)) return null
 
         val clipData = intent.clipData ?: return null
-        if (clipData.itemCount <= ExplorerActionIntentValues.CLIP_ITEM_PARENT_INDEX) return null
+        if (clipData.itemCount != HtmlPreviewerExplorerCompatibility.LEGACY_CLIP_ITEM_COUNT) return null
         if (clipData.getItemAt(ExplorerActionIntentValues.CLIP_ITEM_TARGET_INDEX).uri != documentUri) return null
         if (clipData.getItemAt(ExplorerActionIntentValues.CLIP_ITEM_PARENT_INDEX).uri != parentUri) return null
 

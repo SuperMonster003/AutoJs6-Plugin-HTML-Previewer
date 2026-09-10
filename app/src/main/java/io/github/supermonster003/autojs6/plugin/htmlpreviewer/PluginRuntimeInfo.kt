@@ -8,19 +8,26 @@ import org.autojs.plugin.common.api.PluginInfo
 import org.autojs.plugin.explorer.api.ExplorerActionCapabilityKeys
 import org.autojs.plugin.explorer.api.ExplorerActionCatalogKeys
 import org.autojs.plugin.explorer.api.ExplorerActionPluginIds
-import org.autojs.plugin.explorer.api.ExplorerActionProtocol
 import org.autojs.plugin.explorer.api.ExplorerActionValues
 
 internal object HtmlPreviewerPlugin {
     const val ID = "html-previewer"
+    const val PRIMARY_ACTION_ID = "$ID.primary"
+    // Explorer Action v2 adds primary placement to the unchanged single-file envelope.
+    const val PRIMARY_PLACEMENT = 2
     const val VARIANT = "default"
-    const val REQUIRED_HOST_VERSION = 5268L
     const val LABEL_RESOURCE_NAME = "action_html_previewer"
-    const val LABEL_FALLBACK = "HTML preview"
+    const val LABEL_FALLBACK = "HTML Previewer"
     const val ACTIVITY_CLASS_NAME =
         "io.github.supermonster003.autojs6.plugin.htmlpreviewer.HtmlPreviewerActivity"
 
-    val MIME_TYPES = arrayOf("text/html", "application/xhtml+xml")
+    val REQUIRED_HOST_VERSION = HtmlPreviewerExplorerCompatibility.minimumHostVersionCode
+    val PROTOCOL_VERSION = HtmlPreviewerExplorerCompatibility.declaredProtocolVersion
+
+    val MIME_TYPES = arrayOf(
+        "text/html",
+        "application/xhtml+xml",
+    )
     val EXTENSIONS = arrayOf(
         "html",
         "htm",
@@ -55,21 +62,21 @@ internal fun Context.htmlPreviewerPluginInfo(): PluginInfo {
         supportedAbis = emptyArray()
         capabilities = Bundle().apply {
             putLong(PluginCapabilityKeys.REQUIRES_HOST_VERSION, HtmlPreviewerPlugin.REQUIRED_HOST_VERSION)
-            putInt(ExplorerActionCapabilityKeys.PROTOCOL_VERSION, ExplorerActionProtocol.VERSION)
+            putInt(ExplorerActionCapabilityKeys.PROTOCOL_VERSION, HtmlPreviewerPlugin.PROTOCOL_VERSION)
         }
     }
 }
 
 internal fun htmlPreviewerActionCatalog(): Bundle {
-    val action = Bundle().apply {
-        putString(ExplorerActionCatalogKeys.ID, HtmlPreviewerPlugin.ID)
+    fun action(id: String, placement: Int) = Bundle().apply {
+        putString(ExplorerActionCatalogKeys.ID, id)
         putString(ExplorerActionCatalogKeys.LABEL_RESOURCE_NAME, HtmlPreviewerPlugin.LABEL_RESOURCE_NAME)
         putString(ExplorerActionCatalogKeys.LABEL_FALLBACK, HtmlPreviewerPlugin.LABEL_FALLBACK)
         putString(ExplorerActionCatalogKeys.ACTIVITY_CLASS_NAME, HtmlPreviewerPlugin.ACTIVITY_CLASS_NAME)
         putInt(ExplorerActionCatalogKeys.PRIORITY, 100)
         putInt(ExplorerActionCatalogKeys.TARGET_KIND, ExplorerActionValues.TARGET_FILE)
         putInt(ExplorerActionCatalogKeys.ACCESS_MODE, ExplorerActionValues.ACCESS_READ_ONLY)
-        putInt(ExplorerActionCatalogKeys.PLACEMENT, ExplorerActionValues.PLACEMENT_OVERFLOW)
+        putInt(ExplorerActionCatalogKeys.PLACEMENT, placement)
         putStringArrayList(
             ExplorerActionCatalogKeys.MIME_TYPES,
             ArrayList(HtmlPreviewerPlugin.MIME_TYPES.asList()),
@@ -80,7 +87,13 @@ internal fun htmlPreviewerActionCatalog(): Bundle {
         )
     }
     return Bundle().apply {
-        putInt(ExplorerActionCatalogKeys.PROTOCOL_VERSION, ExplorerActionProtocol.VERSION)
-        putParcelableArrayList(ExplorerActionCatalogKeys.ACTIONS, arrayListOf(action))
+        putInt(ExplorerActionCatalogKeys.PROTOCOL_VERSION, HtmlPreviewerPlugin.PROTOCOL_VERSION)
+        putParcelableArrayList(
+            ExplorerActionCatalogKeys.ACTIONS,
+            arrayListOf(
+                action(HtmlPreviewerPlugin.PRIMARY_ACTION_ID, HtmlPreviewerPlugin.PRIMARY_PLACEMENT),
+                action(HtmlPreviewerPlugin.ID, ExplorerActionValues.PLACEMENT_OVERFLOW),
+            ),
+        )
     }
 }

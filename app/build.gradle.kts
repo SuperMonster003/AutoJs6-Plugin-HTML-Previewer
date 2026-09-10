@@ -1,6 +1,8 @@
 import org.gradle.api.file.DuplicatesStrategy
 import org.gradle.api.file.RelativePath
 import org.gradle.api.provider.Property
+import java.security.MessageDigest
+import java.util.Properties
 
 plugins {
     id("org.autojs.build.utils")
@@ -15,6 +17,29 @@ val globalApplicationId = "io.github.supermonster003.autojs6.plugin.htmlpreviewe
 val buildTypeDebug = "debug"
 val buildTypeRelease = "release"
 
+val explorerActionCompatibilityFile =
+    rootProject.file("gradle/explorer-action-compatibility.properties")
+val explorerActionCompatibility = Properties().apply {
+    explorerActionCompatibilityFile.inputStream().use(::load)
+}
+
+fun explorerActionCompatibilityProperty(name: String): String =
+    explorerActionCompatibility.getProperty(name)
+        ?.trim()
+        ?.takeIf(String::isNotEmpty)
+        ?: error("Missing Explorer Action compatibility property: $name")
+
+val explorerActionProtocolVersion =
+    explorerActionCompatibilityProperty("declaredProtocolVersion").toInt()
+val explorerActionMinimumHostVersionCode =
+    explorerActionCompatibilityProperty("minimumHostVersionCode").toLong()
+val explorerActionMaximumAuditedHostVersionCode =
+    explorerActionCompatibilityProperty("maximumAuditedHostVersionCode").toLong()
+val explorerActionMaximumAuditedHostProtocolVersion =
+    explorerActionCompatibilityProperty("maximumAuditedHostProtocolVersion").toInt()
+val explorerActionApiSha256 =
+    explorerActionCompatibilityProperty("explorerActionApiSha256").uppercase()
+
 android {
     namespace = globalApplicationId
     compileSdk = versions.sdkVersionCompile
@@ -27,6 +52,23 @@ android {
         versionName = versions.appVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("int", "EXPLORER_ACTION_PROTOCOL_VERSION", explorerActionProtocolVersion.toString())
+        buildConfigField(
+            "long",
+            "EXPLORER_ACTION_MINIMUM_HOST_VERSION_CODE",
+            "${explorerActionMinimumHostVersionCode}L",
+        )
+        buildConfigField(
+            "long",
+            "EXPLORER_ACTION_MAXIMUM_AUDITED_HOST_VERSION_CODE",
+            "${explorerActionMaximumAuditedHostVersionCode}L",
+        )
+        buildConfigField(
+            "int",
+            "EXPLORER_ACTION_MAXIMUM_AUDITED_HOST_PROTOCOL_VERSION",
+            explorerActionMaximumAuditedHostProtocolVersion.toString(),
+        )
 
         resValue("string", "plugin_author", "SuperMonster003")
         resValue("string", "plugin_version_date", utils.getDateString("MMM d, yyyy", "GMT+08:00"))
@@ -69,6 +111,7 @@ android {
 
     buildFeatures {
         aidl = true
+        buildConfig = true
         resValues = true
         viewBinding = true
     }
@@ -136,6 +179,38 @@ dependencies {
 }
 
 tasks {
+    val verifyExplorerActionApiCompatibility = register("verifyExplorerActionApiCompatibility") {
+        description = "Verifies the audited Explorer Action v1 AAR digest"
+        group = "verification"
+        val apiAar = rootProject.file("libs/explorer-action-api.aar")
+        inputs.file(apiAar)
+        inputs.file(explorerActionCompatibilityFile)
+
+        doLast {
+            val digest = MessageDigest.getInstance("SHA-256")
+            apiAar.inputStream().use { input ->
+                val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
+                while (true) {
+                    val count = input.read(buffer)
+                    if (count < 0) break
+                    digest.update(buffer, 0, count)
+                }
+            }
+            val actual = digest.digest().joinToString("") { byte ->
+                "%02X".format(byte.toInt() and 0xFF)
+            }
+            check(actual == explorerActionApiSha256) {
+                "Explorer Action API AAR digest changed: expected $explorerActionApiSha256, actual $actual. " +
+                    "Audit the protocol and update the compatibility matrix before accepting a new AAR."
+            }
+            println("Explorer Action API compatibility OK: protocol v$explorerActionProtocolVersion, SHA-256 $actual")
+        }
+    }
+
+    named("preBuild").configure {
+        dependsOn(verifyExplorerActionApiCompatibility)
+    }
+
     withType(JavaCompile::class.java) {
         options.encoding = "UTF-8"
     }

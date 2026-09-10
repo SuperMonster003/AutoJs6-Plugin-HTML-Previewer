@@ -46,18 +46,26 @@ class PluginContractInstrumentationTest {
             info.capabilities?.getLong(PluginCapabilityKeys.REQUIRES_HOST_VERSION),
         )
         assertEquals(
-            ExplorerActionProtocol.VERSION,
+            HtmlPreviewerPlugin.PROTOCOL_VERSION,
             info.capabilities?.getInt(ExplorerActionCapabilityKeys.PROTOCOL_VERSION),
         )
+        assertEquals(2, HtmlPreviewerPlugin.PROTOCOL_VERSION)
     }
 
     @Test
     fun catalogUsesParcelableBundleAndStringArrayLists() {
         val catalog = htmlPreviewerActionCatalog()
         val actions = catalog.getParcelableArrayList<Bundle>(ExplorerActionCatalogKeys.ACTIONS)
-        val action = actions?.single()
+        val action = actions?.single { it.getString(ExplorerActionCatalogKeys.ID) == HtmlPreviewerPlugin.ID }
+        assertEquals(2, actions?.size)
+        val primary = actions?.single { it.getString(ExplorerActionCatalogKeys.ID) == HtmlPreviewerPlugin.PRIMARY_ACTION_ID }
+        assertEquals(2, primary?.getInt(ExplorerActionCatalogKeys.PLACEMENT))
+        assertEquals(HtmlPreviewerPlugin.ACTIVITY_CLASS_NAME, primary?.getString(ExplorerActionCatalogKeys.ACTIVITY_CLASS_NAME))
 
-        assertEquals(ExplorerActionProtocol.VERSION, catalog.getInt(ExplorerActionCatalogKeys.PROTOCOL_VERSION))
+        assertEquals(
+            HtmlPreviewerPlugin.PROTOCOL_VERSION,
+            catalog.getInt(ExplorerActionCatalogKeys.PROTOCOL_VERSION),
+        )
         assertNotNull(action)
         assertEquals(HtmlPreviewerPlugin.ID, action?.getString(ExplorerActionCatalogKeys.ID))
         assertEquals(
@@ -69,12 +77,30 @@ class PluginContractInstrumentationTest {
             action?.getString(ExplorerActionCatalogKeys.ACTIVITY_CLASS_NAME),
         )
         assertEquals(
-            listOf("text/html", "application/xhtml+xml"),
+            listOf(
+                "text/html",
+                "application/xhtml+xml",
+            ),
             action?.getStringArrayList(ExplorerActionCatalogKeys.MIME_TYPES),
         )
         assertEquals(
             HtmlPreviewerPlugin.EXTENSIONS.toList(),
             action?.getStringArrayList(ExplorerActionCatalogKeys.EXTENSIONS),
+        )
+        assertEquals(
+            setOf(
+                ExplorerActionCatalogKeys.ID,
+                ExplorerActionCatalogKeys.LABEL_RESOURCE_NAME,
+                ExplorerActionCatalogKeys.LABEL_FALLBACK,
+                ExplorerActionCatalogKeys.ACTIVITY_CLASS_NAME,
+                ExplorerActionCatalogKeys.PRIORITY,
+                ExplorerActionCatalogKeys.TARGET_KIND,
+                ExplorerActionCatalogKeys.ACCESS_MODE,
+                ExplorerActionCatalogKeys.PLACEMENT,
+                ExplorerActionCatalogKeys.MIME_TYPES,
+                ExplorerActionCatalogKeys.EXTENSIONS,
+            ),
+            action?.keySet(),
         )
 
         val labelResourceName = action?.getString(ExplorerActionCatalogKeys.LABEL_RESOURCE_NAME).orEmpty()
