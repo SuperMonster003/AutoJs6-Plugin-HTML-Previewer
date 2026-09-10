@@ -5,7 +5,7 @@
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-previewer-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>File manager plugin. Secure read-only preview for HTML files</p>
+  <p>File manager plugin. Secure read-only previewer for HTML and MHTML files</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Previewer?label=Release"/></a>
@@ -39,7 +39,9 @@ The current README.md supports the following languages:
 
 ******
 
-HTML Previewer adds a single-file read-only HTML preview action to the file manager. It sanitizes and displays web content in a focused viewer without embedding the preview implementation in the host application.
+One-tap viewing: open web files straight from the file manager via the `HTML Previewer` menu, with no browser required and no network needed for purely local pages.
+
+Scripts are disabled by default. For a trusted, complete ordinary HTML file, enable `Interactive mode` in `Settings` to run JavaScript, button events, WebGL, and local storage. MHTML, truncated HTML, source view, and PDF export always keep scripts disabled.
 
 ******
 
@@ -47,11 +49,29 @@ HTML Previewer adds a single-file read-only HTML preview action to the file mana
 
 ******
 
-- Registers a single-file read-only Explorer action through the shared `org.autojs.plugin.EXPLORER_ACTION` protocol.
-- Receives temporary content URI read access to the selected HTML file and its parent directory resources instead of raw filesystem paths.
-- Removes scripts, event handler attributes, frames, embedded objects, and unsafe resource addresses before display.
-- Loads permitted relative resources, data resources, and HTTPS images under guarded request policies.
-- Provides fixed readable styling, refresh, fullscreen mode, a start-in-fullscreen preference, and a bounded HTML input size.
+- One-tap viewing: open web files straight from the file manager via the `HTML Previewer` menu, with no browser required and no network needed for purely local pages.
+- Scripts are disabled by default. For a trusted, complete ordinary HTML file, enable `Interactive mode` in `Settings` to run JavaScript, button events, WebGL, and local storage. MHTML, truncated HTML, source view, and PDF export always keep scripts disabled.
+- Safe source view: switch between the sanitized page and a read-only monospace view of the original HTML, or the decoded root HTML for MHTML; tags stay literal and source mode never makes network requests.
+- System PDF export: choose `Export PDF` to send a freshly sanitized, light-themed copy to Android's print panel, where page settings and `Save as PDF` are handled without storage permission.
+- Faithful layout: supports the page's own styles, permitted resources embedded in MHTML, local resources next to ordinary HTML such as images, fonts, audio, and video, plus optional HTTPS web images that can be disabled completely.
+- Comfortable reading: includes in-page search, 75%-200% text sizing, pinch-to-zoom, and automatic, light, or dark themes. Menus and dialogs follow the AutoJs6 language and dark mode. GitHub (Auto), or the automatic HTML theme, follows AutoJs6 as well. The toolbar and system bars use one representative color sampled from the rendered page edges, with contrasting black or white text and icons. For gradients, images, and animation, that color stays fixed until reload to avoid flicker.
+- Fullscreen mode: switch to immersive fullscreen at any time, or enable `Start in fullscreen mode` in the settings.
+- External links: tapping an http/https link hands it over to the system browser, while in-page anchor jumps keep working.
+- Multilingual: interface, instructions, README, and changelog are available in 10 languages.
+
+******
+
+### How to Use
+
+******
+
+1. Download the latest plugin APK from the [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/releases) page and install it on your device.
+2. Open the AutoJs6 plugin center and enable the `HTML Previewer` plugin.
+3. In the AutoJs6 file manager, locate the HTML or MHTML file you want to view and open its overflow menu (more actions).
+4. Choose `HTML Previewer`; the page opens in a dedicated viewer.
+5. While reading, use the top-right menu to find text, switch between `View source` and `View rendered page`, `Export PDF`, `Refresh`, toggle `Fullscreen mode`, or open `Settings` to adjust text size, theme, network images, and fullscreen startup; press Back to close search, leave fullscreen, or close the viewer.
+
+> If the plugin does not appear in the plugin center, update AutoJs6 to a recent version first (internal build 5269 or later). Explorer Action v2 supports both the primary previewer button and the overflow menu for a single file, using temporary read grants for the document and its parent directory. AutoJs6 build 5269 or later is required.
 
 ******
 
@@ -59,11 +79,60 @@ HTML Previewer adds a single-file read-only HTML preview action to the file mana
 
 ******
 
-The first release recognizes the following filename extensions:
+The plugin recognizes the following filename extensions, plus extensionless files the host explicitly marks as `text/html`, `application/xhtml+xml`, `multipart/related`, or `application/x-mimearchive`:
 
 ```text
-html, htm, shtm, shtml, xht, xhtml
+html, htm, shtm, shtml, xht, xhtml, mht, mhtml
 ```
+
+Files up to 8 MB are loaded in full. Larger ordinary HTML files may be viewed only after confirming a clearly marked first-8 MB truncation; MHTML must stay complete and is rejected above the limit. A BOM takes priority when decoding HTML; otherwise a MIME charset or an early `meta charset` or `http-equiv` declaration is used, with UTF-8 as the fallback. MHTML supports bounded MIME nesting and the standard identity, quoted-printable, and Base64 transfer encodings.
+
+******
+
+### FAQ
+
+******
+
+#### Why do buttons and dynamic effects in the page not respond?
+
+Scripts are disabled by default. For a trusted, complete ordinary HTML file, enable `Interactive mode` in `Settings` to run JavaScript, button events, WebGL, and local storage. MHTML, truncated HTML, source view, and PDF export always keep scripts disabled.
+
+#### Why are some images or styles missing?
+
+Local resources are read from the authorized directory, or from the selected MHTML archive. Safe mode allows public HTTPS images; interactive mode also allows public HTTPS scripts, styles, and requests when `Load network resources` is enabled. Turning the network switch off blocks outbound WebView requests. Interactive scripts can send page data to remote services, so enable this mode only for trusted pages.
+
+#### The rendered page does not look exactly like in a browser. Is that normal?
+
+In the default safe mode: Yes. Besides removing scripts, the viewer injects a base reading style and disables some advanced features. The goal is safe and legible reading rather than pixel-perfect rendering. Use a browser to verify the final appearance.
+
+#### Does this plugin upload my files anywhere?
+
+Local resources are read from the authorized directory, or from the selected MHTML archive. Safe mode allows public HTTPS images; interactive mode also allows public HTTPS scripts, styles, and requests when `Load network resources` is enabled. Turning the network switch off blocks outbound WebView requests. Interactive scripts can send page data to remote services, so enable this mode only for trusted pages.
+
+#### Where is an exported PDF saved?
+
+`Export PDF` opens Android's system print panel. Choose `Save as PDF`, then choose the file name and destination in the system picker. The plugin never writes directly to storage or requests storage permission. Export always rereads the HTML or complete MHTML archive and sanitizes the root page, even when started from source view, and leaves the current viewer state unchanged.
+
+#### Can I edit HTML files or view a whole website project?
+
+The current version is scoped to single-file read-only viewing: there is no editing capability and no directory browsing. Resources next to ordinary HTML are read on demand, while MHTML resources stay inside the selected archive; the plugin only ever holds the temporary read permission granted by the host. See [ROADMAP.md](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/ROADMAP.md) for what is planned.
+
+******
+
+### Permissions and Security
+
+******
+
+The plugin assumes the viewed file is untrusted and applies several layers of protection:
+
+- In the default safe mode: Sanitize before display: scripts, event handler attributes, embedded frames, embedded objects, and form targets are removed, and unsafe link or resource addresses are filtered out.
+- Cookies, direct file/content access, native JavaScript bridges, and new windows remain disabled. Safe mode disables page storage; interactive mode allows local storage for page preferences and game scores. Source view and PDF use a fresh sanitized rendering.
+- Local resources are read from the authorized directory, or from the selected MHTML archive. Safe mode allows public HTTPS images; interactive mode also allows public HTTPS scripts, styles, and requests when `Load network resources` is enabled. Turning the network switch off blocks outbound WebView requests. Interactive scripts can send page data to remote services, so enable this mode only for trusted pages.
+- Least privilege: the plugin only receives the temporary content URI read permission granted by the host, never sees filesystem paths, and sends PDF output through Android's system print service instead of writing to storage itself.
+- Bounded input: reads are capped at 8 MB; MHTML also limits MIME parts, nesting, headers, and decoded bodies; file names and resource paths are strictly validated to prevent out-of-scope access.
+- Cookies, direct file/content access, native JavaScript bridges, and new windows remain disabled. Safe mode disables page storage; interactive mode allows local storage for page preferences and game scores. Source view and PDF use a fresh sanitized rendering.
+
+In the default safe mode: The source manifest requests only the network permission (used when HTTPS images are enabled) and the AutoJs6 plugin permission. AndroidX also contributes a package-scoped signature permission that protects non-exported dynamic receivers; it grants no access to device data. Turning network images off prevents WebView outbound requests. PDF destination access belongs to Android's system print and file-picker UI, so the plugin requests no storage, media, camera, location, or other sensitive permissions.
 
 ******
 
@@ -71,25 +140,34 @@ html, htm, shtm, shtml, xht, xhtml
 
 ******
 
-The host discovers and executes the plugin with the following identities:
+The following information is for developers; the host discovers and executes the plugin with these identities:
 
 ```text
+application id: io.github.supermonster003.autojs6.plugin.htmlpreviewer
 service action: org.autojs.plugin.EXPLORER_ACTION
 execute action: org.autojs.plugin.EXPLORER_ACTION_EXECUTE
 plugin id: html-previewer
 engine: explorer-action
 variant: default
+protocol version: 2
+minimum host build: 5269
+audited host build: 5279
+audited host protocol: 22
 ```
 
-Version 1 is limited to a single-file read-only overflow action in the file manager.
+Explorer Action v2 supports both the primary previewer button and the overflow menu for a single file, using temporary read grants for the document and its parent directory. AutoJs6 build 5269 or later is required.
+
+- [View the Explorer Action compatibility matrix](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/docs/explorer-action-compatibility.md)
 
 ******
 
-### Security
+### Roadmap
 
 ******
 
-The viewer sanitizes the document, disables JavaScript, WebView storage, cookies, and direct file access, constrains resources and navigation with CSP and URI policies, and only accepts temporary read permissions granted by the host.
+Planned capabilities and their completion status are tracked as a checkable list in ROADMAP.md, organized by milestones with acceptance criteria and covering in-page search, adjustable text size, broader encoding support, a switch for web images, and more. Unchecked items describe plans rather than shipped capabilities. Feedback via Issues is welcome.
+
+- [View ROADMAP.md](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/ROADMAP.md)
 
 ******
 
@@ -97,24 +175,25 @@ The viewer sanitizes the document, disables JavaScript, WebView storage, cookies
 
 ******
 
-# v1.0.1
+#### v1.0.1
 
-###### 2026/08/08
+_2026/08/08_
 
-* `Fix` Null service binding that prevented activation in Plugin Center
-* `Improvement` Clearer plugin name, description, and user documentation
+- `Feature` Scripts are disabled by default. For a trusted, complete ordinary HTML file, enable `Interactive mode` in `Settings` to run JavaScript, button events, WebGL, and local storage. MHTML, truncated HTML, source view, and PDF export always keep scripts disabled.
+- `Fix` An issue where enabling the plugin in the plugin center could fail with an error
+- `Fix` Fixed primary previewer protocol rejection and settings crashes; synchronized the host appearance, page chrome, and monochrome dialog controls
+- `Improvement` Leaner plugin name and description, easier-to-read user documentation
 
-# v1.0.0
+#### v1.0.0
 
-###### 2026/08/06
+_2026/08/06_
 
-* `Feature` HTML Previewer plugin with plugin ID `html-previewer`, engine `explorer-action`, and variant `default`
-* `Feature` Single-file read-only overflow action in the file manager through `org.autojs.plugin.EXPLORER_ACTION`
-* `Feature` Activity execution through `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` with temporary read access to file and parent directory content URIs
-* `Feature` HTML sanitization that removes scripts, event handler attributes, frames, embedded objects, and unsafe resource addresses before display
-* `Feature` Guarded loading of permitted relative resources, data resources, and HTTPS images with fixed styling, refresh, and fullscreen controls
-* `Feature` Hardened WebView policy with CSP, guarded URI navigation, disabled JavaScript and storage, and bounded input
-* `Feature` Localized plugin metadata, interface text, usage instructions, README files, and changelogs in Spanish, French, Russian, Arabic, Japanese, Korean, English, Simplified Chinese, Hong Kong Traditional Chinese, and Taiwan Traditional Chinese
+- `Feature` First release: an `HTML Previewer` menu action for HTML files in the AutoJs6 file manager (plugin ID `html-previewer`)
+- `Feature` Secure viewer: scripts, frames, embedded objects, and form submissions are removed before display, fully read-only with JavaScript never executed
+- `Feature` Resource loading: supports page styles, local resources next to the file, and HTTPS web images under guarded rules, while all other requests are blocked
+- `Feature` Reading experience: automatic light/dark theme, pinch-to-zoom, refresh, fullscreen mode, and a `Start in fullscreen mode` setting
+- `Feature` Safety bounds: only the temporary read permission granted by the host is accepted, single files are capped at 8 MB, and file names as well as resource paths are strictly validated
+- `Feature` Multilingual: interface, instructions, README, and changelog in 10 languages
 
 ##### For more release history
 
@@ -140,20 +219,23 @@ Build parameters come from `version.properties`. The current minimum SDK is 24 a
 
 ******
 
-### Resource Layout
+### Localization and Docs Generation
 
 ******
 
 ```text
+.readme/common.json
 .readme/lang_*.json
+.readme/template_readme.md
 .changelog/lang_*.json
+.changelog/template_changelog.md
 .python/generate_markdown.py
 app/src/main/assets/doc/CHANGELOG-*.md
 app/src/main/res/values-*/strings.xml
 app/src/main/res/raw-*/plugin_instruction.md
 ```
 
-`strings.xml` localizes plugin metadata and viewer UI, while `plugin_instruction.md` provides host-visible usage instructions. README and changelog files are generated from JSON sources by `.python/generate_markdown.py`.
+`strings.xml` localizes plugin metadata and the viewer UI, while `plugin_instruction.md` provides host-visible usage instructions. For README and changelog, always edit the JSON sources under `.readme/` and `.changelog/`, then run `py .python/generate_markdown.py` to regenerate; generated files are never edited by hand. Run `py .python/generate_markdown.py --check` to verify that sources and artifacts are in sync.
 
 ******
 

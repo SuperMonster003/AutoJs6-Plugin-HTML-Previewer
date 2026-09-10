@@ -5,7 +5,7 @@
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-previewer-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>Complemento del gestor de archivos. Vista previa segura de solo lectura de archivos HTML</p>
+  <p>Complemento del gestor de archivos. Vista previa segura de solo lectura de archivos HTML y MHTML</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Previewer?label=Release"/></a>
@@ -39,19 +39,39 @@ El README.md actual admite los siguientes idiomas:
 
 ******
 
-HTML Previewer añade al gestor de archivos una acción de vista previa de HTML de solo lectura para un único archivo. Limpia y muestra el contenido web en un visor dedicado sin integrar la implementación en la aplicación anfitriona.
+Vista previa al instante: abra archivos web directamente desde el gestor de archivos mediante el menú `Vista previa de HTML`, sin navegador y sin red para páginas puramente locales.
+
+Los scripts están desactivados por defecto. Para un HTML normal completo y de confianza, active el modo interactivo en ajustes para JavaScript, botones, WebGL y almacenamiento local. MHTML, HTML truncado, código fuente y exportación PDF siempre desactivan los scripts.
 
 ******
 
-### Funciones
+### Funciones destacadas
 
 ******
 
-- Registra una acción de explorador de solo lectura para un archivo mediante el protocolo compartido `org.autojs.plugin.EXPLORER_ACTION`.
-- Recibe acceso temporal de lectura mediante URI de contenido al archivo HTML seleccionado y a los recursos de su directorio principal, sin rutas directas del sistema de archivos.
-- Elimina scripts, atributos de controladores de eventos, marcos, objetos incrustados y direcciones de recursos no seguras antes de mostrar el contenido.
-- Carga recursos relativos, recursos data e imágenes HTTPS permitidas mediante reglas de solicitud controladas.
-- Ofrece un estilo legible fijo, actualización, modo de pantalla completa, una preferencia de inicio en pantalla completa y un tamaño de entrada HTML limitado.
+- Vista previa al instante: abra archivos web directamente desde el gestor de archivos mediante el menú `Vista previa de HTML`, sin navegador y sin red para páginas puramente locales.
+- Los scripts están desactivados por defecto. Para un HTML normal completo y de confianza, active el modo interactivo en ajustes para JavaScript, botones, WebGL y almacenamiento local. MHTML, HTML truncado, código fuente y exportación PDF siempre desactivan los scripts.
+- Vista de código segura: alterne entre la vista previa saneada y el HTML original de solo lectura, o el HTML raíz decodificado de MHTML; las etiquetas siguen siendo texto literal y este modo no realiza solicitudes de red.
+- Exportación PDF del sistema: elija `Exportar PDF` para enviar una copia recién saneada y con tema claro al panel de impresión de Android; el sistema gestiona la configuración de páginas y `Guardar como PDF` sin permiso de almacenamiento.
+- Maquetación fiel: admite los estilos y recursos permitidos incluidos en MHTML, los recursos locales junto al HTML normal (imágenes, fuentes, audio, vídeo) y las imágenes web HTTPS opcionales, que pueden desactivarse por completo.
+- Lectura cómoda: incluye búsqueda en la página, texto del 75%-200%, zoom con dos dedos y temas de AutoJs6, claro u oscuro. Los menús y diálogos siguen el idioma y modo oscuro de AutoJs6, al igual que GitHub (Auto) y el tema HTML automático. Las barras usan un color representativo de los bordes de la página y texto e iconos negros o blancos con contraste. Para degradados, imágenes y animaciones, el color permanece fijo hasta recargar para evitar parpadeos.
+- Pantalla completa: cambie en cualquier momento a pantalla completa inmersiva o active `Iniciar en modo de pantalla completa` en la configuración.
+- Enlaces externos: al tocar un enlace http/https se delega en el navegador del sistema, mientras que los saltos a anclas internas siguen funcionando.
+- Multilingüe: interfaz, instrucciones, README y changelog disponibles en 10 idiomas.
+
+******
+
+### Cómo se usa
+
+******
+
+1. Descargue el APK más reciente del complemento desde la página [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/releases) e instálelo en el dispositivo.
+2. Abra el centro de complementos de AutoJs6 y active el complemento `Vista previa de HTML`.
+3. En el gestor de archivos de AutoJs6, localice el archivo HTML o MHTML que desea ver y abra su menú adicional (más acciones).
+4. Elija `Vista previa de HTML`; la página se abrirá en un visor dedicado.
+5. Durante la lectura, use el menú superior derecho para buscar texto, alternar entre `Ver código fuente` y `Ver vista previa`, `Exportar PDF`, `Actualizar`, cambiar el `Modo de pantalla completa` o abrir `Configuración` para ajustar el tamaño, el tema, las imágenes de red y el inicio a pantalla completa; pulse Atrás para cerrar la búsqueda, salir de pantalla completa o cerrar el visor.
+
+> Si el complemento no aparece en el centro de complementos, actualice primero AutoJs6 a una versión reciente (compilación interna 5269 o posterior). Explorer Action v2 admite el botón principal y el menú contextual para un archivo, con permisos temporales de lectura del documento y su carpeta. Se requiere AutoJs6 build 5269 o posterior.
 
 ******
 
@@ -59,11 +79,60 @@ HTML Previewer añade al gestor de archivos una acción de vista previa de HTML 
 
 ******
 
-La primera versión reconoce las siguientes extensiones de archivo:
+El complemento reconoce las siguientes extensiones, además de archivos sin extensión marcados explícitamente como `text/html`, `application/xhtml+xml`, `multipart/related` o `application/x-mimearchive` por el anfitrión:
 
 ```text
-html, htm, shtm, shtml, xht, xhtml
+html, htm, shtm, shtml, xht, xhtml, mht, mhtml
 ```
+
+Los archivos de hasta 8 MB se cargan completos. El HTML normal más grande puede mostrar solo los primeros 8 MB tras confirmación y con el corte marcado; MHTML debe permanecer completo y se rechaza si supera el límite. El BOM tiene prioridad al decodificar HTML; después se usa el juego de caracteres MIME o una declaración `meta charset` o `http-equiv` inicial y, si falta, UTF-8. MHTML admite anidamiento MIME acotado y las codificaciones de transferencia identidad, quoted-printable y Base64.
+
+******
+
+### Preguntas frecuentes
+
+******
+
+#### ¿Por qué los botones y los efectos dinámicos de la página no responden?
+
+Los scripts están desactivados por defecto. Para un HTML normal completo y de confianza, active el modo interactivo en ajustes para JavaScript, botones, WebGL y almacenamiento local. MHTML, HTML truncado, código fuente y exportación PDF siempre desactivan los scripts.
+
+#### ¿Por qué faltan algunas imágenes o estilos?
+
+Los recursos locales proceden de la carpeta autorizada o del archivo MHTML. El modo seguro permite imágenes HTTPS públicas; el interactivo permite también scripts, estilos y solicitudes HTTPS públicos al activar los recursos de red. Desactivar la red bloquea las solicitudes salientes de WebView. Los scripts interactivos pueden enviar datos a servicios remotos; use este modo solo con páginas de confianza.
+
+#### La vista previa no es idéntica a la del navegador. ¿Es normal?
+
+En el modo seguro predeterminado: Sí. Además de eliminar los scripts, el visor inyecta un estilo de lectura base y desactiva algunas funciones avanzadas. El objetivo es una lectura segura y legible, no una reproducción píxel a píxel. Compruebe el aspecto final en un navegador.
+
+#### ¿Este complemento sube mis archivos a algún sitio?
+
+Los recursos locales proceden de la carpeta autorizada o del archivo MHTML. El modo seguro permite imágenes HTTPS públicas; el interactivo permite también scripts, estilos y solicitudes HTTPS públicos al activar los recursos de red. Desactivar la red bloquea las solicitudes salientes de WebView. Los scripts interactivos pueden enviar datos a servicios remotos; use este modo solo con páginas de confianza.
+
+#### ¿Dónde se guarda un PDF exportado?
+
+`Exportar PDF` abre el panel de impresión del sistema Android. Elija `Guardar como PDF` y seleccione el nombre y el destino en el selector de archivos del sistema. El complemento nunca escribe directamente en el almacenamiento ni solicita ese permiso. La exportación siempre vuelve a leer el HTML o el MHTML completo y sanea la página raíz, incluso si se inicia desde la vista de código, y no altera el estado actual del visor.
+
+#### ¿Puedo editar archivos HTML o previsualizar un sitio web completo?
+
+La versión actual se limita a la vista previa de solo lectura de un único archivo: no hay edición ni exploración de directorios. Los recursos junto al archivo se leen bajo demanda, y el complemento solo posee el permiso temporal de lectura concedido por el anfitrión. Consulte [ROADMAP.md](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/ROADMAP.md) para conocer lo previsto.
+
+******
+
+### Permisos y seguridad
+
+******
+
+El complemento asume que el archivo previsualizado no es de confianza y aplica varias capas de protección:
+
+- En el modo seguro predeterminado: Saneamiento previo: se eliminan scripts, atributos de controladores de eventos, marcos incrustados, objetos incrustados y destinos de formularios, y se filtran las direcciones de enlaces o recursos no seguras.
+- Cookies, acceso directo a archivos/content, puentes JavaScript nativos y ventanas nuevas permanecen desactivados. Solo el modo interactivo permite almacenamiento local para preferencias y puntuaciones. El código fuente y PDF usan contenido saneado de nuevo.
+- Los recursos locales proceden de la carpeta autorizada o del archivo MHTML. El modo seguro permite imágenes HTTPS públicas; el interactivo permite también scripts, estilos y solicitudes HTTPS públicos al activar los recursos de red. Desactivar la red bloquea las solicitudes salientes de WebView. Los scripts interactivos pueden enviar datos a servicios remotos; use este modo solo con páginas de confianza.
+- Privilegio mínimo: el complemento solo recibe el permiso temporal de lectura por URI de contenido concedido por el anfitrión, nunca ve rutas del sistema de archivos y envía la salida PDF mediante el servicio de impresión de Android en vez de escribirla él mismo.
+- Entrada acotada: la lectura se limita a 8 MB; MHTML limita además partes, anidamiento, cabeceras y cuerpos decodificados; los nombres de archivo y rutas de recursos se validan estrictamente para impedir accesos fuera de ámbito.
+- Cookies, acceso directo a archivos/content, puentes JavaScript nativos y ventanas nuevas permanecen desactivados. Solo el modo interactivo permite almacenamiento local para preferencias y puntuaciones. El código fuente y PDF usan contenido saneado de nuevo.
+
+En el modo seguro predeterminado: El manifiesto fuente solo solicita el permiso de red (usado cuando se activan imágenes HTTPS) y el permiso de complemento de AutoJs6. AndroidX también añade un permiso de firma limitado al paquete para proteger receptores dinámicos no exportados; no concede acceso a datos del dispositivo. Al desactivar las imágenes de red, WebView no realiza solicitudes salientes. El acceso al destino PDF pertenece a las interfaces de impresión y selección de archivos de Android, por lo que no solicita almacenamiento, contenido multimedia, cámara, ubicación ni otros permisos sensibles.
 
 ******
 
@@ -71,25 +140,34 @@ html, htm, shtm, shtml, xht, xhtml
 
 ******
 
-El anfitrión descubre y ejecuta el complemento con las siguientes identidades:
+La siguiente información está dirigida a desarrolladores; el anfitrión descubre y ejecuta el complemento con estas identidades:
 
 ```text
+application id: io.github.supermonster003.autojs6.plugin.htmlpreviewer
 service action: org.autojs.plugin.EXPLORER_ACTION
 execute action: org.autojs.plugin.EXPLORER_ACTION_EXECUTE
 plugin id: html-previewer
 engine: explorer-action
 variant: default
+protocol version: 2
+minimum host build: 5269
+audited host build: 5279
+audited host protocol: 22
 ```
 
-La versión 1 se limita a una acción secundaria de solo lectura para un único archivo en el gestor de archivos.
+Explorer Action v2 admite el botón principal y el menú contextual para un archivo, con permisos temporales de lectura del documento y su carpeta. Se requiere AutoJs6 build 5269 o posterior.
+
+- [Ver la matriz de compatibilidad de Explorer Action](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/docs/explorer-action-compatibility.md)
 
 ******
 
-### Seguridad
+### Hoja de ruta
 
 ******
 
-El visor sanea el documento, desactiva JavaScript, el almacenamiento WebView, las cookies y el acceso directo a archivos, limita los recursos y la navegación mediante CSP y reglas URI, y solo acepta permisos temporales otorgados por el anfitrión.
+Las capacidades previstas y su estado se registran como lista marcable en ROADMAP.md, organizada por hitos con criterios de aceptación, y abarca la búsqueda en la página, el ajuste del tamaño del texto, la compatibilidad con más codificaciones, un interruptor para imágenes web, entre otros. Los elementos sin marcar describen planes, no capacidades ya publicadas. Los comentarios mediante Issues son bienvenidos.
+
+- [Ver ROADMAP.md](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/ROADMAP.md)
 
 ******
 
@@ -97,24 +175,25 @@ El visor sanea el documento, desactiva JavaScript, el almacenamiento WebView, la
 
 ******
 
-# v1.0.1
+#### v1.0.1
 
-###### 2026/08/08
+_2026/08/08_
 
-* `Corrección` Enlace de servicio nulo que impedía la activación en el centro de complementos
-* `Mejora` Nombre, descripción y documentación de usuario más claros
+- `Función` Los scripts están desactivados por defecto. Para un HTML normal completo y de confianza, active el modo interactivo en ajustes para JavaScript, botones, WebGL y almacenamiento local. MHTML, HTML truncado, código fuente y exportación PDF siempre desactivan los scripts.
+- `Corrección` Fallo ocasional al activar el complemento en el centro de complementos
+- `Corrección` Corregidos el rechazo de protocolo del botón principal y los cierres de ajustes; sincronizados la apariencia de AutoJs6, las barras y los controles monocromos
+- `Mejora` Nombre y descripción del complemento más concisos, documentación de usuario más legible
 
-# v1.0.0
+#### v1.0.0
 
-###### 2026/08/06
+_2026/08/06_
 
-* `Función` Complemento HTML Previewer con ID `html-previewer`, motor `explorer-action` y variante `default`
-* `Función` Acción secundaria de solo lectura para un archivo en el gestor de archivos mediante `org.autojs.plugin.EXPLORER_ACTION`
-* `Función` Ejecución mediante `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` con acceso temporal de lectura a los URI de contenido del archivo y del directorio principal
-* `Función` Saneamiento HTML que elimina scripts, atributos de controladores de eventos, marcos, objetos incrustados y direcciones de recursos no seguras antes de mostrar
-* `Función` Carga controlada de recursos relativos, recursos data e imágenes HTTPS permitidas con estilo fijo, actualización y pantalla completa
-* `Función` Política WebView reforzada con CSP, navegación URI controlada, JavaScript y almacenamiento desactivados y entrada limitada
-* `Función` Metadatos, interfaz, instrucciones, README y changelog localizados en español, francés, ruso, árabe, japonés, coreano, inglés, chino simplificado, chino tradicional de Hong Kong y chino tradicional de Taiwán
+- `Función` Primera versión: una acción de menú `Vista previa de HTML` para archivos HTML en el gestor de archivos de AutoJs6 (ID de complemento `html-previewer`)
+- `Función` Visor seguro: los scripts, marcos, objetos incrustados y envíos de formularios se eliminan antes de mostrar, todo en modo de solo lectura y sin ejecutar nunca JavaScript
+- `Función` Carga de recursos: admite los estilos de la página, los recursos locales junto al archivo y las imágenes web HTTPS bajo reglas controladas, con el resto de peticiones bloqueadas
+- `Función` Experiencia de lectura: tema claro/oscuro automático, zoom con dos dedos, actualización, modo de pantalla completa y ajuste `Iniciar en modo de pantalla completa`
+- `Función` Límites de seguridad: solo se acepta el permiso temporal de lectura concedido por el anfitrión, cada archivo se limita a 8 MB, y los nombres de archivo y las rutas de recursos se validan estrictamente
+- `Función` Multilingüe: interfaz, instrucciones, README y changelog en 10 idiomas
 
 ##### Para consultar más historial de versiones
 
@@ -140,20 +219,23 @@ Los parámetros de compilación provienen de `version.properties`. El SDK mínim
 
 ******
 
-### Estructura de recursos
+### Localización y generación de documentos
 
 ******
 
 ```text
+.readme/common.json
 .readme/lang_*.json
+.readme/template_readme.md
 .changelog/lang_*.json
+.changelog/template_changelog.md
 .python/generate_markdown.py
 app/src/main/assets/doc/CHANGELOG-*.md
 app/src/main/res/values-*/strings.xml
 app/src/main/res/raw-*/plugin_instruction.md
 ```
 
-`strings.xml` localiza los metadatos del complemento y la interfaz, mientras que `plugin_instruction.md` proporciona instrucciones visibles para el anfitrión. Los archivos README y changelog se generan desde fuentes JSON mediante `.python/generate_markdown.py`.
+`strings.xml` localiza los metadatos del complemento y la interfaz del visor, mientras que `plugin_instruction.md` proporciona las instrucciones visibles en el anfitrión. Para el README y el changelog, edite siempre las fuentes JSON bajo `.readme/` y `.changelog/` y ejecute `py .python/generate_markdown.py` para regenerarlo todo; los archivos generados nunca se editan a mano. Ejecute `py .python/generate_markdown.py --check` para comprobar que fuentes y archivos generados están sincronizados.
 
 ******
 

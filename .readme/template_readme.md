@@ -30,15 +30,27 @@
 
 ******
 
-{{ p_introduction }}
+{{ p_introduction_what }}
+
+{{ p_introduction_how }}
 
 ******
 
-### {{ h3_functions }}
+### {{ h3_features }}
 
 ******
 
 {{ placeholder_features }}
+
+******
+
+### {{ h3_usage }}
+
+******
+
+{{ placeholder_usage_steps }}
+
+> {{ p_usage_note }}
 
 ******
 
@@ -52,6 +64,28 @@
 {{ supported_formats }}
 ```
 
+{{ p_size_limit }}
+
+******
+
+### {{ h3_faq }}
+
+******
+
+{{ placeholder_faq }}
+
+******
+
+### {{ h3_security }}
+
+******
+
+{{ p_security_intro }}
+
+{{ placeholder_security_points }}
+
+{{ p_security_permission }}
+
 ******
 
 ### {{ h3_plugin_interface }}
@@ -61,22 +95,31 @@
 {{ p_plugin_interface }}:
 
 ```text
+application id: {{ application_id }}
 service action: {{ plugin_action }}
 execute action: {{ plugin_execute_action }}
 plugin id: {{ plugin_id }}
 engine: {{ plugin_engine }}
 variant: {{ plugin_variant }}
+protocol version: {{ protocol_version }}
+minimum host build: {{ required_host_build }}
+audited host build: {{ audited_host_build }}
+audited host protocol: {{ audited_host_protocol }}
 ```
 
 {{ p_plugin_scope }}
 
-******
-
-### {{ h3_security }}
+- [{{ text_link_protocol_compatibility }}]({{ repo_url }}/blob/master/{{ protocol_compatibility_path }})
 
 ******
 
-{{ p_security }}
+### {{ h3_roadmap }}
+
+******
+
+{{ p_roadmap }}
+
+- [{{ text_link_roadmap }}]({{ repo_url }}/blob/master/ROADMAP.md)
 
 ******
 
@@ -115,8 +158,11 @@ variant: {{ plugin_variant }}
 ******
 
 ```text
+.readme/common.json
 .readme/lang_*.json
+.readme/template_readme.md
 .changelog/lang_*.json
+.changelog/template_changelog.md
 .python/generate_markdown.py
 app/src/main/assets/doc/CHANGELOG-*.md
 app/src/main/res/values-*/strings.xml

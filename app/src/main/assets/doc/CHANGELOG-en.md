@@ -8,17 +8,18 @@
 
 ###### 2026/08/08
 
-* `Fix` Null service binding that prevented activation in Plugin Center
-* `Improvement` Clearer plugin name, description, and user documentation
+* `Feature` Scripts are disabled by default. For a trusted, complete ordinary HTML file, enable `Interactive mode` in `Settings` to run JavaScript, button events, WebGL, and local storage. MHTML, truncated HTML, source view, and PDF export always keep scripts disabled.
+* `Fix` An issue where enabling the plugin in the plugin center could fail with an error
+* `Fix` Fixed primary previewer protocol rejection and settings crashes; synchronized the host appearance, page chrome, and monochrome dialog controls
+* `Improvement` Leaner plugin name and description, easier-to-read user documentation
 
 # v1.0.0
 
 ###### 2026/08/06
 
-* `Feature` HTML Previewer plugin with plugin ID `html-previewer`, engine `explorer-action`, and variant `default`
-* `Feature` Single-file read-only overflow action in the file manager through `org.autojs.plugin.EXPLORER_ACTION`
-* `Feature` Activity execution through `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` with temporary read access to file and parent directory content URIs
-* `Feature` HTML sanitization that removes scripts, event handler attributes, frames, embedded objects, and unsafe resource addresses before display
-* `Feature` Guarded loading of permitted relative resources, data resources, and HTTPS images with fixed styling, refresh, and fullscreen controls
-* `Feature` Hardened WebView policy with CSP, guarded URI navigation, disabled JavaScript and storage, and bounded input
-* `Feature` Localized plugin metadata, interface text, usage instructions, README files, and changelogs in Spanish, French, Russian, Arabic, Japanese, Korean, English, Simplified Chinese, Hong Kong Traditional Chinese, and Taiwan Traditional Chinese
+* `Feature` First release: an `HTML Previewer` menu action for HTML files in the AutoJs6 file manager (plugin ID `html-previewer`)
+* `Feature` Secure viewer: scripts, frames, embedded objects, and form submissions are removed before display, fully read-only with JavaScript never executed
+* `Feature` Resource loading: supports page styles, local resources next to the file, and HTTPS web images under guarded rules, while all other requests are blocked
+* `Feature` Reading experience: automatic light/dark theme, pinch-to-zoom, refresh, fullscreen mode, and a `Start in fullscreen mode` setting
+* `Feature` Safety bounds: only the temporary read permission granted by the host is accepted, single files are capped at 8 MB, and file names as well as resource paths are strictly validated
+* `Feature` Multilingual: interface, instructions, README, and changelog in 10 languages

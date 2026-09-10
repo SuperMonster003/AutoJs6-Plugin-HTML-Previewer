@@ -1,33 +1,88 @@
 {
   "$name": "简体中文",
   "text_current_lowercase": "当前",
-  "text_plugin_synopsis": "文件管理器插件. 安全只读预览 HTML 文件",
+  "text_plugin_synopsis": "文件管理器插件. 安全只读预览 HTML 与 MHTML 文件",
   "h3_languages_with_ascii": "语言 (Languages)",
   "p_languages_all_supported_for_readme": "当前 README.md 支持以下语言",
   "h3_introduction": "简介",
-  "p_introduction": "HTML Previewer 为文件管理器提供单文件只读 HTML 预览动作. 网页内容在独立查看器中净化并显示, 无需将预览实现嵌入宿主应用.",
-  "h3_functions": "功能",
+  "p_introduction_what": "一键预览: 在文件管理器中通过 `预览 HTML` 菜单直接打开网页文件, 无需浏览器, 纯本地页面无需联网.",
+  "p_introduction_how": "默认禁用脚本. 对于可信的完整普通 HTML 文件, 可在 `设置` 中开启 `交互模式`, 支持 JavaScript, 按钮事件, WebGL 和本地存储. MHTML, 截断 HTML, 源码视图和 PDF 导出始终禁用脚本.",
+  "h3_features": "功能亮点",
   "features": [
-    "通过共享的 `{{ plugin_action }}` 协议注册单文件只读文件浏览器动作.",
-    "通过 content URI 临时读取所选 HTML 文件及其父目录资源, 不接收原始文件系统路径.",
-    "显示前移除脚本, 事件处理属性, 框架, 嵌入对象和不安全的资源地址.",
-    "按受控规则加载允许的相对资源, data 资源和 HTTPS 图片.",
-    "提供固定的可读样式, 刷新, 全屏模式, 启动时全屏偏好和有界的 HTML 输入大小."
+    "一键预览: 在文件管理器中通过 `预览 HTML` 菜单直接打开网页文件, 无需浏览器, 纯本地页面无需联网.",
+    "默认禁用脚本. 对于可信的完整普通 HTML 文件, 可在 `设置` 中开启 `交互模式`, 支持 JavaScript, 按钮事件, WebGL 和本地存储. MHTML, 截断 HTML, 源码视图和 PDF 导出始终禁用脚本.",
+    "安全源码视图: 可在净化预览与只读等宽的原始 HTML 之间切换; MHTML 显示解码后的根 HTML, 标签始终按原文显示, 源码模式不会发出任何网络请求.",
+    "系统 PDF 导出: 选择 `导出 PDF` 后, 插件会将重新净化并强制浅色的副本交给 Android 系统打印界面; 页面设置与 `保存为 PDF` 均由系统处理, 无需存储权限.",
+    "还原排版: 支持页面自带样式, MHTML 内允许的嵌入资源, 普通 HTML 同目录下的图片, 字体, 音频, 视频等本地资源, 以及可彻底关闭的 HTTPS 网络图片.",
+    "阅读体验: 支持页内查找, 75%-200% 字号, 双指缩放, 以及跟随 AutoJs6/强制浅色/强制深色主题. 菜单和对话框跟随 AutoJs6 的语言与暗色模式. GitHub (Auto) 和 HTML 自动主题也跟随 AutoJs6. 工具栏及系统栏使用渲染页面边缘的代表色, 配合有对比度的黑色或白色文字与图标. 渐变, 图片和动画背景取色后保持稳定, 重新加载时更新, 避免闪烁.",
+    "全屏模式: 可随时切换沉浸式全屏, 并可在设置中开启 `以全屏模式启动`.",
+    "外部链接: 页面内点按 http/https 链接时交由系统浏览器打开, 页内锚点跳转不受影响.",
+    "多语言: 界面, 使用说明, README 与更新日志均提供 10 种语言."
   ],
+  "h3_usage": "使用方法",
+  "usage_steps": [
+    "从 [Releases]({{ repo_url }}/releases) 页面下载最新的插件 APK 并安装到设备.",
+    "打开 AutoJs6 的插件中心, 启用 `HTML 预览` 插件.",
+    "在 AutoJs6 的文件管理器中找到想查看的 HTML 或 MHTML 文件, 打开该文件的溢出菜单 (更多操作菜单).",
+    "选择 `预览 HTML`, 页面将在独立的查看器中打开.",
+    "阅读时可通过右上角菜单查找文字, 在 `查看源码` 与 `查看预览` 间切换, `导出 PDF`, `刷新`, 切换 `全屏模式`, 或在 `设置` 中调整字号, 主题, 网络图片与全屏启动; 按返回键可关闭查找, 退出全屏或关闭查看器."
+  ],
+  "p_usage_note": "若插件中心未显示该插件, 请先将 AutoJs6 升级到较新版本 (内部版本号 {{ required_host_build }} 及以上). Explorer Action v2 同时支持单文件的主预览按钮和溢出菜单, 通过临时只读授权访问文档及其父目录. 需要 AutoJs6 构建 5269 或更高版本.",
   "h3_supported_formats": "支持的格式",
-  "p_supported_formats": "首个版本识别以下文件扩展名",
+  "p_supported_formats": "插件识别以下文件扩展名, 同时接受宿主明确标记为 `text/html`, `application/xhtml+xml`, `multipart/related` 或 `application/x-mimearchive` 的无扩展名文件",
+  "p_size_limit": "不超过 {{ max_html_size }} 的文件会完整加载. 更大的普通 HTML 可在确认后仅预览明确标记的前 {{ max_html_size }}; MHTML 必须保持完整, 超限时会直接拒绝. HTML 解码时 BOM 优先, 其后依次使用 MIME 字符集, 文件前部的 `meta charset` 或 `http-equiv` 声明, 未声明时回退到 UTF-8. MHTML 支持有界 MIME 嵌套及标准恒等, quoted-printable 与 Base64 传输编码.",
+  "h3_faq": "常见问题",
+  "faq": [
+    {
+      "q": "为什么页面里的按钮和动态效果没有反应?",
+      "a": "默认禁用脚本. 对于可信的完整普通 HTML 文件, 可在 `设置` 中开启 `交互模式`, 支持 JavaScript, 按钮事件, WebGL 和本地存储. MHTML, 截断 HTML, 源码视图和 PDF 导出始终禁用脚本."
+    },
+    {
+      "q": "为什么有些图片或样式没有显示?",
+      "a": "本地资源来自已授权目录或选中的 MHTML 归档. 安全模式允许公共 HTTPS 图片; 交互模式开启 `加载网络资源` 后还允许公共 HTTPS 脚本, 样式及请求. 关闭网络开关会拦截 WebView 出站请求. 交互脚本能够向远程服务发送页面数据, 因此仅应对可信页面启用."
+    },
+    {
+      "q": "预览效果和浏览器里不完全一样, 正常吗?",
+      "a": "默认安全模式下: 正常. 除移除脚本外, 查看器还会注入一套基础排版样式并禁用部分高级特性, 目标是安全清晰的阅读体验, 而非逐像素还原. 检查最终显示效果请以浏览器为准."
+    },
+    {
+      "q": "这个插件会联网上传我的文件吗?",
+      "a": "本地资源来自已授权目录或选中的 MHTML 归档. 安全模式允许公共 HTTPS 图片; 交互模式开启 `加载网络资源` 后还允许公共 HTTPS 脚本, 样式及请求. 关闭网络开关会拦截 WebView 出站请求. 交互脚本能够向远程服务发送页面数据, 因此仅应对可信页面启用."
+    },
+    {
+      "q": "导出的 PDF 保存在哪里?",
+      "a": "`导出 PDF` 会打开 Android 系统打印界面. 选择 `保存为 PDF`, 再在系统文件选择器中指定文件名与位置. 插件不会直接写入存储空间, 也不申请存储权限. 即使从源码视图发起, 导出仍会重新读取 HTML 或完整 MHTML 归档并净化根页面, 且不会改变当前查看器状态."
+    },
+    {
+      "q": "能不能编辑 HTML 文件, 或预览整个网站项目?",
+      "a": "当前版本定位为单文件只读预览: 不提供编辑能力, 也不会枚举目录. 页面引用的同目录资源会被按需读取, 但插件始终只持有宿主授予的临时读取权限. 后续规划可查看 [ROADMAP.md]({{ repo_url }}/blob/master/ROADMAP.md)."
+    }
+  ],
+  "h3_security": "权限与安全",
+  "p_security_intro": "插件在设计上假定被预览的文件不可信, 因此采取多层防护:",
+  "security_points": [
+    "默认安全模式下: 显示前净化: 移除脚本, 事件处理属性, 内嵌框架, 嵌入对象与表单提交地址, 并过滤不安全的链接和资源地址.",
+    "Cookie, 直接文件/content 访问, 原生 JavaScript 桥和新窗口保持禁用. 安全模式禁用页面存储; 交互模式允许本地存储, 用于页面偏好或游戏分数. 源码视图与 PDF 使用重新净化的内容.",
+    "本地资源来自已授权目录或选中的 MHTML 归档. 安全模式允许公共 HTTPS 图片; 交互模式开启 `加载网络资源` 后还允许公共 HTTPS 脚本, 样式及请求. 关闭网络开关会拦截 WebView 出站请求. 交互脚本能够向远程服务发送页面数据, 因此仅应对可信页面启用.",
+    "最小权限: 插件只接收宿主授予的临时 content URI 读取权限, 接触不到文件系统路径; PDF 输出交由 Android 系统打印服务处理, 插件自身不写入存储空间.",
+    "输入有界: 读取大小上限为 {{ max_html_size }}; MHTML 还限制 MIME 部件数, 嵌套层数, 头部与解码总量; 文件名与资源路径均经过严格校验, 防止越界访问.",
+    "Cookie, 直接文件/content 访问, 原生 JavaScript 桥和新窗口保持禁用. 安全模式禁用页面存储; 交互模式允许本地存储, 用于页面偏好或游戏分数. 源码视图与 PDF 使用重新净化的内容."
+  ],
+  "p_security_permission": "默认安全模式下: 源清单仅申请网络权限 (在开启 HTTPS 图片时使用) 与 AutoJs6 插件权限. AndroidX 还会自动加入一个仅限本应用签名的权限, 用于保护未导出的动态接收器, 不授予任何设备数据访问能力. 关闭网络图片后 WebView 不会发出出站请求. PDF 目标位置的访问由 Android 系统打印与文件选择界面负责, 因此插件不申请存储, 媒体, 相机, 位置等其他敏感权限.",
   "h3_plugin_interface": "插件接口",
-  "p_plugin_interface": "宿主通过以下标识发现并执行插件",
-  "p_plugin_scope": "版本 1 仅支持文件管理器中的单文件只读溢出菜单动作.",
-  "h3_security": "安全",
-  "p_security": "查看器净化文档并禁用 JavaScript/WebView 存储/Cookie 和直接文件访问, 通过 CSP 与 URI 约束限制资源和导航, 并只接受宿主授予的临时读取权限.",
+  "p_plugin_interface": "以下信息面向开发者, 宿主通过这些标识发现并执行插件",
+  "p_plugin_scope": "Explorer Action v2 同时支持单文件的主预览按钮和溢出菜单, 通过临时只读授权访问文档及其父目录. 需要 AutoJs6 构建 5269 或更高版本.",
+  "text_link_protocol_compatibility": "查看 Explorer Action 兼容矩阵",
+  "h3_roadmap": "开发路线图",
+  "p_roadmap": "插件的能力规划与完成情况以可勾选的清单维护在 ROADMAP.md 中, 按里程碑组织并附验收条件, 涵盖页内查找, 字号调节, 更多编码支持, 网络图片开关等方向. 未勾选的条目表示规划而非当前版本已支持的能力, 欢迎通过 Issues 参与讨论.",
+  "text_link_roadmap": "查看 ROADMAP.md",
   "h3_release_history": "发行历史",
   "h5_for_more_release_history": "更多发行历史可参阅",
   "h3_build": "构建",
   "text_release_build": "Release 构建",
-  "p_build_params": "构建参数来自 `version.properties`, 当前最低 SDK 为 24, 目标 SDK 为 36",
-  "h3_resource_layout": "资源结构",
-  "p_resource_layout": "`strings.xml` 提供插件信息和查看器界面的本地化, `plugin_instruction.md` 提供宿主侧展示的使用说明. README 与 changelog 文件由 `.python/generate_markdown.py` 根据 JSON 源文件生成",
+  "p_build_params": "构建参数来自 `version.properties`, 当前最低 SDK 为 {{ android_min_sdk }}, 目标 SDK 为 {{ android_target_sdk }}",
+  "h3_resource_layout": "本地化与文档生成",
+  "p_resource_layout": "`strings.xml` 提供插件信息和查看器界面的本地化, `plugin_instruction.md` 提供宿主侧展示的使用说明. README 与更新日志一律修改 `.readme/` 与 `.changelog/` 下的 JSON 源文件, 再运行 `py .python/generate_markdown.py` 重新生成, 生成产物不手工编辑; 运行 `py .python/generate_markdown.py --check` 可校验源文件与生成产物是否同步",
   "h3_links": "相关链接",
   "text_link_autojs6_docs": "AutoJs6 文档",
   "text_link_format_reference": "HTML Living Standard"

@@ -8,22 +8,25 @@
     "v1.0.1": {
       "released_date": "2026/08/08",
       "fix": [
-        "Enlace de servicio nulo que impedía la activación en el centro de complementos"
+        "Fallo ocasional al activar el complemento en el centro de complementos",
+        "Corregidos el rechazo de protocolo del botón principal y los cierres de ajustes; sincronizados la apariencia de AutoJs6, las barras y los controles monocromos"
       ],
       "improvement": [
-        "Nombre, descripción y documentación de usuario más claros"
+        "Nombre y descripción del complemento más concisos, documentación de usuario más legible"
+      ],
+      "feature": [
+        "Los scripts están desactivados por defecto. Para un HTML normal completo y de confianza, active el modo interactivo en ajustes para JavaScript, botones, WebGL y almacenamiento local. MHTML, HTML truncado, código fuente y exportación PDF siempre desactivan los scripts."
       ]
     },
     "v1.0.0": {
       "released_date": "2026/08/06",
       "feature": [
-        "Complemento HTML Previewer con ID `html-previewer`, motor `explorer-action` y variante `default`",
-        "Acción secundaria de solo lectura para un archivo en el gestor de archivos mediante `org.autojs.plugin.EXPLORER_ACTION`",
-        "Ejecución mediante `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` con acceso temporal de lectura a los URI de contenido del archivo y del directorio principal",
-        "Saneamiento HTML que elimina scripts, atributos de controladores de eventos, marcos, objetos incrustados y direcciones de recursos no seguras antes de mostrar",
-        "Carga controlada de recursos relativos, recursos data e imágenes HTTPS permitidas con estilo fijo, actualización y pantalla completa",
-        "Política WebView reforzada con CSP, navegación URI controlada, JavaScript y almacenamiento desactivados y entrada limitada",
-        "Metadatos, interfaz, instrucciones, README y changelog localizados en español, francés, ruso, árabe, japonés, coreano, inglés, chino simplificado, chino tradicional de Hong Kong y chino tradicional de Taiwán"
+        "Primera versión: una acción de menú `Vista previa de HTML` para archivos HTML en el gestor de archivos de AutoJs6 (ID de complemento `html-previewer`)",
+        "Visor seguro: los scripts, marcos, objetos incrustados y envíos de formularios se eliminan antes de mostrar, todo en modo de solo lectura y sin ejecutar nunca JavaScript",
+        "Carga de recursos: admite los estilos de la página, los recursos locales junto al archivo y las imágenes web HTTPS bajo reglas controladas, con el resto de peticiones bloqueadas",
+        "Experiencia de lectura: tema claro/oscuro automático, zoom con dos dedos, actualización, modo de pantalla completa y ajuste `Iniciar en modo de pantalla completa`",
+        "Límites de seguridad: solo se acepta el permiso temporal de lectura concedido por el anfitrión, cada archivo se limita a {{ max_html_size }}, y los nombres de archivo y las rutas de recursos se validan estrictamente",
+        "Multilingüe: interfaz, instrucciones, README y changelog en 10 idiomas"
       ]
     }
   }
