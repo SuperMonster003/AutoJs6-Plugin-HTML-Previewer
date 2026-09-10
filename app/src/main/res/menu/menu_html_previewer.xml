@@ -15,7 +15,7 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/action_html_preview_settings"
+        android:id="@+id/action_html_previewer_settings"
         android:title="@string/text_settings"
         app:showAsAction="never" />
 

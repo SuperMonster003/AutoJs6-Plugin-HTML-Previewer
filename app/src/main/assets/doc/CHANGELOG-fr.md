@@ -15,7 +15,7 @@
 
 ###### 2026/08/06
 
-* `Fonctionnalité` Plugin HTML Preview avec ID `html-preview`, moteur `explorer-action` et variante `default`
+* `Fonctionnalité` Plugin HTML Previewer avec ID `html-previewer`, moteur `explorer-action` et variante `default`
 * `Fonctionnalité` Action de menu secondaire en lecture seule pour un fichier dans le gestionnaire de fichiers via `org.autojs.plugin.EXPLORER_ACTION`
 * `Fonctionnalité` Exécution via `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` avec accès temporaire en lecture aux URI de contenu du fichier et du dossier parent
 * `Fonctionnalité` Nettoyage HTML supprimant les scripts, attributs de gestionnaires d'événements, cadres, objets intégrés et adresses de ressources non sûres avant affichage

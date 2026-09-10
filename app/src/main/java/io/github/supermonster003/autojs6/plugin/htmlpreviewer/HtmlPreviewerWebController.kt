@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.content.Context
 import android.net.Uri
@@ -16,7 +16,7 @@ import androidx.webkit.WebViewClientCompat
 import java.io.ByteArrayInputStream
 import java.util.Locale
 
-class HtmlPreviewWebController(
+class HtmlPreviewerWebController(
     context: Context,
     private val webView: WebView,
     resourceRoot: Uri,
@@ -24,16 +24,16 @@ class HtmlPreviewWebController(
     private val onPageFinished: () -> Unit = {},
 ) {
 
-    private val documentPathHandler = HtmlPreviewDocumentPathHandler(context.contentResolver, resourceRoot)
+    private val documentPathHandler = HtmlPreviewerDocumentPathHandler(context.contentResolver, resourceRoot)
 
     private val assetLoader = WebViewAssetLoader.Builder()
-        .setDomain(HtmlPreviewWebOrigin.DOMAIN)
+        .setDomain(HtmlPreviewerWebOrigin.DOMAIN)
         .addPathHandler(
-            HtmlPreviewWebOrigin.PREVIEW_ASSET_PATH_PREFIX,
-            HtmlPreviewAssetPathHandler(context.assets),
+            HtmlPreviewerWebOrigin.PREVIEWER_ASSET_PATH_PREFIX,
+            HtmlPreviewerAssetPathHandler(context.assets),
         )
         .addPathHandler(
-            HtmlPreviewWebOrigin.DOCUMENT_PATH_PREFIX,
+            HtmlPreviewerWebOrigin.DOCUMENT_PATH_PREFIX,
             documentPathHandler,
         )
         .build()
@@ -84,18 +84,18 @@ class HtmlPreviewWebController(
             ): WebResourceResponse? {
                 val uri = request.url
                 if (
-                    HtmlPreviewRequestPolicy.shouldLetWebViewLoadDataResource(
+                    HtmlPreviewerRequestPolicy.shouldLetWebViewLoadDataResource(
                         uri.toString(),
                         request.isForMainFrame,
                     )
                 ) {
                     return null
                 }
-                if (uri.scheme.equals("https", ignoreCase = true) && HtmlPreviewWebOrigin.isDomain(uri.host)) {
+                if (uri.scheme.equals("https", ignoreCase = true) && HtmlPreviewerWebOrigin.isDomain(uri.host)) {
                     return assetLoader.shouldInterceptRequest(uri) ?: forbidden()
                 }
                 if (
-                    HtmlPreviewRequestPolicy.shouldLetWebViewLoadHttpsSubresource(
+                    HtmlPreviewerRequestPolicy.shouldLetWebViewLoadHttpsSubresource(
                         uri.toString(),
                         request.isForMainFrame,
                     )
@@ -112,7 +112,7 @@ class HtmlPreviewWebController(
                 if (!request.isForMainFrame) return true
                 val uri = request.url
                 if (isLocalAnchor(uri)) return false
-                if (HtmlPreviewWebOrigin.isDomain(uri.host)) return true
+                if (HtmlPreviewerWebOrigin.isDomain(uri.host)) return true
                 if (request.hasGesture() && uri.scheme?.lowercase(Locale.ROOT) in EXTERNAL_LINK_SCHEMES) {
                     onExternalLink(uri)
                 }
@@ -129,7 +129,7 @@ class HtmlPreviewWebController(
 
     fun show(html: String) {
         documentPathHandler.updateDocument(html)
-        webView.loadUrl(HtmlPreviewWebOrigin.DOCUMENT_URL)
+        webView.loadUrl(HtmlPreviewerWebOrigin.DOCUMENT_URL)
     }
 
     fun destroy() {
@@ -147,13 +147,13 @@ class HtmlPreviewWebController(
     private fun isLocalAnchor(uri: Uri): Boolean {
         if (
             !uri.scheme.equals("https", ignoreCase = true) ||
-            !HtmlPreviewWebOrigin.isDomain(uri.host) ||
+            !HtmlPreviewerWebOrigin.isDomain(uri.host) ||
             uri.fragment == null
         ) {
             return false
         }
-        return uri.path == HtmlPreviewWebOrigin.DOCUMENT_PATH_PREFIX ||
-            uri.path == Uri.parse(HtmlPreviewWebOrigin.DOCUMENT_URL).path
+        return uri.path == HtmlPreviewerWebOrigin.DOCUMENT_PATH_PREFIX ||
+            uri.path == Uri.parse(HtmlPreviewerWebOrigin.DOCUMENT_URL).path
     }
 
     companion object {
@@ -175,7 +175,7 @@ class HtmlPreviewWebController(
     }
 }
 
-internal object HtmlPreviewRequestPolicy {
+internal object HtmlPreviewerRequestPolicy {
 
     fun shouldLetWebViewLoadDataResource(
         url: String,
@@ -183,14 +183,14 @@ internal object HtmlPreviewRequestPolicy {
     ): Boolean =
         !isForMainFrame &&
             url.startsWith("data:", ignoreCase = true) &&
-            HtmlPreviewUrlPolicy.isSafeResource(url)
+            HtmlPreviewerUrlPolicy.isSafeResource(url)
 
     fun shouldLetWebViewLoadHttpsSubresource(
         url: String,
         isForMainFrame: Boolean,
     ): Boolean {
         if (isForMainFrame) return false
-        val host = HtmlPreviewUrlPolicy.safeRemoteHttpsHost(url) ?: return false
-        return !HtmlPreviewWebOrigin.isDomain(host)
+        val host = HtmlPreviewerUrlPolicy.safeRemoteHttpsHost(url) ?: return false
+        return !HtmlPreviewerWebOrigin.isDomain(host)
     }
 }

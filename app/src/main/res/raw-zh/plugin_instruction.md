@@ -1,6 +1,6 @@
-在文件管理器中使用 HTML Preview:
+在文件管理器中使用 HTML Previewer:
 
-1. 安装并启用 `HTML Preview` 插件.
+1. 安装并启用 `HTML Previewer` 插件.
 2. 打开一个受支持 HTML 文件的溢出菜单.
 3. 选择 `预览 HTML`.
 

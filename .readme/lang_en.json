@@ -5,7 +5,7 @@
   "h3_languages_with_ascii": "Languages",
   "p_languages_all_supported_for_readme": "The current README.md supports the following languages",
   "h3_introduction": "Introduction",
-  "p_introduction": "HTML Preview adds a single-file read-only HTML preview action to the file manager. It sanitizes and displays web content in a focused viewer without embedding the preview implementation in the host application.",
+  "p_introduction": "HTML Previewer adds a single-file read-only HTML preview action to the file manager. It sanitizes and displays web content in a focused viewer without embedding the preview implementation in the host application.",
   "h3_functions": "Features",
   "features": [
     "Registers a single-file read-only Explorer action through the shared `{{ plugin_action }}` protocol.",

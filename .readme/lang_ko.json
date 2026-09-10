@@ -5,7 +5,7 @@
   "h3_languages_with_ascii": "언어 (Languages)",
   "p_languages_all_supported_for_readme": "현재 README.md는 다음 언어를 지원합니다",
   "h3_introduction": "소개",
-  "p_introduction": "HTML Preview는 파일 관리자에 단일 파일 읽기 전용 HTML 미리보기 작업을 추가합니다. 웹 콘텐츠를 정리한 뒤 호스트 앱에 구현을 포함하지 않고 전용 뷰어에서 표시합니다.",
+  "p_introduction": "HTML Previewer는 파일 관리자에 단일 파일 읽기 전용 HTML 미리보기 작업을 추가합니다. 웹 콘텐츠를 정리한 뒤 호스트 앱에 구현을 포함하지 않고 전용 뷰어에서 표시합니다.",
   "h3_functions": "기능",
   "features": [
     "공유 `{{ plugin_action }}` 프로토콜로 단일 파일 읽기 전용 탐색기 작업을 등록합니다.",

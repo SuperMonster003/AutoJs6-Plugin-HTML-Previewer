@@ -1,9 +1,9 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.content.Context
 import androidx.core.content.edit
 
-class HtmlPreviewPreferences(context: Context) {
+class HtmlPreviewerPreferences(context: Context) {
 
     private val preferences = context.applicationContext.getSharedPreferences(
         PREFERENCES_NAME,
@@ -15,7 +15,7 @@ class HtmlPreviewPreferences(context: Context) {
         set(value) = preferences.edit { putBoolean(KEY_START_IN_FULLSCREEN_MODE, value) }
 
     companion object {
-        private const val PREFERENCES_NAME = "html_preview"
+        private const val PREFERENCES_NAME = "html_previewer"
         private const val KEY_START_IN_FULLSCREEN_MODE = "start_in_fullscreen_mode"
     }
 }

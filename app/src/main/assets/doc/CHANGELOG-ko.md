@@ -15,7 +15,7 @@
 
 ###### 2026/08/06
 
-* `기능` 플러그인 ID `html-preview`, 엔진 `explorer-action`, 변형 `default`인 HTML Preview 플러그인
+* `기능` 플러그인 ID `html-previewer`, 엔진 `explorer-action`, 변형 `default`인 HTML Previewer 플러그인
 * `기능` `org.autojs.plugin.EXPLORER_ACTION`을 통한 파일 관리자의 단일 파일 읽기 전용 더보기 작업
 * `기능` `org.autojs.plugin.EXPLORER_ACTION_EXECUTE`을 통한 실행과 파일 및 상위 디렉터리 content URI 임시 읽기 권한
 * `기능` 표시 전에 스크립트/이벤트 처리기 속성/프레임/포함된 개체/안전하지 않은 리소스 주소를 제거하는 HTML 정리

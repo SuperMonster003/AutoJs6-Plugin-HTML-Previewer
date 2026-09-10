@@ -1,4 +1,4 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.content.ContentResolver
 import android.content.res.AssetManager
@@ -10,12 +10,12 @@ import java.io.IOException
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicReference
 
-class HtmlPreviewDocumentPathHandler(
+class HtmlPreviewerDocumentPathHandler(
     private val contentResolver: ContentResolver,
     rootUri: Uri,
 ) : WebViewAssetLoader.PathHandler {
 
-    private val resourceRoot = HtmlPreviewPathPolicy.normalizeRoot(rootUri)
+    private val resourceRoot = HtmlPreviewerPathPolicy.normalizeRoot(rootUri)
         ?: throw IllegalArgumentException("HTML preview resource root must be a content URI without a query or fragment")
     private val documentBytes = AtomicReference<ByteArray?>(null)
 
@@ -28,7 +28,7 @@ class HtmlPreviewDocumentPathHandler(
     }
 
     override fun handle(path: String): WebResourceResponse {
-        if (path == HtmlPreviewWebOrigin.DOCUMENT_FILE_NAME) {
+        if (path == HtmlPreviewerWebOrigin.DOCUMENT_FILE_NAME) {
             val bytes = documentBytes.get() ?: return notFound()
             return WebResourceResponse(
                 "text/html",
@@ -40,7 +40,7 @@ class HtmlPreviewDocumentPathHandler(
             )
         }
 
-        val resource = HtmlPreviewPathPolicy.resolve(resourceRoot, path) ?: return notFound()
+        val resource = HtmlPreviewerPathPolicy.resolve(resourceRoot, path) ?: return notFound()
         val input = try {
             contentResolver.openInputStream(resource.uri) ?: return notFound()
         } catch (_: IOException) {
@@ -61,12 +61,12 @@ class HtmlPreviewDocumentPathHandler(
     }
 }
 
-class HtmlPreviewAssetPathHandler(
+class HtmlPreviewerAssetPathHandler(
     private val assetManager: AssetManager,
 ) : WebViewAssetLoader.PathHandler {
 
     override fun handle(path: String): WebResourceResponse {
-        val assetPath = path.takeIf(HtmlPreviewAssetPolicy::isAllowed) ?: return notFound()
+        val assetPath = path.takeIf(HtmlPreviewerAssetPolicy::isAllowed) ?: return notFound()
         val input = try {
             assetManager.open("$ASSET_ROOT/$assetPath", AssetManager.ACCESS_STREAMING)
         } catch (_: IOException) {
@@ -85,17 +85,17 @@ class HtmlPreviewAssetPathHandler(
     }
 
     companion object {
-        private const val ASSET_ROOT = "html-preview"
+        private const val ASSET_ROOT = "html-previewer"
     }
 }
 
-internal object HtmlPreviewAssetPolicy {
+internal object HtmlPreviewerAssetPolicy {
     private val allowedAssets = setOf("html-base.css")
 
     fun isAllowed(path: String): Boolean = path in allowedAssets
 }
 
-internal object HtmlPreviewPathPolicy {
+internal object HtmlPreviewerPathPolicy {
 
     data class Resource(
         val uri: Uri,
@@ -181,8 +181,8 @@ private val RESPONSE_HEADERS = mapOf(
 )
 
 private val DOCUMENT_RESPONSE_HEADERS = RESPONSE_HEADERS + mapOf(
-    "Content-Security-Policy" to HtmlPreviewSecurityPolicy.CONTENT_SECURITY_POLICY,
-    "Referrer-Policy" to HtmlPreviewSecurityPolicy.REFERRER_POLICY,
+    "Content-Security-Policy" to HtmlPreviewerSecurityPolicy.CONTENT_SECURITY_POLICY,
+    "Referrer-Policy" to HtmlPreviewerSecurityPolicy.REFERRER_POLICY,
 )
 
 private fun notFound(): WebResourceResponse = WebResourceResponse(

@@ -1,6 +1,6 @@
-Use HTML Preview desde el gestor de archivos:
+Use HTML Previewer desde el gestor de archivos:
 
-1. Instale y active el complemento `HTML Preview`.
+1. Instale y active el complemento `HTML Previewer`.
 2. Abra el menú secundario de un archivo HTML compatible.
 3. Seleccione `Vista previa de HTML`.
 

@@ -1,10 +1,10 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class HtmlPreviewRequestPolicyTest {
+class HtmlPreviewerRequestPolicyTest {
 
     @Test
     fun mainFrameDataDocumentsAreNeverDelegatedToWebView() {
@@ -17,7 +17,7 @@ class HtmlPreviewRequestPolicyTest {
         urls.forEach { url ->
             assertFalse(
                 url,
-                HtmlPreviewRequestPolicy.shouldLetWebViewLoadDataResource(
+                HtmlPreviewerRequestPolicy.shouldLetWebViewLoadDataResource(
                     url = url,
                     isForMainFrame = true,
                 ),
@@ -45,7 +45,7 @@ class HtmlPreviewRequestPolicyTest {
         allowed.forEach { url ->
             assertTrue(
                 url,
-                HtmlPreviewRequestPolicy.shouldLetWebViewLoadDataResource(
+                HtmlPreviewerRequestPolicy.shouldLetWebViewLoadDataResource(
                     url = url,
                     isForMainFrame = false,
                 ),
@@ -54,7 +54,7 @@ class HtmlPreviewRequestPolicyTest {
         blocked.forEach { url ->
             assertFalse(
                 url,
-                HtmlPreviewRequestPolicy.shouldLetWebViewLoadDataResource(
+                HtmlPreviewerRequestPolicy.shouldLetWebViewLoadDataResource(
                     url = url,
                     isForMainFrame = false,
                 ),
@@ -72,10 +72,10 @@ class HtmlPreviewRequestPolicyTest {
         )
         val blocked = listOf(
             "http://example.com/image.png",
-            "https://appassets.androidplatform.net/html-preview-assets/html-base.css",
+            "https://appassets.androidplatform.net/html-previewer-assets/html-base.css",
             "https://appassets.androidplatform.net/html preview assets/html-base.css",
-            "HTTPS://APPASSETS.ANDROIDPLATFORM.NET/html-preview-assets/html-base.css",
-            "https://appassets.androidplatform.net./html-preview-assets/html-base.css",
+            "HTTPS://APPASSETS.ANDROIDPLATFORM.NET/html-previewer-assets/html-base.css",
+            "https://appassets.androidplatform.net./html-previewer-assets/html-base.css",
             "https://localhost/image.png",
             "https://127.0.0.1/image.png",
             "https://127.1/image.png",
@@ -91,14 +91,14 @@ class HtmlPreviewRequestPolicyTest {
         allowed.forEach { url ->
             assertTrue(
                 url,
-                HtmlPreviewRequestPolicy.shouldLetWebViewLoadHttpsSubresource(
+                HtmlPreviewerRequestPolicy.shouldLetWebViewLoadHttpsSubresource(
                     url = url,
                     isForMainFrame = false,
                 ),
             )
             assertFalse(
                 url,
-                HtmlPreviewRequestPolicy.shouldLetWebViewLoadHttpsSubresource(
+                HtmlPreviewerRequestPolicy.shouldLetWebViewLoadHttpsSubresource(
                     url = url,
                     isForMainFrame = true,
                 ),
@@ -107,7 +107,7 @@ class HtmlPreviewRequestPolicyTest {
         blocked.forEach { url ->
             assertFalse(
                 url,
-                HtmlPreviewRequestPolicy.shouldLetWebViewLoadHttpsSubresource(
+                HtmlPreviewerRequestPolicy.shouldLetWebViewLoadHttpsSubresource(
                     url = url,
                     isForMainFrame = false,
                 ),

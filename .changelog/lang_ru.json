@@ -17,7 +17,7 @@
     "v1.0.0": {
       "released_date": "2026/08/06",
       "feature": [
-        "Плагин HTML Preview с ID `html-preview`, движком `explorer-action` и вариантом `default`",
+        "Плагин HTML Previewer с ID `html-previewer`, движком `explorer-action` и вариантом `default`",
         "Действие дополнительного меню только для чтения одного файла в файловом менеджере через `org.autojs.plugin.EXPLORER_ACTION`",
         "Запуск через `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` с временным доступом на чтение URI содержимого файла и родительского каталога",
         "Очистка HTML с удалением скриптов, атрибутов обработчиков событий, фреймов, встроенных объектов и небезопасных адресов ресурсов перед отображением",

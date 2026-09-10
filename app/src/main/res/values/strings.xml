@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_html_preview">Preview HTML</string>
-    <string name="app_name">HTML Preview</string>
+    <string name="action_html_previewer">Preview HTML</string>
+    <string name="app_name">HTML Previewer</string>
     <string name="dialog_button_cancel">Cancel</string>
     <string name="dialog_button_confirm">Confirm</string>
     <string name="error_html_file_too_large">The HTML file exceeds the %1$s preview limit</string>

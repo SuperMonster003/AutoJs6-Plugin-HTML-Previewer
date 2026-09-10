@@ -1,4 +1,4 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.content.Context
 import android.os.Build
@@ -11,14 +11,14 @@ import org.autojs.plugin.explorer.api.ExplorerActionPluginIds
 import org.autojs.plugin.explorer.api.ExplorerActionProtocol
 import org.autojs.plugin.explorer.api.ExplorerActionValues
 
-internal object HtmlPreviewPlugin {
-    const val ID = "html-preview"
+internal object HtmlPreviewerPlugin {
+    const val ID = "html-previewer"
     const val VARIANT = "default"
     const val REQUIRED_HOST_VERSION = 5268L
-    const val LABEL_RESOURCE_NAME = "action_html_preview"
+    const val LABEL_RESOURCE_NAME = "action_html_previewer"
     const val LABEL_FALLBACK = "HTML preview"
     const val ACTIVITY_CLASS_NAME =
-        "io.github.supermonster003.autojs6.plugin.htmlpreview.HtmlPreviewActivity"
+        "io.github.supermonster003.autojs6.plugin.htmlpreviewer.HtmlPreviewerActivity"
 
     val MIME_TYPES = arrayOf("text/html", "application/xhtml+xml")
     val EXTENSIONS = arrayOf(
@@ -31,7 +31,7 @@ internal object HtmlPreviewPlugin {
     )
 }
 
-internal fun Context.htmlPreviewPluginInfo(): PluginInfo {
+internal fun Context.htmlPreviewerPluginInfo(): PluginInfo {
     val packageInfo = packageManager.getPackageInfo(packageName, 0)
     return PluginInfo().apply {
         name = getString(R.string.app_name)
@@ -49,34 +49,34 @@ internal fun Context.htmlPreviewPluginInfo(): PluginInfo {
             packageInfo.versionCode.toLong()
         }
         versionDate = getString(R.string.plugin_version_date)
-        id = HtmlPreviewPlugin.ID
+        id = HtmlPreviewerPlugin.ID
         engine = ExplorerActionPluginIds.ENGINE
-        variant = HtmlPreviewPlugin.VARIANT
+        variant = HtmlPreviewerPlugin.VARIANT
         supportedAbis = emptyArray()
         capabilities = Bundle().apply {
-            putLong(PluginCapabilityKeys.REQUIRES_HOST_VERSION, HtmlPreviewPlugin.REQUIRED_HOST_VERSION)
+            putLong(PluginCapabilityKeys.REQUIRES_HOST_VERSION, HtmlPreviewerPlugin.REQUIRED_HOST_VERSION)
             putInt(ExplorerActionCapabilityKeys.PROTOCOL_VERSION, ExplorerActionProtocol.VERSION)
         }
     }
 }
 
-internal fun htmlPreviewActionCatalog(): Bundle {
+internal fun htmlPreviewerActionCatalog(): Bundle {
     val action = Bundle().apply {
-        putString(ExplorerActionCatalogKeys.ID, HtmlPreviewPlugin.ID)
-        putString(ExplorerActionCatalogKeys.LABEL_RESOURCE_NAME, HtmlPreviewPlugin.LABEL_RESOURCE_NAME)
-        putString(ExplorerActionCatalogKeys.LABEL_FALLBACK, HtmlPreviewPlugin.LABEL_FALLBACK)
-        putString(ExplorerActionCatalogKeys.ACTIVITY_CLASS_NAME, HtmlPreviewPlugin.ACTIVITY_CLASS_NAME)
+        putString(ExplorerActionCatalogKeys.ID, HtmlPreviewerPlugin.ID)
+        putString(ExplorerActionCatalogKeys.LABEL_RESOURCE_NAME, HtmlPreviewerPlugin.LABEL_RESOURCE_NAME)
+        putString(ExplorerActionCatalogKeys.LABEL_FALLBACK, HtmlPreviewerPlugin.LABEL_FALLBACK)
+        putString(ExplorerActionCatalogKeys.ACTIVITY_CLASS_NAME, HtmlPreviewerPlugin.ACTIVITY_CLASS_NAME)
         putInt(ExplorerActionCatalogKeys.PRIORITY, 100)
         putInt(ExplorerActionCatalogKeys.TARGET_KIND, ExplorerActionValues.TARGET_FILE)
         putInt(ExplorerActionCatalogKeys.ACCESS_MODE, ExplorerActionValues.ACCESS_READ_ONLY)
         putInt(ExplorerActionCatalogKeys.PLACEMENT, ExplorerActionValues.PLACEMENT_OVERFLOW)
         putStringArrayList(
             ExplorerActionCatalogKeys.MIME_TYPES,
-            ArrayList(HtmlPreviewPlugin.MIME_TYPES.asList()),
+            ArrayList(HtmlPreviewerPlugin.MIME_TYPES.asList()),
         )
         putStringArrayList(
             ExplorerActionCatalogKeys.EXTENSIONS,
-            ArrayList(HtmlPreviewPlugin.EXTENSIONS.asList()),
+            ArrayList(HtmlPreviewerPlugin.EXTENSIONS.asList()),
         )
     }
     return Bundle().apply {

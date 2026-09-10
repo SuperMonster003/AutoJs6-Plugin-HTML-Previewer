@@ -36,7 +36,7 @@
         </activity>
 
         <activity
-            android:name=".HtmlPreviewActivity"
+            android:name=".HtmlPreviewerActivity"
             android:exported="true"
             android:permission="org.autojs.permission.PLUGIN"
             android:theme="@style/AppTheme">

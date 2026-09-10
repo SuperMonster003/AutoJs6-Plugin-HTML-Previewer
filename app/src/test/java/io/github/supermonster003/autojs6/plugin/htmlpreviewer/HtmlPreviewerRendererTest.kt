@@ -1,4 +1,4 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import org.jsoup.Jsoup
 import org.junit.Assert.assertEquals
@@ -7,9 +7,9 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class HtmlPreviewRendererTest {
+class HtmlPreviewerRendererTest {
 
-    private val renderer = HtmlPreviewRenderer()
+    private val renderer = HtmlPreviewerRenderer()
 
     @Test
     fun sanitizerRemovesExecutableContentAndKeepsSafeDocumentResources() {
@@ -85,14 +85,14 @@ class HtmlPreviewRendererTest {
         assertTrue(csp.contains("base-uri 'none'"))
         assertTrue(csp.contains("form-action 'none'"))
         assertEquals(
-            HtmlPreviewSecurityPolicy.REFERRER_POLICY,
+            HtmlPreviewerSecurityPolicy.REFERRER_POLICY,
             document.selectFirst("meta[name=referrer]")?.attr("content"),
         )
         assertNotNull(
             document.selectFirst(
-                """link[href="${HtmlPreviewWebOrigin.PREVIEW_ASSET_BASE_URL}html-base.css"]""",
+                """link[href="${HtmlPreviewerWebOrigin.PREVIEWER_ASSET_BASE_URL}html-base.css"]""",
             ),
         )
-        assertTrue(document.selectFirst("html")?.hasClass("html-preview-document") == true)
+        assertTrue(document.selectFirst("html")?.hasClass("html-previewer-document") == true)
     }
 }

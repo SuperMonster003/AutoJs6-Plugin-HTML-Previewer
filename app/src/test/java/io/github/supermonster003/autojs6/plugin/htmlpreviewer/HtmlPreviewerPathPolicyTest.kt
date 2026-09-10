@@ -1,4 +1,4 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -6,7 +6,7 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
-class HtmlPreviewPathPolicyTest {
+class HtmlPreviewerPathPolicyTest {
 
     @Test
     fun relativeResourcesUseOnlyWhitelistedMimeTypes() {
@@ -19,8 +19,8 @@ class HtmlPreviewPathPolicyTest {
         )
 
         resources.forEach { (path, expectedMimeType) ->
-            assertTrue(path, HtmlPreviewPathPolicy.isSafeRelativePath(path))
-            assertEquals(expectedMimeType, HtmlPreviewPathPolicy.mimeType(path))
+            assertTrue(path, HtmlPreviewerPathPolicy.isSafeRelativePath(path))
+            assertEquals(expectedMimeType, HtmlPreviewerPathPolicy.mimeType(path))
         }
     }
 
@@ -41,27 +41,27 @@ class HtmlPreviewPathPolicyTest {
         )
 
         unsafePaths.forEach { path ->
-            assertFalse("$path should fail validation", HtmlPreviewPathPolicy.isSafeRelativePath(path))
+            assertFalse("$path should fail validation", HtmlPreviewerPathPolicy.isSafeRelativePath(path))
         }
     }
 
     @Test
     fun unsupportedMimeTypesAreRejected() {
         listOf("payload.js", "document.html", "notes.txt", "archive.zip").forEach { path ->
-            assertNull(path, HtmlPreviewPathPolicy.mimeType(path))
+            assertNull(path, HtmlPreviewerPathPolicy.mimeType(path))
         }
     }
 
     @Test
     fun ordinaryNestedRelativePathIsAccepted() {
-        assertTrue(HtmlPreviewPathPolicy.isSafeRelativePath("images/diagrams/preview.svg"))
+        assertTrue(HtmlPreviewerPathPolicy.isSafeRelativePath("images/diagrams/preview.svg"))
     }
 
     @Test
     fun onlyBundledHtmlStylesheetCanLoad() {
-        assertTrue(HtmlPreviewAssetPolicy.isAllowed("html-base.css"))
-        assertFalse(HtmlPreviewAssetPolicy.isAllowed("../html-base.css"))
-        assertFalse(HtmlPreviewAssetPolicy.isAllowed("theme.css"))
-        assertFalse(HtmlPreviewAssetPolicy.isAllowed("custom.css"))
+        assertTrue(HtmlPreviewerAssetPolicy.isAllowed("html-base.css"))
+        assertFalse(HtmlPreviewerAssetPolicy.isAllowed("../html-base.css"))
+        assertFalse(HtmlPreviewerAssetPolicy.isAllowed("theme.css"))
+        assertFalse(HtmlPreviewerAssetPolicy.isAllowed("custom.css"))
     }
 }

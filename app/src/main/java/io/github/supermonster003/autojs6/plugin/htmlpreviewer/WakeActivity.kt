@@ -1,4 +1,4 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.app.Activity
 import android.os.Bundle

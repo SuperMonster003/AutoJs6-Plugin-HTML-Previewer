@@ -1,4 +1,4 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.content.ContentResolver
 import android.content.Intent
@@ -9,14 +9,14 @@ import org.autojs.plugin.explorer.api.ExplorerActionPluginActions
 import org.autojs.plugin.explorer.api.ExplorerActionProtocol
 import java.util.Locale
 
-internal data class HtmlPreviewRequest(
+internal data class HtmlPreviewerRequest(
     val documentUri: Uri,
     val parentUri: Uri,
     val displayName: String,
 )
 
 /** Validates the complete, URI-only explorer action contract before any content is opened. */
-internal object HtmlPreviewIntentPolicy {
+internal object HtmlPreviewerIntentPolicy {
 
     private const val MAX_DISPLAY_NAME_LENGTH = 255
 
@@ -24,9 +24,9 @@ internal object HtmlPreviewIntentPolicy {
     private val htmlMimeTypes = setOf("text/html", "application/xhtml+xml")
     private val conflictingMimeTypes = setOf("text/markdown", "text/x-markdown")
 
-    fun resolve(intent: Intent): HtmlPreviewRequest? {
+    fun resolve(intent: Intent): HtmlPreviewerRequest? {
         if (intent.action != ExplorerActionPluginActions.EXECUTE) return null
-        if (intent.getStringExtra(ExplorerActionIntentExtras.ACTION_ID) != HtmlPreviewPlugin.ID) return null
+        if (intent.getStringExtra(ExplorerActionIntentExtras.ACTION_ID) != HtmlPreviewerPlugin.ID) return null
         if (
             intent.getIntExtra(ExplorerActionIntentExtras.PROTOCOL_VERSION, Int.MIN_VALUE) !=
             ExplorerActionProtocol.VERSION
@@ -47,7 +47,7 @@ internal object HtmlPreviewIntentPolicy {
         val parentUri = intent.parcelableUriExtra(ExplorerActionIntentExtras.PARENT_URI)
             ?.takeIf(::isPlainContentUri)
             ?: return null
-        if (!HtmlPreviewPathPolicy.isDescendant(parentUri, documentUri)) return null
+        if (!HtmlPreviewerPathPolicy.isDescendant(parentUri, documentUri)) return null
 
         val clipData = intent.clipData ?: return null
         if (clipData.itemCount <= ExplorerActionIntentValues.CLIP_ITEM_PARENT_INDEX) return null
@@ -61,9 +61,9 @@ internal object HtmlPreviewIntentPolicy {
         if (!isSupportedHtml(intent.type, displayName)) return null
 
         val declaredSize = intent.getLongExtra(ExplorerActionIntentExtras.SIZE, -1L)
-        if (declaredSize > HtmlPreviewActivity.MAX_HTML_BYTES) return null
+        if (declaredSize > HtmlPreviewerActivity.MAX_HTML_BYTES) return null
 
-        return HtmlPreviewRequest(documentUri, parentUri, displayName)
+        return HtmlPreviewerRequest(documentUri, parentUri, displayName)
     }
 
     fun isSupportedHtml(mimeType: String?, displayName: String): Boolean {

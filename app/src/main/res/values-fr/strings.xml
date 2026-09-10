@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_html_preview">Prévisualiser HTML</string>
+    <string name="action_html_previewer">Prévisualiser HTML</string>
     <string name="app_name">Aperçu HTML</string>
     <string name="dialog_button_cancel">Annuler</string>
     <string name="dialog_button_confirm">Confirmer</string>

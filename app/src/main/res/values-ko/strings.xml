@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_html_preview">HTML 미리보기</string>
+    <string name="action_html_previewer">HTML 미리보기</string>
     <string name="app_name">HTML 미리보기</string>
     <string name="dialog_button_cancel">취소</string>
     <string name="dialog_button_confirm">확인</string>

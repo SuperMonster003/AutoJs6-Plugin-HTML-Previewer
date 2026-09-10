@@ -15,7 +15,7 @@
 
 ###### 2026/08/06
 
-* `Feature` HTML Preview plugin with plugin ID `html-preview`, engine `explorer-action`, and variant `default`
+* `Feature` HTML Previewer plugin with plugin ID `html-previewer`, engine `explorer-action`, and variant `default`
 * `Feature` Single-file read-only overflow action in the file manager through `org.autojs.plugin.EXPLORER_ACTION`
 * `Feature` Activity execution through `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` with temporary read access to file and parent directory content URIs
 * `Feature` HTML sanitization that removes scripts, event handler attributes, frames, embedded objects, and unsafe resource addresses before display

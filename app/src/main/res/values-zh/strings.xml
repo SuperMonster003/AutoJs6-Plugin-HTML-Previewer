@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_html_preview">预览 HTML</string>
+    <string name="action_html_previewer">预览 HTML</string>
     <string name="app_name">HTML 预览</string>
     <string name="dialog_button_cancel">取消</string>
     <string name="dialog_button_confirm">确认</string>

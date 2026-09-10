@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_html_preview">HTML をプレビュー</string>
+    <string name="action_html_previewer">HTML をプレビュー</string>
     <string name="app_name">HTML プレビュー</string>
     <string name="dialog_button_cancel">キャンセル</string>
     <string name="dialog_button_confirm">確認</string>

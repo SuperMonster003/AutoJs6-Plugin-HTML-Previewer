@@ -1,4 +1,4 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -16,8 +16,8 @@ import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import io.github.supermonster003.autojs6.plugin.htmlpreview.databinding.ActivityHtmlPreviewBinding
-import io.github.supermonster003.autojs6.plugin.htmlpreview.databinding.DialogHtmlPreviewSettingsBinding
+import io.github.supermonster003.autojs6.plugin.htmlpreviewer.databinding.ActivityHtmlPreviewerBinding
+import io.github.supermonster003.autojs6.plugin.htmlpreviewer.databinding.DialogHtmlPreviewerSettingsBinding
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -25,14 +25,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
 
-class HtmlPreviewActivity : AppCompatActivity() {
+class HtmlPreviewerActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityHtmlPreviewBinding
-    private lateinit var previewRequest: HtmlPreviewRequest
-    private lateinit var preferences: HtmlPreviewPreferences
-    private lateinit var webController: HtmlPreviewWebController
+    private lateinit var binding: ActivityHtmlPreviewerBinding
+    private lateinit var previewRequest: HtmlPreviewerRequest
+    private lateinit var preferences: HtmlPreviewerPreferences
+    private lateinit var webController: HtmlPreviewerWebController
 
-    private val renderer = HtmlPreviewRenderer()
+    private val renderer = HtmlPreviewerRenderer()
     private var loadJob: Job? = null
     private var loadGeneration = 0
     private var fullscreenMode = false
@@ -52,16 +52,16 @@ class HtmlPreviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        previewRequest = HtmlPreviewIntentPolicy.resolve(intent) ?: run {
+        previewRequest = HtmlPreviewerIntentPolicy.resolve(intent) ?: run {
             Toast.makeText(this, R.string.text_cannot_read_file, Toast.LENGTH_LONG).show()
             finish()
             return
         }
-        preferences = HtmlPreviewPreferences(this)
+        preferences = HtmlPreviewerPreferences(this)
         fullscreenMode = savedInstanceState?.getBoolean(STATE_FULLSCREEN_MODE)
             ?: preferences.startInFullscreenMode
 
-        binding = ActivityHtmlPreviewBinding.inflate(layoutInflater)
+        binding = ActivityHtmlPreviewerBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.previewWebView.setBackgroundColor(getColor(R.color.window_background))
         setSupportActionBar(binding.toolbar)
@@ -73,7 +73,7 @@ class HtmlPreviewActivity : AppCompatActivity() {
         setFullscreenMode(fullscreenMode, invalidateMenu = false)
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
-        webController = HtmlPreviewWebController(
+        webController = HtmlPreviewerWebController(
             context = this,
             webView = binding.previewWebView,
             resourceRoot = previewRequest.parentUri,
@@ -86,7 +86,7 @@ class HtmlPreviewActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_html_preview, menu)
+        menuInflater.inflate(R.menu.menu_html_previewer, menu)
         return true
     }
 
@@ -99,7 +99,7 @@ class HtmlPreviewActivity : AppCompatActivity() {
         android.R.id.home -> true.also { finish() }
         R.id.action_refresh -> true.also { loadPreview() }
         R.id.action_fullscreen_mode -> true.also { setFullscreenMode(!fullscreenMode) }
-        R.id.action_html_preview_settings -> true.also { showSettingsDialog() }
+        R.id.action_html_previewer_settings -> true.also { showSettingsDialog() }
         else -> super.onOptionsItemSelected(item)
     }
 
@@ -133,7 +133,7 @@ class HtmlPreviewActivity : AppCompatActivity() {
         loadJob = lifecycleScope.launch {
             try {
                 val source = withContext(Dispatchers.IO) {
-                    HtmlPreviewTextReader(contentResolver).read(
+                    HtmlPreviewerTextReader(contentResolver).read(
                         previewRequest.documentUri,
                         MAX_HTML_BYTES,
                     )
@@ -159,7 +159,7 @@ class HtmlPreviewActivity : AppCompatActivity() {
         binding.previewWebView.isVisible = false
         binding.errorText.isVisible = true
         binding.errorText.text = when (error) {
-            is HtmlPreviewTooLargeException -> getString(
+            is HtmlPreviewerTooLargeException -> getString(
                 R.string.error_html_file_too_large,
                 Formatter.formatShortFileSize(this, error.limitBytes.toLong()),
             )
@@ -168,7 +168,7 @@ class HtmlPreviewActivity : AppCompatActivity() {
     }
 
     private fun showSettingsDialog() {
-        val settingsBinding = DialogHtmlPreviewSettingsBinding.inflate(layoutInflater).apply {
+        val settingsBinding = DialogHtmlPreviewerSettingsBinding.inflate(layoutInflater).apply {
             startInFullscreenMode.isChecked = preferences.startInFullscreenMode
         }
         MaterialAlertDialogBuilder(this)

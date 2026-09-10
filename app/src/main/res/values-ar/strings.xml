@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_html_preview">معاينة HTML</string>
+    <string name="action_html_previewer">معاينة HTML</string>
     <string name="app_name">معاينة HTML</string>
     <string name="dialog_button_cancel">إلغاء</string>
     <string name="dialog_button_confirm">تأكيد</string>

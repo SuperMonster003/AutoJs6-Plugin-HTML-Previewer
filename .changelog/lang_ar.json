@@ -17,7 +17,7 @@
     "v1.0.0": {
       "released_date": "2026/08/06",
       "feature": [
-        "مكون HTML Preview بالمعرف `html-preview` والمحرك `explorer-action` والمتغير `default`",
+        "مكون HTML Previewer بالمعرف `html-previewer` والمحرك `explorer-action` والمتغير `default`",
         "إجراء قائمة إضافية للقراءة فقط لملف واحد في مدير الملفات عبر `org.autojs.plugin.EXPLORER_ACTION`",
         "تنفيذ عبر `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` مع إذن قراءة مؤقت لـ content URI الخاص بالملف والمجلد الأصل",
         "تنقية HTML بإزالة البرامج النصية وسمات معالجات الأحداث والإطارات والكائنات المضمنة وعناوين الموارد غير الآمنة قبل العرض",

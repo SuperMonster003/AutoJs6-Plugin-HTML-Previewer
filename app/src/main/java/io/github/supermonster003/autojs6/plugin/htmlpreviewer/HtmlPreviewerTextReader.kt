@@ -1,4 +1,4 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.content.ContentResolver
 import android.net.Uri
@@ -9,7 +9,7 @@ import java.nio.ByteBuffer
 import java.nio.charset.CodingErrorAction
 import java.nio.charset.StandardCharsets
 
-internal class HtmlPreviewTextReader(
+internal class HtmlPreviewerTextReader(
     private val contentResolver: ContentResolver,
 ) {
 
@@ -19,13 +19,13 @@ internal class HtmlPreviewTextReader(
             "Document URI must use the content scheme"
         }
         val bytes = contentResolver.openInputStream(uri)?.use { input ->
-            HtmlPreviewTextCodec.readBounded(input, maxBytes)
+            HtmlPreviewerTextCodec.readBounded(input, maxBytes)
         } ?: throw IOException("Cannot open the preview document")
-        return HtmlPreviewTextCodec.decode(bytes)
+        return HtmlPreviewerTextCodec.decode(bytes)
     }
 }
 
-internal object HtmlPreviewTextCodec {
+internal object HtmlPreviewerTextCodec {
 
     fun readBounded(input: InputStream, maxBytes: Int): ByteArray {
         require(maxBytes > 0) { "maxBytes must be positive" }
@@ -39,12 +39,12 @@ internal object HtmlPreviewTextCodec {
                 val oneByte = input.read()
                 if (oneByte < 0) break
                 total++
-                if (total > maxBytes) throw HtmlPreviewTooLargeException(maxBytes)
+                if (total > maxBytes) throw HtmlPreviewerTooLargeException(maxBytes)
                 output.write(oneByte)
                 continue
             }
             total += read
-            if (total > maxBytes) throw HtmlPreviewTooLargeException(maxBytes)
+            if (total > maxBytes) throw HtmlPreviewerTooLargeException(maxBytes)
             output.write(buffer, 0, read)
         }
         return output.toByteArray()
@@ -77,6 +77,6 @@ internal object HtmlPreviewTextCodec {
         .getOrDefault(StandardCharsets.UTF_8)
 }
 
-internal class HtmlPreviewTooLargeException(
+internal class HtmlPreviewerTooLargeException(
     val limitBytes: Int,
 ) : IOException("HTML exceeds the $limitBytes-byte preview limit")

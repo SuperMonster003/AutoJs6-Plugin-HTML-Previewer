@@ -15,7 +15,7 @@
 
 ###### 2026/08/06
 
-* `新增` HTML Preview 插件, 插件 ID 為 `html-preview`, 引擎為 `explorer-action`, 變體為 `default`
+* `新增` HTML Previewer 插件, 插件 ID 為 `html-previewer`, 引擎為 `explorer-action`, 變體為 `default`
 * `新增` 透過 `org.autojs.plugin.EXPLORER_ACTION` 為檔案管理器提供單一檔案唯讀更多選單動作
 * `新增` 透過 `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` 接收檔案和上層目錄 content URI 的臨時讀取權限
 * `新增` 顯示前移除腳本/事件處理屬性/框架/嵌入物件和不安全資源位址的 HTML 淨化

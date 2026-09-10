@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.net.Uri
 import android.view.ContextThemeWrapper
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
 
 @RunWith(AndroidJUnit4::class)
-class HtmlPreviewWebControllerInstrumentationTest {
+class HtmlPreviewerWebControllerInstrumentationTest {
 
     @Test
     fun generatedDocumentLoadsFromVirtualHttpsOrigin() {
@@ -26,7 +26,7 @@ class HtmlPreviewWebControllerInstrumentationTest {
         val targetContext = instrumentation.targetContext
         val resourceRoot = Uri.parse("content://html.preview.test/root/document")
 
-        val controller = AtomicReference<HtmlPreviewWebController?>()
+        val controller = AtomicReference<HtmlPreviewerWebController?>()
         val observedTitle = AtomicReference<String?>()
         val observedUrl = AtomicReference<String?>()
         val pageFinished = CountDownLatch(1)
@@ -36,7 +36,7 @@ class HtmlPreviewWebControllerInstrumentationTest {
                 val context = ContextThemeWrapper(targetContext, R.style.AppTheme)
                 val webView = WebView(context)
                 controller.set(
-                    HtmlPreviewWebController(
+                    HtmlPreviewerWebController(
                         context = context,
                         webView = webView,
                         resourceRoot = resourceRoot,
@@ -47,7 +47,7 @@ class HtmlPreviewWebControllerInstrumentationTest {
                             pageFinished.countDown()
                         },
                     ).also {
-                        val renderedPreview = HtmlPreviewRenderer().render(
+                        val renderedPreview = HtmlPreviewerRenderer().render(
                             """
                                 <!doctype html>
                                 <html>
@@ -67,7 +67,7 @@ class HtmlPreviewWebControllerInstrumentationTest {
             )
             instrumentation.waitForIdleSync()
             assertEquals(EXPECTED_DOCUMENT_TITLE, observedTitle.get())
-            assertEquals(HtmlPreviewWebOrigin.DOCUMENT_URL, observedUrl.get())
+            assertEquals(HtmlPreviewerWebOrigin.DOCUMENT_URL, observedUrl.get())
         } finally {
             instrumentation.runOnMainSync {
                 controller.getAndSet(null)?.destroy()
@@ -83,7 +83,7 @@ class HtmlPreviewWebControllerInstrumentationTest {
         instrumentation.runOnMainSync {
             val context = ContextThemeWrapper(targetContext, R.style.AppTheme)
             val webView = WebView(context)
-            val controller = HtmlPreviewWebController(
+            val controller = HtmlPreviewerWebController(
                 context = context,
                 webView = webView,
                 resourceRoot = Uri.parse("content://html.preview.test/root/document"),
@@ -112,7 +112,7 @@ class HtmlPreviewWebControllerInstrumentationTest {
     }
 
     companion object {
-        private const val EXPECTED_DOCUMENT_TITLE = "html-preview-load-ok"
+        private const val EXPECTED_DOCUMENT_TITLE = "html-previewer-load-ok"
         private const val PAGE_LOAD_TIMEOUT_SECONDS = 20L
     }
 }

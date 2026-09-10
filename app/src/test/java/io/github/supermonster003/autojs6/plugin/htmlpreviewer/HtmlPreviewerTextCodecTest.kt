@@ -1,4 +1,4 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
@@ -7,17 +7,17 @@ import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
 
-class HtmlPreviewTextCodecTest {
+class HtmlPreviewerTextCodecTest {
 
     @Test
     fun boundedReaderAcceptsTheExactLimit() {
         val bytes = ByteArray(32) { it.toByte() }
-        assertArrayEquals(bytes, HtmlPreviewTextCodec.readBounded(ByteArrayInputStream(bytes), bytes.size))
+        assertArrayEquals(bytes, HtmlPreviewerTextCodec.readBounded(ByteArrayInputStream(bytes), bytes.size))
     }
 
-    @Test(expected = HtmlPreviewTooLargeException::class)
+    @Test(expected = HtmlPreviewerTooLargeException::class)
     fun boundedReaderRejectsTheFirstByteOverTheLimit() {
-        HtmlPreviewTextCodec.readBounded(ByteArrayInputStream(ByteArray(33)), 32)
+        HtmlPreviewerTextCodec.readBounded(ByteArrayInputStream(ByteArray(33)), 32)
     }
 
     @Test
@@ -38,14 +38,14 @@ class HtmlPreviewTextCodecTest {
             }
         }
 
-        assertArrayEquals(expected, HtmlPreviewTextCodec.readBounded(input, expected.size))
+        assertArrayEquals(expected, HtmlPreviewerTextCodec.readBounded(input, expected.size))
     }
 
     @Test
     fun utfBomIsRemovedAndMalformedUtf8IsReplaced() {
         val utf16 = byteArrayOf(0xFF.toByte(), 0xFE.toByte()) +
             "Preview".toByteArray(StandardCharsets.UTF_16LE)
-        assertEquals("Preview", HtmlPreviewTextCodec.decode(utf16))
-        assertEquals("\uFFFD", HtmlPreviewTextCodec.decode(byteArrayOf(0xFF.toByte())))
+        assertEquals("Preview", HtmlPreviewerTextCodec.decode(utf16))
+        assertEquals("\uFFFD", HtmlPreviewerTextCodec.decode(byteArrayOf(0xFF.toByte())))
     }
 }

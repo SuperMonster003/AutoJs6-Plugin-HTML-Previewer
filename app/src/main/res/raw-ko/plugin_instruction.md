@@ -1,6 +1,6 @@
-파일 관리자에서 HTML Preview를 사용합니다:
+파일 관리자에서 HTML Previewer를 사용합니다:
 
-1. `HTML Preview` 플러그인을 설치하고 활성화합니다.
+1. `HTML Previewer` 플러그인을 설치하고 활성화합니다.
 2. 지원되는 HTML 파일의 더보기 메뉴를 엽니다.
 3. `HTML 미리보기`를 선택합니다.
 

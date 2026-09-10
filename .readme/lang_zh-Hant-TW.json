@@ -5,7 +5,7 @@
   "h3_languages_with_ascii": "語言 (Languages)",
   "p_languages_all_supported_for_readme": "目前 README.md 支援以下語言",
   "h3_introduction": "簡介",
-  "p_introduction": "HTML Preview 為檔案管理器提供單一檔案唯讀 HTML 預覽動作. 網頁內容在獨立檢視器中淨化並顯示, 無需將預覽實作嵌入主程式.",
+  "p_introduction": "HTML Previewer 為檔案管理器提供單一檔案唯讀 HTML 預覽動作. 網頁內容在獨立檢視器中淨化並顯示, 無需將預覽實作嵌入主程式.",
   "h3_functions": "功能",
   "features": [
     "透過共用的 `{{ plugin_action }}` 協定註冊單一檔案唯讀檔案瀏覽器動作.",

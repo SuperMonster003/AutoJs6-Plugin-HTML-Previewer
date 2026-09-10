@@ -1,6 +1,6 @@
-Use HTML Preview from the file manager:
+Use HTML Previewer from the file manager:
 
-1. Install and enable the `HTML Preview` plugin.
+1. Install and enable the `HTML Previewer` plugin.
 2. Open the overflow menu for one supported HTML file.
 3. Select `Preview HTML`.
 

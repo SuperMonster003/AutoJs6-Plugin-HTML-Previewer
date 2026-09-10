@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.content.ClipData
 import android.content.ClipDescription
@@ -18,14 +18,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class HtmlPreviewIntentPolicyInstrumentationTest {
+class HtmlPreviewerIntentPolicyInstrumentationTest {
 
     private val parentUri = Uri.parse("content://org.autojs.test.fileprovider/root/documents")
     private val documentUri = Uri.parse("content://org.autojs.test.fileprovider/root/documents/index.html")
 
     @Test
     fun completeUriOnlyExplorerContractIsAccepted() {
-        val resolved = HtmlPreviewIntentPolicy.resolve(validIntent())
+        val resolved = HtmlPreviewerIntentPolicy.resolve(validIntent())
 
         assertNotNull(resolved)
         assertEquals(documentUri, resolved?.documentUri)
@@ -35,14 +35,14 @@ class HtmlPreviewIntentPolicyInstrumentationTest {
 
     @Test
     fun actionProtocolAndGrantFlagsAreMandatory() {
-        assertNull(HtmlPreviewIntentPolicy.resolve(Intent(validIntent()).setAction(Intent.ACTION_VIEW)))
+        assertNull(HtmlPreviewerIntentPolicy.resolve(Intent(validIntent()).setAction(Intent.ACTION_VIEW)))
         assertNull(
-            HtmlPreviewIntentPolicy.resolve(
+            HtmlPreviewerIntentPolicy.resolve(
                 Intent(validIntent()).putExtra(ExplorerActionIntentExtras.PROTOCOL_VERSION, 2),
             ),
         )
         assertNull(
-            HtmlPreviewIntentPolicy.resolve(
+            HtmlPreviewerIntentPolicy.resolve(
                 Intent(validIntent()).apply {
                     flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
                 },
@@ -53,12 +53,12 @@ class HtmlPreviewIntentPolicyInstrumentationTest {
     @Test
     fun targetParentAndClipDataMustDescribeTheSameContentTree() {
         assertNull(
-            HtmlPreviewIntentPolicy.resolve(
+            HtmlPreviewerIntentPolicy.resolve(
                 Intent(validIntent()).setData(Uri.parse("file:///sdcard/index.html")),
             ),
         )
         assertNull(
-            HtmlPreviewIntentPolicy.resolve(
+            HtmlPreviewerIntentPolicy.resolve(
                 Intent(validIntent()).putExtra(
                     ExplorerActionIntentExtras.PARENT_URI,
                     Uri.parse("content://org.autojs.test.fileprovider/root/other"),
@@ -66,7 +66,7 @@ class HtmlPreviewIntentPolicyInstrumentationTest {
             ),
         )
         assertNull(
-            HtmlPreviewIntentPolicy.resolve(
+            HtmlPreviewerIntentPolicy.resolve(
                 Intent(validIntent()).apply {
                     clipData = ClipData(
                         ClipDescription("Preview target", arrayOf("text/html")),
@@ -87,7 +87,7 @@ class HtmlPreviewIntentPolicyInstrumentationTest {
         return Intent(ExplorerActionPluginActions.EXECUTE)
             .setDataAndType(documentUri, "text/html")
             .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_PREFIX_URI_PERMISSION)
-            .putExtra(ExplorerActionIntentExtras.ACTION_ID, HtmlPreviewPlugin.ID)
+            .putExtra(ExplorerActionIntentExtras.ACTION_ID, HtmlPreviewerPlugin.ID)
             .putExtra(ExplorerActionIntentExtras.PROTOCOL_VERSION, ExplorerActionProtocol.VERSION)
             .putExtra(ExplorerActionIntentExtras.DISPLAY_NAME, "index.html")
             .putExtra(ExplorerActionIntentExtras.SIZE, 1024L)

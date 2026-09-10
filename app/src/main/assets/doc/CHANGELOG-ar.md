@@ -15,7 +15,7 @@
 
 ###### 2026/08/06
 
-* `ميزة` مكون HTML Preview بالمعرف `html-preview` والمحرك `explorer-action` والمتغير `default`
+* `ميزة` مكون HTML Previewer بالمعرف `html-previewer` والمحرك `explorer-action` والمتغير `default`
 * `ميزة` إجراء قائمة إضافية للقراءة فقط لملف واحد في مدير الملفات عبر `org.autojs.plugin.EXPLORER_ACTION`
 * `ميزة` تنفيذ عبر `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` مع إذن قراءة مؤقت لـ content URI الخاص بالملف والمجلد الأصل
 * `ميزة` تنقية HTML بإزالة البرامج النصية وسمات معالجات الأحداث والإطارات والكائنات المضمنة وعناوين الموارد غير الآمنة قبل العرض

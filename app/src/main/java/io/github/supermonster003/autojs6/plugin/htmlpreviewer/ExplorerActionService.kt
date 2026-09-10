@@ -1,4 +1,4 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.app.Service
 import android.content.Intent
@@ -8,9 +8,9 @@ import org.autojs.plugin.explorer.api.IExplorerActionPlugin
 class ExplorerActionService : Service() {
 
     private val binder = object : IExplorerActionPlugin.Stub() {
-        override fun getInfo() = htmlPreviewPluginInfo()
+        override fun getInfo() = htmlPreviewerPluginInfo()
 
-        override fun getActionCatalog() = htmlPreviewActionCatalog()
+        override fun getActionCatalog() = htmlPreviewerActionCatalog()
     }
 
     override fun onBind(intent: Intent?): IBinder = binder

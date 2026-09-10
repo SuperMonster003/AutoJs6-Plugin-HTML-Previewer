@@ -15,7 +15,7 @@
 
 ###### 2026/08/06
 
-* `Función` Complemento HTML Preview con ID `html-preview`, motor `explorer-action` y variante `default`
+* `Función` Complemento HTML Previewer con ID `html-previewer`, motor `explorer-action` y variante `default`
 * `Función` Acción secundaria de solo lectura para un archivo en el gestor de archivos mediante `org.autojs.plugin.EXPLORER_ACTION`
 * `Función` Ejecución mediante `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` con acceso temporal de lectura a los URI de contenido del archivo y del directorio principal
 * `Función` Saneamiento HTML que elimina scripts, atributos de controladores de eventos, marcos, objetos incrustados y direcciones de recursos no seguras antes de mostrar

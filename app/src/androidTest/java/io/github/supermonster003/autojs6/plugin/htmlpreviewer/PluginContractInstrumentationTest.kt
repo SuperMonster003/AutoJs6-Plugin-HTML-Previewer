@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.content.ComponentName
 import android.content.Intent
@@ -35,14 +35,14 @@ class PluginContractInstrumentationTest {
     @Test
     fun pluginInfoDeclaresAbiIndependentExplorerEngine() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val info = context.htmlPreviewPluginInfo()
+        val info = context.htmlPreviewerPluginInfo()
 
-        assertEquals(HtmlPreviewPlugin.ID, info.id)
+        assertEquals(HtmlPreviewerPlugin.ID, info.id)
         assertEquals(ExplorerActionPluginIds.ENGINE, info.engine)
         assertArrayEquals(emptyArray<String>(), info.supportedAbis)
         assertTrue(info.instruction?.isNotBlank() == true)
         assertEquals(
-            HtmlPreviewPlugin.REQUIRED_HOST_VERSION,
+            HtmlPreviewerPlugin.REQUIRED_HOST_VERSION,
             info.capabilities?.getLong(PluginCapabilityKeys.REQUIRES_HOST_VERSION),
         )
         assertEquals(
@@ -53,19 +53,19 @@ class PluginContractInstrumentationTest {
 
     @Test
     fun catalogUsesParcelableBundleAndStringArrayLists() {
-        val catalog = htmlPreviewActionCatalog()
+        val catalog = htmlPreviewerActionCatalog()
         val actions = catalog.getParcelableArrayList<Bundle>(ExplorerActionCatalogKeys.ACTIONS)
         val action = actions?.single()
 
         assertEquals(ExplorerActionProtocol.VERSION, catalog.getInt(ExplorerActionCatalogKeys.PROTOCOL_VERSION))
         assertNotNull(action)
-        assertEquals(HtmlPreviewPlugin.ID, action?.getString(ExplorerActionCatalogKeys.ID))
+        assertEquals(HtmlPreviewerPlugin.ID, action?.getString(ExplorerActionCatalogKeys.ID))
         assertEquals(
-            "action_html_preview",
+            "action_html_previewer",
             action?.getString(ExplorerActionCatalogKeys.LABEL_RESOURCE_NAME),
         )
         assertEquals(
-            HtmlPreviewPlugin.ACTIVITY_CLASS_NAME,
+            HtmlPreviewerPlugin.ACTIVITY_CLASS_NAME,
             action?.getString(ExplorerActionCatalogKeys.ACTIVITY_CLASS_NAME),
         )
         assertEquals(
@@ -73,7 +73,7 @@ class PluginContractInstrumentationTest {
             action?.getStringArrayList(ExplorerActionCatalogKeys.MIME_TYPES),
         )
         assertEquals(
-            HtmlPreviewPlugin.EXTENSIONS.toList(),
+            HtmlPreviewerPlugin.EXTENSIONS.toList(),
             action?.getStringArrayList(ExplorerActionCatalogKeys.EXTENSIONS),
         )
 
@@ -90,7 +90,7 @@ class PluginContractInstrumentationTest {
             0,
         )
         val activityInfo = packageManager.getActivityInfo(
-            ComponentName(context, HtmlPreviewActivity::class.java),
+            ComponentName(context, HtmlPreviewerActivity::class.java),
             0,
         )
 
@@ -111,7 +111,7 @@ class PluginContractInstrumentationTest {
                 .setPackage(context.packageName),
             0,
         )
-        assertTrue(execution.any { it.activityInfo.name == HtmlPreviewActivity::class.java.name })
+        assertTrue(execution.any { it.activityInfo.name == HtmlPreviewerActivity::class.java.name })
     }
 
     private fun contextResources() =

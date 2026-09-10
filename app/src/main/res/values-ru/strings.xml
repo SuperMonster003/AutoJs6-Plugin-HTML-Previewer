@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_html_preview">Предпросмотр HTML</string>
+    <string name="action_html_previewer">Предпросмотр HTML</string>
     <string name="app_name">Просмотр HTML</string>
     <string name="dialog_button_cancel">Отмена</string>
     <string name="dialog_button_confirm">Подтвердить</string>

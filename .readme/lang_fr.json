@@ -5,7 +5,7 @@
   "h3_languages_with_ascii": "Langues (Languages)",
   "p_languages_all_supported_for_readme": "Le fichier README.md actuel prend en charge les langues suivantes",
   "h3_introduction": "Introduction",
-  "p_introduction": "HTML Preview ajoute au gestionnaire de fichiers une action de prévisualisation HTML en lecture seule pour un seul fichier. Le contenu web est nettoyé et affiché dans une visionneuse dédiée sans intégrer cette fonction à l'application hôte.",
+  "p_introduction": "HTML Previewer ajoute au gestionnaire de fichiers une action de prévisualisation HTML en lecture seule pour un seul fichier. Le contenu web est nettoyé et affiché dans une visionneuse dédiée sans intégrer cette fonction à l'application hôte.",
   "h3_functions": "Fonctions",
   "features": [
     "Enregistre une action de lecture seule pour un fichier avec le protocole partagé `{{ plugin_action }}`.",

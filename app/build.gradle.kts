@@ -10,7 +10,7 @@ plugins {
     id("com.android.application")
 }
 
-val globalApplicationId = "io.github.supermonster003.autojs6.plugin.htmlpreview"
+val globalApplicationId = "io.github.supermonster003.autojs6.plugin.htmlpreviewer"
 
 val buildTypeDebug = "debug"
 val buildTypeRelease = "release"

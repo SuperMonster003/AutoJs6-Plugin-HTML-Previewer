@@ -1,6 +1,6 @@
-在檔案管理器中使用 HTML Preview:
+在檔案管理器中使用 HTML Previewer:
 
-1. 安裝並啟用 `HTML Preview` 外掛.
+1. 安裝並啟用 `HTML Previewer` 外掛.
 2. 開啟一個受支援 HTML 檔案的更多選單.
 3. 選擇 `預覽 HTML`.
 

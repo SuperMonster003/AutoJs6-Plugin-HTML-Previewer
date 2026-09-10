@@ -15,7 +15,7 @@
 
 ###### 2026/08/06
 
-* `機能` プラグイン ID `html-preview`, エンジン `explorer-action`, バリアント `default` の HTML Preview プラグイン
+* `機能` プラグイン ID `html-previewer`, エンジン `explorer-action`, バリアント `default` の HTML Previewer プラグイン
 * `機能` `org.autojs.plugin.EXPLORER_ACTION` によるファイルマネージャーの単一ファイル用読み取り専用オーバーフローアクション
 * `機能` `org.autojs.plugin.EXPLORER_ACTION_EXECUTE` による実行とファイルおよび親ディレクトリ content URI への一時読み取り権限
 * `機能` 表示前にスクリプト/イベントハンドラー属性/フレーム/埋め込みオブジェクト/安全でないリソースアドレスを削除する HTML サニタイズ

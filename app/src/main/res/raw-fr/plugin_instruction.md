@@ -1,6 +1,6 @@
-Utilisez HTML Preview depuis le gestionnaire de fichiers:
+Utilisez HTML Previewer depuis le gestionnaire de fichiers:
 
-1. Installez et activez le plugin `HTML Preview`.
+1. Installez et activez le plugin `HTML Previewer`.
 2. Ouvrez le menu secondaire d'un fichier HTML pris en charge.
 3. Sélectionnez `Prévisualiser HTML`.
 

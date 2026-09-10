@@ -1,4 +1,4 @@
-package io.github.supermonster003.autojs6.plugin.htmlpreview
+package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
@@ -6,7 +6,7 @@ import java.net.InetAddress
 import java.net.URI
 import java.util.Locale
 
-class HtmlPreviewRenderer {
+class HtmlPreviewerRenderer {
 
     fun render(html: String): String {
         val document = Jsoup.parse(html)
@@ -15,15 +15,15 @@ class HtmlPreviewRenderer {
         document.select("base, script, iframe, frame, frameset, object, embed, applet").remove()
         document.select("meta[http-equiv]").remove()
         document.allElements.forEach(::sanitizeElement)
-        document.selectFirst("html")?.addClass("html-preview-document")
+        document.selectFirst("html")?.addClass("html-previewer-document")
         document.head().prepend(
             """
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
                 <meta name="color-scheme" content="light dark">
-                <meta name="referrer" content="${HtmlPreviewSecurityPolicy.REFERRER_POLICY}">
-                <meta http-equiv="Content-Security-Policy" content="${HtmlPreviewSecurityPolicy.CONTENT_SECURITY_POLICY}">
-                <link rel="stylesheet" href="${HtmlPreviewWebOrigin.PREVIEW_ASSET_BASE_URL}html-base.css">
+                <meta name="referrer" content="${HtmlPreviewerSecurityPolicy.REFERRER_POLICY}">
+                <meta http-equiv="Content-Security-Policy" content="${HtmlPreviewerSecurityPolicy.CONTENT_SECURITY_POLICY}">
+                <link rel="stylesheet" href="${HtmlPreviewerWebOrigin.PREVIEWER_ASSET_BASE_URL}html-base.css">
             """.trimIndent(),
         )
         return document.outerHtml()
@@ -46,9 +46,9 @@ class HtmlPreviewRenderer {
             val href = element.attr("href")
             val linkElement = element.normalName() == "a" || element.normalName() == "area"
             val safe = if (linkElement) {
-                HtmlPreviewUrlPolicy.isSafeLink(href)
+                HtmlPreviewerUrlPolicy.isSafeLink(href)
             } else {
-                HtmlPreviewUrlPolicy.isSafeResource(href)
+                HtmlPreviewerUrlPolicy.isSafeResource(href)
             }
             if (!safe) {
                 element.removeAttr("href")
@@ -60,9 +60,9 @@ class HtmlPreviewRenderer {
         listOf("src", "poster", "background", "xlink:href").forEach { attribute ->
             if (element.hasAttr(attribute)) {
                 val safe = if (attribute == "src" && element.normalName() == "img") {
-                    HtmlPreviewUrlPolicy.isSafeImageResource(element.attr(attribute))
+                    HtmlPreviewerUrlPolicy.isSafeImageResource(element.attr(attribute))
                 } else {
-                    HtmlPreviewUrlPolicy.isSafeResource(element.attr(attribute))
+                    HtmlPreviewerUrlPolicy.isSafeResource(element.attr(attribute))
                 }
                 if (!safe) element.removeAttr(attribute)
             }
@@ -75,16 +75,16 @@ class HtmlPreviewRenderer {
         if (
             element.normalName() == "img" &&
             element.hasAttr("src") &&
-            HtmlPreviewUrlPolicy.isSafeRemoteHttpsResource(element.attr("src"))
+            HtmlPreviewerUrlPolicy.isSafeRemoteHttpsResource(element.attr("src"))
         ) {
             element.attr("loading", "lazy")
             element.attr("decoding", "async")
-            element.attr("referrerpolicy", HtmlPreviewSecurityPolicy.REFERRER_POLICY)
+            element.attr("referrerpolicy", HtmlPreviewerSecurityPolicy.REFERRER_POLICY)
         }
     }
 }
 
-internal object HtmlPreviewSecurityPolicy {
+internal object HtmlPreviewerSecurityPolicy {
 
     const val REFERRER_POLICY = "no-referrer"
 
@@ -95,7 +95,7 @@ internal object HtmlPreviewSecurityPolicy {
             "worker-src 'none'; manifest-src 'none'; base-uri 'none'; form-action 'none'"
 }
 
-internal object HtmlPreviewUrlPolicy {
+internal object HtmlPreviewerUrlPolicy {
 
     private val schemePattern = Regex("""^([a-z][a-z0-9+.-]*):""", RegexOption.IGNORE_CASE)
     private val safeDataImagePattern = Regex(
@@ -218,14 +218,14 @@ internal object HtmlPreviewUrlPolicy {
     }
 }
 
-internal object HtmlPreviewWebOrigin {
+internal object HtmlPreviewerWebOrigin {
     const val DOMAIN = "appassets.androidplatform.net"
     const val DOCUMENT_PATH_PREFIX = "/html-document/"
     const val DOCUMENT_BASE_URL = "https://$DOMAIN$DOCUMENT_PATH_PREFIX"
     const val DOCUMENT_FILE_NAME = "__preview__.html"
     const val DOCUMENT_URL = "$DOCUMENT_BASE_URL$DOCUMENT_FILE_NAME"
-    const val PREVIEW_ASSET_PATH_PREFIX = "/html-preview-assets/"
-    const val PREVIEW_ASSET_BASE_URL = "https://$DOMAIN$PREVIEW_ASSET_PATH_PREFIX"
+    const val PREVIEWER_ASSET_PATH_PREFIX = "/html-previewer-assets/"
+    const val PREVIEWER_ASSET_BASE_URL = "https://$DOMAIN$PREVIEWER_ASSET_PATH_PREFIX"
 
     fun isDomain(host: String?): Boolean =
         host?.trimEnd('.')?.equals(DOMAIN, ignoreCase = true) == true
