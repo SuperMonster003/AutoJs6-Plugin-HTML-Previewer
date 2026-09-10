@@ -53,8 +53,28 @@ class HtmlPreviewerPathPolicyTest {
     }
 
     @Test
+    fun mhtmlResourcesReuseTheExistingPathMimeAllowlist() {
+        val mediaTypes = listOf(
+            "text/css",
+            "image/png",
+            "image/jpeg",
+            "image/svg+xml",
+            "font/woff2",
+            "video/mp4",
+            "audio/ogg",
+        )
+
+        mediaTypes.forEach { mediaType ->
+            val extension = requireNotNull(HtmlPreviewerMhtmlResourcePolicy.extension(mediaType))
+            assertEquals(mediaType, HtmlPreviewerPathPolicy.mimeType("archive/resource.$extension"))
+        }
+        assertNull(HtmlPreviewerMhtmlResourcePolicy.extension("application/javascript"))
+        assertNull(HtmlPreviewerMhtmlResourcePolicy.extension("text/html"))
+    }
+
+    @Test
     fun ordinaryNestedRelativePathIsAccepted() {
-        assertTrue(HtmlPreviewerPathPolicy.isSafeRelativePath("images/diagrams/preview.svg"))
+        assertTrue(HtmlPreviewerPathPolicy.isSafeRelativePath("images/diagrams/previewer.svg"))
     }
 
     @Test

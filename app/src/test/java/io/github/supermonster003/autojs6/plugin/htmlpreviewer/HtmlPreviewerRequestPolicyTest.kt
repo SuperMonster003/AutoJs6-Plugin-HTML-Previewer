@@ -73,7 +73,7 @@ class HtmlPreviewerRequestPolicyTest {
         val blocked = listOf(
             "http://example.com/image.png",
             "https://appassets.androidplatform.net/html-previewer-assets/html-base.css",
-            "https://appassets.androidplatform.net/html preview assets/html-base.css",
+            "https://appassets.androidplatform.net/html previewer assets/html-base.css",
             "HTTPS://APPASSETS.ANDROIDPLATFORM.NET/html-previewer-assets/html-base.css",
             "https://appassets.androidplatform.net./html-previewer-assets/html-base.css",
             "https://localhost/image.png",
@@ -112,6 +112,46 @@ class HtmlPreviewerRequestPolicyTest {
                     isForMainFrame = false,
                 ),
             )
+        }
+    }
+
+    @Test
+    fun disablingNetworkImagesRefusesEveryExternalHttpsSubresource() {
+        listOf(
+            "https://example.com/image.png",
+            "https://cdn.example.org/background.webp",
+            "HTTPS://img.shields.io/badge/status-ok-green",
+        ).forEach { url ->
+            assertFalse(
+                url,
+                HtmlPreviewerRequestPolicy.shouldLetWebViewLoadHttpsSubresource(
+                    url = url,
+                    isForMainFrame = false,
+                    loadNetworkImages = false,
+                ),
+            )
+        }
+    }
+
+    @Test
+    fun outboundNetworkClassificationExcludesVirtualAndNonNetworkResources() {
+        listOf(
+            "https://example.com/image.png",
+            "http://example.com/image.png",
+            "HTTPS://cdn.example.org/image.webp",
+        ).forEach { url ->
+            assertTrue(url, HtmlPreviewerRequestPolicy.isOutboundNetworkResource(url))
+        }
+
+        listOf(
+            HtmlPreviewerWebOrigin.DOCUMENT_URL,
+            "https://appassets.androidplatform.net./html-previewer-assets/html-base.css",
+            "data:image/png;base64,iVBORw0KGgo=",
+            "content://documents/root/image.png",
+            "images/local.png",
+            "not a URL",
+        ).forEach { url ->
+            assertFalse(url, HtmlPreviewerRequestPolicy.isOutboundNetworkResource(url))
         }
     }
 }

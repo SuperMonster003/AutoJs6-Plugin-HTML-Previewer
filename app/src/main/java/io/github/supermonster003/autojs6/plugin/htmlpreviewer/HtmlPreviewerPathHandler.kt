@@ -16,31 +16,66 @@ class HtmlPreviewerDocumentPathHandler(
 ) : WebViewAssetLoader.PathHandler {
 
     private val resourceRoot = HtmlPreviewerPathPolicy.normalizeRoot(rootUri)
-        ?: throw IllegalArgumentException("HTML preview resource root must be a content URI without a query or fragment")
-    private val documentBytes = AtomicReference<ByteArray?>(null)
+        ?: throw IllegalArgumentException("HTML Previewer resource root must be a content URI without a query or fragment")
+    private val document = AtomicReference<Document?>(null)
 
-    fun updateDocument(html: String) {
-        documentBytes.set(html.toByteArray(Charsets.UTF_8))
+    fun updateDocument(
+        html: String,
+        loadNetworkImages: Boolean,
+        embeddedResources: Map<String, HtmlPreviewerEmbeddedResource> = emptyMap(),
+        allowSiblingResources: Boolean = true,
+        interactive: Boolean = false,
+    ) {
+        val resourceSnapshot = embeddedResources.mapValues { (path, resource) ->
+            require(HtmlPreviewerPathPolicy.isSafeRelativePath(path)) {
+                "Unsafe embedded previewer resource path: $path"
+            }
+            require(HtmlPreviewerPathPolicy.mimeType(path) == resource.mimeType) {
+                "Embedded previewer resource MIME type does not match its path: $path"
+            }
+            resource.copy(bytes = resource.bytes.copyOf())
+        }
+        document.set(
+            Document(
+                bytes = html.toByteArray(Charsets.UTF_8),
+                contentSecurityPolicy = HtmlPreviewerSecurityPolicy.contentSecurityPolicy(loadNetworkImages, interactive),
+                embeddedResources = resourceSnapshot,
+                allowSiblingResources = allowSiblingResources,
+                interactive = interactive,
+            ),
+        )
     }
 
     fun clearDocument() {
-        documentBytes.set(null)
+        document.set(null)
     }
 
     override fun handle(path: String): WebResourceResponse {
+        val currentDocument = document.get() ?: return notFound()
         if (path == HtmlPreviewerWebOrigin.DOCUMENT_FILE_NAME) {
-            val bytes = documentBytes.get() ?: return notFound()
             return WebResourceResponse(
                 "text/html",
                 Charsets.UTF_8.name(),
                 200,
                 "OK",
-                DOCUMENT_RESPONSE_HEADERS,
-                ByteArrayInputStream(bytes),
+                documentResponseHeaders(currentDocument.contentSecurityPolicy),
+                ByteArrayInputStream(currentDocument.bytes),
             )
         }
 
-        val resource = HtmlPreviewerPathPolicy.resolve(resourceRoot, path) ?: return notFound()
+        currentDocument.embeddedResources[path]?.let { resource ->
+            return WebResourceResponse(
+                resource.mimeType,
+                resource.charset,
+                200,
+                "OK",
+                RESPONSE_HEADERS,
+                ByteArrayInputStream(resource.bytes),
+            )
+        }
+        if (!currentDocument.allowSiblingResources) return notFound()
+
+        val resource = HtmlPreviewerPathPolicy.resolve(resourceRoot, path, currentDocument.interactive) ?: return notFound()
         val input = try {
             contentResolver.openInputStream(resource.uri) ?: return notFound()
         } catch (_: IOException) {
@@ -59,6 +94,14 @@ class HtmlPreviewerDocumentPathHandler(
             input,
         )
     }
+
+    private data class Document(
+        val bytes: ByteArray,
+        val contentSecurityPolicy: String,
+        val embeddedResources: Map<String, HtmlPreviewerEmbeddedResource>,
+        val allowSiblingResources: Boolean,
+        val interactive: Boolean,
+    )
 }
 
 class HtmlPreviewerAssetPathHandler(
@@ -110,10 +153,11 @@ internal object HtmlPreviewerPathPolicy {
         return rootUri.buildUpon().clearQuery().fragment(null).build()
     }
 
-    fun resolve(rootUri: Uri, path: String): Resource? {
+    fun resolve(rootUri: Uri, path: String, allowScripts: Boolean = false): Resource? {
         val root = normalizeRoot(rootUri) ?: return null
         if (!isSafeRelativePath(path)) return null
-        val mimeType = mimeType(path) ?: return null
+        val mimeType = mimeType(path) ?: if (allowScripts) scriptMimeType(path) else null
+        if (mimeType == null) return null
         val builder = root.buildUpon()
         path.split('/').forEach(builder::appendPath)
         val uri = builder.build()
@@ -168,6 +212,13 @@ internal object HtmlPreviewerPathPolicy {
         else -> null
     }
 
+    private fun scriptMimeType(path: String): String? = when (path.substringAfterLast('.').lowercase(Locale.ROOT)) {
+        "js", "mjs" -> "text/javascript"
+        "json" -> "application/json"
+        "wasm" -> "application/wasm"
+        else -> null
+    }
+
     private fun isSafeUriSegment(segment: String): Boolean =
         segment.isNotEmpty() &&
             segment != "." &&
@@ -180,8 +231,8 @@ private val RESPONSE_HEADERS = mapOf(
     "X-Content-Type-Options" to "nosniff",
 )
 
-private val DOCUMENT_RESPONSE_HEADERS = RESPONSE_HEADERS + mapOf(
-    "Content-Security-Policy" to HtmlPreviewerSecurityPolicy.CONTENT_SECURITY_POLICY,
+private fun documentResponseHeaders(contentSecurityPolicy: String) = RESPONSE_HEADERS + mapOf(
+    "Content-Security-Policy" to contentSecurityPolicy,
     "Referrer-Policy" to HtmlPreviewerSecurityPolicy.REFERRER_POLICY,
 )
 

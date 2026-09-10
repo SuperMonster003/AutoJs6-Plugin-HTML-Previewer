@@ -11,10 +11,13 @@ import android.webkit.WebResourceResponse
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.core.content.ContextCompat
 import androidx.webkit.WebViewAssetLoader
 import androidx.webkit.WebViewClientCompat
 import java.io.ByteArrayInputStream
+import java.net.URI
 import java.util.Locale
+import java.util.concurrent.ConcurrentHashMap
 
 class HtmlPreviewerWebController(
     context: Context,
@@ -22,9 +25,22 @@ class HtmlPreviewerWebController(
     resourceRoot: Uri,
     private val onExternalLink: (Uri) -> Unit,
     private val onPageFinished: () -> Unit = {},
+    private val onFindResult: (HtmlPreviewerFindResult) -> Unit = {},
+    private val onBlockedResourceCountChanged: (Int) -> Unit = {},
+    private val awaitVisualStateBeforePageFinished: Boolean = true,
 ) {
 
     private val documentPathHandler = HtmlPreviewerDocumentPathHandler(context.contentResolver, resourceRoot)
+    private val blockedNetworkRequestUrls = ConcurrentHashMap.newKeySet<String>()
+    private var visualStateRequestId = 0L
+    @Volatile
+    private var pageGeneration = 0L
+    @Volatile
+    private var loadNetworkImages = true
+    @Volatile
+    private var interactive = false
+    @Volatile
+    private var initiallyBlockedResourceCount = 0
 
     private val assetLoader = WebViewAssetLoader.Builder()
         .setDomain(HtmlPreviewerWebOrigin.DOMAIN)
@@ -41,9 +57,11 @@ class HtmlPreviewerWebController(
     init {
         configureSettings()
         configureClient()
+        configureFindListener()
     }
 
     private fun configureSettings() {
+        if (BuildConfig.DEBUG) WebView.setWebContentsDebuggingEnabled(true)
         webView.settings.apply {
             javaScriptEnabled = false
             javaScriptCanOpenWindowsAutomatically = false
@@ -83,6 +101,7 @@ class HtmlPreviewerWebController(
                 request: WebResourceRequest,
             ): WebResourceResponse? {
                 val uri = request.url
+                if (interactive && !request.isForMainFrame && uri.scheme == "blob") return null
                 if (
                     HtmlPreviewerRequestPolicy.shouldLetWebViewLoadDataResource(
                         uri.toString(),
@@ -98,9 +117,16 @@ class HtmlPreviewerWebController(
                     HtmlPreviewerRequestPolicy.shouldLetWebViewLoadHttpsSubresource(
                         uri.toString(),
                         request.isForMainFrame,
+                        loadNetworkImages,
                     )
                 ) {
                     return null
+                }
+                if (
+                    !request.isForMainFrame &&
+                    HtmlPreviewerRequestPolicy.isOutboundNetworkResource(uri.toString())
+                ) {
+                    recordBlockedNetworkResource(uri.toString())
                 }
                 return forbidden()
             }
@@ -121,19 +147,131 @@ class HtmlPreviewerWebController(
 
             override fun onPageFinished(view: WebView, url: String) {
                 if (url != "about:blank") {
-                    onPageFinished()
+                    if (!awaitVisualStateBeforePageFinished) {
+                        onPageFinished()
+                        return
+                    }
+                    val requestId = ++visualStateRequestId
+                    view.postVisualStateCallback(
+                        requestId,
+                        object : WebView.VisualStateCallback() {
+                            override fun onComplete(completedRequestId: Long) {
+                                if (
+                                    completedRequestId == visualStateRequestId &&
+                                    view.url != "about:blank"
+                                ) {
+                                    onPageFinished()
+                                }
+                            }
+                        },
+                    )
                 }
             }
         }
     }
 
-    fun show(html: String) {
-        documentPathHandler.updateDocument(html)
+    private fun configureFindListener() {
+        webView.setFindListener { activeMatchOrdinal, numberOfMatches, isDoneCounting ->
+            onFindResult(
+                HtmlPreviewerFindResult(
+                    activeMatchOrdinal = activeMatchOrdinal,
+                    numberOfMatches = numberOfMatches,
+                    isDoneCounting = isDoneCounting,
+                ),
+            )
+        }
+    }
+
+    fun show(
+        html: String,
+        loadNetworkImages: Boolean = true,
+        initiallyBlockedResourceCount: Int = 0,
+        embeddedResources: Map<String, HtmlPreviewerEmbeddedResource> = emptyMap(),
+        allowSiblingResources: Boolean = true,
+        interactive: Boolean = false,
+    ) {
+        require(initiallyBlockedResourceCount >= 0) {
+            "Blocked resource count cannot be negative: $initiallyBlockedResourceCount"
+        }
+        webView.stopLoading()
+        this.interactive = interactive
+        webView.settings.javaScriptEnabled = interactive
+        webView.settings.domStorageEnabled = interactive
+        visualStateRequestId++
+        pageGeneration++
+        blockedNetworkRequestUrls.clear()
+        this.initiallyBlockedResourceCount = initiallyBlockedResourceCount
+        setLoadNetworkImages(loadNetworkImages)
+        documentPathHandler.updateDocument(
+            html = html,
+            loadNetworkImages = loadNetworkImages,
+            embeddedResources = embeddedResources,
+            allowSiblingResources = allowSiblingResources,
+            interactive = interactive,
+        )
+        onBlockedResourceCountChanged(initiallyBlockedResourceCount)
         webView.loadUrl(HtmlPreviewerWebOrigin.DOCUMENT_URL)
     }
 
+    fun prepareForReload() {
+        webView.stopLoading()
+        webView.settings.javaScriptEnabled = false
+        webView.settings.domStorageEnabled = false
+        webView.loadUrl("about:blank")
+    }
+
+    fun findAll(query: String) {
+        if (query.isEmpty()) {
+            clearFindMatches()
+            return
+        }
+        webView.findAllAsync(query)
+    }
+
+    fun findNext(forward: Boolean) {
+        webView.findNext(forward)
+    }
+
+    fun setTextZoom(percentage: Int) {
+        require(HtmlPreviewerPreferences.isSupportedTextZoom(percentage)) {
+            "Unsupported text zoom: $percentage"
+        }
+        webView.settings.textZoom = percentage
+    }
+
+    fun setThemeMode(themeMode: HtmlPreviewerThemeMode) {
+        val backgroundColor = when (themeMode) {
+            HtmlPreviewerThemeMode.FOLLOW_SYSTEM -> R.color.window_background
+            HtmlPreviewerThemeMode.LIGHT -> R.color.previewer_background_light
+            HtmlPreviewerThemeMode.DARK -> R.color.previewer_background_dark
+        }
+        webView.setBackgroundColor(ContextCompat.getColor(webView.context, backgroundColor))
+    }
+
+    fun setLoadNetworkImages(enabled: Boolean) {
+        loadNetworkImages = enabled
+        // Preserve images served from the previewer's own virtual origin. CSP, sanitization and
+        // request interception decide which image URLs are admissible; blockNetworkLoads remains
+        // the final WebView-level guard against every outbound request when this is disabled.
+        webView.settings.blockNetworkImage = false
+        webView.settings.blockNetworkLoads = !enabled
+        if (!enabled) {
+            webView.stopLoading()
+        }
+    }
+
+    fun clearFindMatches() {
+        webView.clearMatches()
+    }
+
     fun destroy() {
+        webView.settings.javaScriptEnabled = false
+        webView.settings.domStorageEnabled = false
+        visualStateRequestId++
+        pageGeneration++
+        blockedNetworkRequestUrls.clear()
         documentPathHandler.clearDocument()
+        webView.setFindListener(null)
         webView.stopLoading()
         webView.webViewClient = WebViewClient()
         webView.webChromeClient = null
@@ -142,6 +280,18 @@ class HtmlPreviewerWebController(
         webView.clearFormData()
         webView.removeAllViews()
         webView.destroy()
+    }
+
+    private fun recordBlockedNetworkResource(url: String) {
+        val generation = pageGeneration
+        if (!blockedNetworkRequestUrls.add(url)) return
+        webView.post {
+            if (generation == pageGeneration) {
+                onBlockedResourceCountChanged(
+                    initiallyBlockedResourceCount + blockedNetworkRequestUrls.size,
+                )
+            }
+        }
     }
 
     private fun isLocalAnchor(uri: Uri): Boolean {
@@ -175,6 +325,12 @@ class HtmlPreviewerWebController(
     }
 }
 
+data class HtmlPreviewerFindResult(
+    val activeMatchOrdinal: Int,
+    val numberOfMatches: Int,
+    val isDoneCounting: Boolean,
+)
+
 internal object HtmlPreviewerRequestPolicy {
 
     fun shouldLetWebViewLoadDataResource(
@@ -188,9 +344,16 @@ internal object HtmlPreviewerRequestPolicy {
     fun shouldLetWebViewLoadHttpsSubresource(
         url: String,
         isForMainFrame: Boolean,
+        loadNetworkImages: Boolean = true,
     ): Boolean {
-        if (isForMainFrame) return false
+        if (isForMainFrame || !loadNetworkImages) return false
         val host = HtmlPreviewerUrlPolicy.safeRemoteHttpsHost(url) ?: return false
         return !HtmlPreviewerWebOrigin.isDomain(host)
+    }
+
+    fun isOutboundNetworkResource(url: String): Boolean {
+        val uri = runCatching { URI(url.trim()) }.getOrNull() ?: return false
+        if (uri.scheme?.lowercase(Locale.ROOT) !in setOf("http", "https")) return false
+        return uri.host != null && !HtmlPreviewerWebOrigin.isDomain(uri.host)
     }
 }
