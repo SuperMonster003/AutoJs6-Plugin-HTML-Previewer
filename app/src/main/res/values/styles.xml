@@ -2,6 +2,7 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="materialAlertDialogTheme">@style/AppTheme.PreviewerDialog</item>
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryVariant">@color/color_primary_dark</item>
         <item name="colorSecondary">@color/color_secondary</item>
@@ -15,5 +16,24 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
 
     <style name="AppTheme.Toolbar" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay.Light" parent="ThemeOverlay.MaterialComponents.Light" />
+    <style name="AppTheme.PopupOverlay.Dark" parent="ThemeOverlay.MaterialComponents.Dark" />
+
+    <style name="AppTheme.PreviewerDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="colorPrimary">@color/dialog_foreground</item>
+        <item name="colorSecondary">@color/dialog_foreground</item>
+        <item name="colorAccent">@color/dialog_foreground</item>
+        <item name="android:colorAccent">@color/dialog_foreground</item>
+        <item name="colorControlActivated">@color/dialog_foreground</item>
+        <item name="colorControlNormal">@color/dialog_foreground</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.Previewer.DialogButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.Previewer.DialogButton</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Widget.Previewer.DialogButton</item>
+    </style>
+
+    <style name="Widget.Previewer.DialogButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/dialog_foreground</item>
+    </style>
 
 </resources>

@@ -4,6 +4,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="org.autojs.permission.PLUGIN" />
 
+    <queries>
+        <package android:name="org.autojs.autojs6" />
+    </queries>
+
     <application
         android:allowBackup="false"
         android:hardwareAccelerated="true"
@@ -45,6 +49,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".PluginInfoService"
+            android:exported="true"
+            android:permission="org.autojs.permission.PLUGIN">
+            <intent-filter>
+                <action android:name="org.autojs.plugin.INFO" />
+            </intent-filter>
+        </service>
 
         <service
             android:name=".ExplorerActionService"

@@ -7,4 +7,5 @@
     <color name="previewer_background_light">#FFFFFFFF</color>
     <color name="toolbar_text">#FFFFFFFF</color>
     <color name="window_background">#FFFFFFFF</color>
+    <color name="dialog_foreground">#FF202124</color>
 </resources>

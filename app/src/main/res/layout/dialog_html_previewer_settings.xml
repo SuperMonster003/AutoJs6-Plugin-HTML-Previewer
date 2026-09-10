@@ -43,6 +43,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.radiobutton.MaterialRadioButton
+            app:buttonTint="@color/dialog_foreground"
             app:useMaterialThemeColors="false"
             android:id="@+id/theme_follow_system"
             android:layout_width="match_parent"
@@ -53,6 +54,7 @@
             android:textSize="16sp" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
+            app:buttonTint="@color/dialog_foreground"
             app:useMaterialThemeColors="false"
             android:id="@+id/theme_light"
             android:layout_width="match_parent"
@@ -63,6 +65,7 @@
             android:textSize="16sp" />
 
         <com.google.android.material.radiobutton.MaterialRadioButton
+            app:buttonTint="@color/dialog_foreground"
             app:useMaterialThemeColors="false"
             android:id="@+id/theme_dark"
             android:layout_width="match_parent"

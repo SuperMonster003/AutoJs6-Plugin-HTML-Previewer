@@ -5,4 +5,5 @@
     <color name="color_secondary">#FFB74D</color>
     <color name="toolbar_text">#FFFFFFFF</color>
     <color name="window_background">#FF0D1117</color>
+    <color name="dialog_foreground">#FFFFFFFF</color>
 </resources>

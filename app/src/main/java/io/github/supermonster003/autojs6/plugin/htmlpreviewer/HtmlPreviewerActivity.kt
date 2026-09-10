@@ -12,7 +12,6 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -30,8 +29,9 @@ import kotlinx.coroutines.withContext
 import java.util.Locale
 import kotlin.math.roundToInt
 
-class HtmlPreviewerActivity : AppCompatActivity() {
+class HtmlPreviewerActivity : PreviewerHostActivity() {
 
+    private lateinit var chrome: PreviewerChrome
     private lateinit var binding: ActivityHtmlPreviewerBinding
     private lateinit var previewerRequest: HtmlPreviewerRequest
     private lateinit var preferences: HtmlPreviewerPreferences
@@ -111,6 +111,7 @@ class HtmlPreviewerActivity : AppCompatActivity() {
             onExternalLink = ::openExternalLink,
             onPageFinished = {
                 documentReady = true
+                chrome.samplePage()
                 binding.loadingIndicator.isVisible = false
                 invalidateOptionsMenu()
                 findCurrentQueryNow()
@@ -121,6 +122,7 @@ class HtmlPreviewerActivity : AppCompatActivity() {
         webController.setTextZoom(preferences.textZoom)
         webController.setThemeMode(preferences.themeMode)
         pdfExporter = HtmlPreviewerPdfExporter(this, previewerRequest.parentUri)
+        chrome = PreviewerChrome(this, binding.root, binding.appBar, binding.toolbar, binding.previewerWebView)
         setupFindBar(savedInstanceState)
         loadPreviewer()
     }
@@ -141,6 +143,7 @@ class HtmlPreviewerActivity : AppCompatActivity() {
                 HtmlPreviewerViewMode.SOURCE -> R.string.text_view_previewer
             },
         )
+        if (::chrome.isInitialized) chrome.tintIcons()
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -174,6 +177,7 @@ class HtmlPreviewerActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        if (::chrome.isInitialized) chrome.destroy()
         loadGeneration++
         loadJob?.cancel()
         pdfExportJob?.cancel()
@@ -192,6 +196,7 @@ class HtmlPreviewerActivity : AppCompatActivity() {
         invalidateOptionsMenu()
         val generation = ++loadGeneration
         val themeMode = resolvedThemeMode(preferences.themeMode)
+        chrome.beginPage(if (themeMode == HtmlPreviewerThemeMode.DARK) 0xFF0D1117.toInt() else 0xFFFFFFFF.toInt())
         val requestedNetworkImages = preferences.loadNetworkImages
         val interactive = preferences.interactiveMode &&
             previewerRequest.format == HtmlPreviewerDocumentFormat.HTML
