@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_html_previewer">HTML をプレビュー</string>
-    <string name="app_name">HTML プレビュー</string>
+    <string name="app_name">HTML プレビューアー</string>
     <string name="dialog_button_cancel">キャンセル</string>
     <string name="dialog_button_confirm">確認</string>
     <string name="error_html_file_too_large">HTML ファイルが %1$s のプレビュー制限を超えています</string>
-    <string name="plugin_description">ファイルマネージャープラグイン. HTML ファイルを安全に読み取り専用でプレビュー</string>
+    <string name="error_mhtml_file_too_large">MHTML アーカイブが %1$s の上限を超えているため, 安全な部分プレビューはできません</string>
+    <string name="plugin_description">ファイルマネージャープラグイン. HTML / MHTML ファイルを安全に読み取り専用でプレビュー</string>
     <string name="text_cannot_open_link">リンクを開けません</string>
     <string name="text_cannot_read_file">HTML ファイルを読み取れません</string>
+    <string name="text_close_find">検索を閉じる</string>
+    <string name="text_find_in_page">ページ内を検索</string>
+    <string name="text_find_match_count">%1$d/%2$d</string>
     <string name="text_fullscreen_mode">全画面モード</string>
-    <string name="text_preview">プレビュー</string>
+    <string name="text_interactive_mode">インタラクティブモード</string>
+    <string name="text_interactive_mode_summary">完全な HTML ファイルでスクリプトを実行します. 信頼できるページでのみ有効にしてください. ソース表示と PDF 出力ではスクリプトを実行しません.</string>
+    <string name="text_load_network_resources">ネットワークリソースを読み込む</string>
+    <string name="text_next_match">次の一致</string>
+    <string name="text_previewer">プレビューアー</string>
+    <string name="text_previous_match">前の一致</string>
     <string name="text_refresh">再読み込み</string>
+    <string name="text_export_pdf">PDF をエクスポート</string>
+    <string name="text_preparing_pdf">PDF を準備しています...</string>
+    <string name="text_cannot_export_pdf">PDF をエクスポートできません</string>
+    <string name="text_view_source">ソースを表示</string>
+    <string name="text_view_previewer">プレビューを表示</string>
     <string name="text_settings">設定</string>
     <string name="text_start_in_fullscreen_mode">全画面モードで開始</string>
+    <string name="text_text_size">文字サイズ</string>
+    <string name="text_text_size_percentage">文字サイズ: %1$d%%</string>
+    <string name="text_theme">テーマ</string>
+    <string name="text_theme_dark">ダーク</string>
+    <string name="text_theme_follow_system">AutoJs6 に従う</string>
+    <string name="text_theme_light">ライト</string>
+    <string name="text_previewer_first_limit">先頭 %1$s をプレビュー</string>
+    <string name="text_truncated_previewer_banner">切り詰めプレビュー: 先頭 %1$s のみを表示しています</string>
+    <string name="text_truncated_previewer_marker">プレビューは %1$s の位置で終了します. 残りの内容は省略されました</string>
+    <string name="text_load_network_images">ネットワーク画像を読み込む</string>
+    <string name="text_blocked_resource_count">ブロックしたネットワークリソース: %1$d</string>
 </resources>

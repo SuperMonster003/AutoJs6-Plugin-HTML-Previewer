@@ -12,7 +12,13 @@ internal data class HtmlPreviewerRequest(
     val documentUri: Uri,
     val parentUri: Uri,
     val displayName: String,
+    val format: HtmlPreviewerDocumentFormat,
 )
+
+internal enum class HtmlPreviewerDocumentFormat {
+    HTML,
+    MHTML,
+}
 
 /** Validates the complete, URI-only explorer action contract before any content is opened. */
 internal object HtmlPreviewerIntentPolicy {
@@ -20,7 +26,9 @@ internal object HtmlPreviewerIntentPolicy {
     private const val MAX_DISPLAY_NAME_LENGTH = 255
 
     private val htmlExtensions = setOf("html", "htm", "shtm", "shtml", "xht", "xhtml")
+    private val mhtmlExtensions = setOf("mht", "mhtml")
     private val htmlMimeTypes = setOf("text/html", "application/xhtml+xml")
+    private val mhtmlMimeTypes = setOf("multipart/related", "application/x-mimearchive")
     private val conflictingMimeTypes = setOf("text/markdown", "text/x-markdown")
 
     fun resolve(intent: Intent): HtmlPreviewerRequest? {
@@ -63,28 +71,39 @@ internal object HtmlPreviewerIntentPolicy {
         val displayName = sanitizeDisplayName(suppliedName)
             ?: sanitizeDisplayName(documentUri.lastPathSegment)
             ?: return null
-        if (!isSupportedHtml(intent.type, displayName)) return null
+        val format = documentFormat(intent.type, displayName) ?: return null
 
-        val declaredSize = intent.getLongExtra(ExplorerActionIntentExtras.SIZE, -1L)
-        if (declaredSize > HtmlPreviewerActivity.MAX_HTML_BYTES) return null
-
-        return HtmlPreviewerRequest(documentUri, parentUri, displayName)
+        return HtmlPreviewerRequest(documentUri, parentUri, displayName, format)
     }
 
-    fun isSupportedHtml(mimeType: String?, displayName: String): Boolean {
+    fun isSupportedHtml(mimeType: String?, displayName: String): Boolean =
+        documentFormat(mimeType, displayName) != null
+
+    fun documentFormat(
+        mimeType: String?,
+        displayName: String,
+    ): HtmlPreviewerDocumentFormat? {
         val extension = displayName.substringAfterLast('.', missingDelimiterValue = "")
             .lowercase(Locale.ROOT)
-        val hasSupportedExtension = extension in htmlExtensions
-        val hasUnsupportedExtension = extension.isNotEmpty() && !hasSupportedExtension
+        val extensionFormat = when (extension) {
+            in htmlExtensions -> HtmlPreviewerDocumentFormat.HTML
+            in mhtmlExtensions -> HtmlPreviewerDocumentFormat.MHTML
+            else -> null
+        }
+        val hasUnsupportedExtension = extension.isNotEmpty() && extensionFormat == null
         val normalizedMimeType = mimeType
             ?.substringBefore(';')
             ?.trim()
             ?.lowercase(Locale.ROOT)
-        val hasSupportedMimeType = normalizedMimeType in htmlMimeTypes
+        val mimeFormat = when (normalizedMimeType) {
+            in htmlMimeTypes -> HtmlPreviewerDocumentFormat.HTML
+            in mhtmlMimeTypes -> HtmlPreviewerDocumentFormat.MHTML
+            else -> null
+        }
 
-        if (hasUnsupportedExtension) return false
-        if (normalizedMimeType in conflictingMimeTypes) return false
-        return hasSupportedExtension || hasSupportedMimeType
+        if (hasUnsupportedExtension) return null
+        if (normalizedMimeType in conflictingMimeTypes) return null
+        return extensionFormat ?: mimeFormat
     }
 
     fun sanitizeDisplayName(value: String?): String? {

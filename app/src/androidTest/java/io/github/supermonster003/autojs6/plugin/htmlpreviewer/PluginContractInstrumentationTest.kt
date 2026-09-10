@@ -4,6 +4,8 @@ package io.github.supermonster003.autojs6.plugin.htmlpreviewer
 
 import android.content.ComponentName
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.PermissionInfo
 import android.os.Bundle
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
@@ -80,6 +82,8 @@ class PluginContractInstrumentationTest {
             listOf(
                 "text/html",
                 "application/xhtml+xml",
+                "multipart/related",
+                "application/x-mimearchive",
             ),
             action?.getStringArrayList(ExplorerActionCatalogKeys.MIME_TYPES),
         )
@@ -138,6 +142,34 @@ class PluginContractInstrumentationTest {
             0,
         )
         assertTrue(execution.any { it.activityInfo.name == HtmlPreviewerActivity::class.java.name })
+    }
+
+    @Test
+    fun manifestRequestsNoAdditionalPermissionForPdfExport() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val packageInfo = context.packageManager.getPackageInfo(
+            context.packageName,
+            PackageManager.GET_PERMISSIONS,
+        )
+        val receiverProtectionPermission =
+            "${context.packageName}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+
+        assertEquals(
+            setOf(
+                android.Manifest.permission.INTERNET,
+                ExplorerActionPluginPermissions.PLUGIN,
+                receiverProtectionPermission,
+            ),
+            packageInfo.requestedPermissions.orEmpty().toSet(),
+        )
+        val permissionInfo = context.packageManager.getPermissionInfo(
+            receiverProtectionPermission,
+            0,
+        )
+        assertEquals(
+            PermissionInfo.PROTECTION_SIGNATURE,
+            permissionInfo.protectionLevel and PermissionInfo.PROTECTION_MASK_BASE,
+        )
     }
 
     private fun contextResources() =

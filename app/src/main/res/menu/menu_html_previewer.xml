@@ -4,8 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_find_in_page"
+        android:icon="@drawable/ic_search_24"
+        android:title="@string/text_find_in_page"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/action_refresh"
         android:title="@string/text_refresh"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_toggle_source"
+        android:title="@string/text_view_source"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_export_pdf"
+        android:title="@string/text_export_pdf"
         app:showAsAction="never" />
 
     <item

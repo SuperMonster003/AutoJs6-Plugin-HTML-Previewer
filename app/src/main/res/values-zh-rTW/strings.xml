@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_html_previewer">預覽 HTML</string>
-    <string name="app_name">HTML 預覽</string>
+    <string name="app_name">HTML 預覽器</string>
     <string name="dialog_button_cancel">取消</string>
     <string name="dialog_button_confirm">確認</string>
     <string name="error_html_file_too_large">HTML 檔案超過 %1$s 的預覽限制</string>
-    <string name="plugin_description">檔案管理器外掛程式. 安全唯讀預覽 HTML 檔案</string>
+    <string name="error_mhtml_file_too_large">MHTML 封存檔超過 %1$s 限制, 無法安全地截斷預覽</string>
+    <string name="plugin_description">檔案管理器外掛程式. 安全唯讀預覽 HTML 及 MHTML 檔案</string>
     <string name="text_cannot_open_link">無法開啟連結</string>
     <string name="text_cannot_read_file">無法讀取 HTML 檔案</string>
+    <string name="text_close_find">關閉尋找</string>
+    <string name="text_find_in_page">在頁面中尋找</string>
+    <string name="text_find_match_count">%1$d/%2$d</string>
     <string name="text_fullscreen_mode">全螢幕模式</string>
-    <string name="text_preview">預覽</string>
+    <string name="text_interactive_mode">互動模式</string>
+    <string name="text_interactive_mode_summary">允許完整 HTML 檔案執行指令碼. 僅用於可信頁面. 原始碼檢視和 PDF 匯出始終停用指令碼.</string>
+    <string name="text_load_network_resources">載入網路資源</string>
+    <string name="text_next_match">下一個相符項目</string>
+    <string name="text_previewer">預覽器</string>
+    <string name="text_previous_match">上一個相符項目</string>
     <string name="text_refresh">重新整理</string>
+    <string name="text_export_pdf">匯出 PDF</string>
+    <string name="text_preparing_pdf">正在準備 PDF...</string>
+    <string name="text_cannot_export_pdf">無法匯出 PDF</string>
+    <string name="text_view_source">檢視原始碼</string>
+    <string name="text_view_previewer">檢視預覽</string>
     <string name="text_settings">設定</string>
     <string name="text_start_in_fullscreen_mode">以全螢幕模式啟動</string>
+    <string name="text_text_size">文字大小</string>
+    <string name="text_text_size_percentage">文字大小: %1$d%%</string>
+    <string name="text_theme">主題</string>
+    <string name="text_theme_dark">深色</string>
+    <string name="text_theme_follow_system">跟隨 AutoJs6</string>
+    <string name="text_theme_light">淺色</string>
+    <string name="text_previewer_first_limit">僅預覽前 %1$s</string>
+    <string name="text_truncated_previewer_banner">截斷預覽: 僅顯示前 %1$s</string>
+    <string name="text_truncated_previewer_marker">預覽在 %1$s 處結束; 其餘內容已省略</string>
+    <string name="text_load_network_images">載入網路圖片</string>
+    <string name="text_blocked_resource_count">已封鎖網路資源: %1$d</string>
 </resources>

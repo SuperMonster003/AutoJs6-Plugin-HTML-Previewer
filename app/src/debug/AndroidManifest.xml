@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <provider
+            android:name=".HtmlPreviewerTestContentProvider"
+            android:authorities="io.github.supermonster003.autojs6.plugin.htmlpreviewer.test.documents"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+        <activity
+            android:name=".HtmlPreviewerWebViewTestActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".HtmlPreviewerPreferencesProbeActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:process=":preferences_probe"
+            android:theme="@android:style/Theme.NoDisplay" />
+    </application>
+
+</manifest>

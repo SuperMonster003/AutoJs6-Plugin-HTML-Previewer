@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_html_previewer">Vista previa de HTML</string>
-    <string name="app_name">Vista previa de HTML</string>
+    <string name="app_name">Previsualizador de HTML</string>
     <string name="dialog_button_cancel">Cancelar</string>
     <string name="dialog_button_confirm">Confirmar</string>
     <string name="error_html_file_too_large">El archivo HTML supera el límite de vista previa de %1$s</string>
-    <string name="plugin_description">Complemento del gestor de archivos. Vista previa segura de solo lectura de archivos HTML</string>
+    <string name="error_mhtml_file_too_large">El archivo MHTML supera el límite de %1$s y no puede previsualizarse parcialmente de forma segura</string>
+    <string name="plugin_description">Complemento del gestor de archivos. Vista previa segura de solo lectura de archivos HTML y MHTML</string>
     <string name="text_cannot_open_link">No se puede abrir el enlace</string>
     <string name="text_cannot_read_file">No se puede leer el archivo HTML</string>
+    <string name="text_close_find">Cerrar búsqueda</string>
+    <string name="text_find_in_page">Buscar en la página</string>
+    <string name="text_find_match_count">%1$d/%2$d</string>
     <string name="text_fullscreen_mode">Modo de pantalla completa</string>
-    <string name="text_preview">Vista previa</string>
+    <string name="text_interactive_mode">Modo interactivo</string>
+    <string name="text_interactive_mode_summary">Ejecuta scripts en archivos HTML completos. Actívelo solo para páginas de confianza. La vista de código y la exportación PDF no ejecutan scripts.</string>
+    <string name="text_load_network_resources">Cargar recursos de red</string>
+    <string name="text_next_match">Coincidencia siguiente</string>
+    <string name="text_previewer">Previsualizador</string>
+    <string name="text_previous_match">Coincidencia anterior</string>
     <string name="text_refresh">Actualizar</string>
+    <string name="text_export_pdf">Exportar PDF</string>
+    <string name="text_preparing_pdf">Preparando PDF...</string>
+    <string name="text_cannot_export_pdf">No se puede exportar el PDF</string>
+    <string name="text_view_source">Ver código fuente</string>
+    <string name="text_view_previewer">Ver vista previa</string>
     <string name="text_settings">Configuración</string>
     <string name="text_start_in_fullscreen_mode">Iniciar en modo de pantalla completa</string>
+    <string name="text_text_size">Tamaño del texto</string>
+    <string name="text_text_size_percentage">Tamaño del texto: %1$d %%</string>
+    <string name="text_theme">Tema</string>
+    <string name="text_theme_dark">Oscuro</string>
+    <string name="text_theme_follow_system">Seguir AutoJs6</string>
+    <string name="text_theme_light">Claro</string>
+    <string name="text_previewer_first_limit">Vista previa de los primeros %1$s</string>
+    <string name="text_truncated_previewer_banner">Vista previa truncada: solo se muestran los primeros %1$s</string>
+    <string name="text_truncated_previewer_marker">La vista previa termina en %1$s; se omitió el contenido restante</string>
+    <string name="text_load_network_images">Cargar imágenes de red</string>
+    <string name="text_blocked_resource_count">Recursos de red bloqueados: %1$d</string>
 </resources>

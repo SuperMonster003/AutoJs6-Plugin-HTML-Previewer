@@ -21,9 +21,113 @@
             android:theme="@style/AppTheme.Toolbar"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/toolbar_text"
-            tools:title="@string/text_preview" />
+            tools:title="@string/text_previewer" />
+
+        <LinearLayout
+            android:id="@+id/find_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="4dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <EditText
+                android:id="@+id/find_query"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/toolbar_text"
+                android:hint="@string/text_find_in_page"
+                android:imeOptions="actionSearch|flagNoExtractUi"
+                android:importantForAutofill="no"
+                android:inputType="text|textNoSuggestions"
+                android:maxLines="1"
+                android:saveEnabled="false"
+                android:selectAllOnFocus="false"
+                android:singleLine="true"
+                android:textColor="@color/toolbar_text"
+                android:textColorHint="#B3FFFFFF"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/find_match_count"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:accessibilityLiveRegion="polite"
+                android:minWidth="52dp"
+                android:paddingHorizontal="4dp"
+                android:textColor="@color/toolbar_text"
+                android:textSize="14sp"
+                tools:text="1/12" />
+
+            <ImageButton
+                android:id="@+id/find_previous_match"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/text_previous_match"
+                android:enabled="false"
+                android:padding="12dp"
+                android:src="@drawable/ic_find_previous_24"
+                app:tint="@color/toolbar_text" />
+
+            <ImageButton
+                android:id="@+id/find_next_match"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/text_next_match"
+                android:enabled="false"
+                android:padding="12dp"
+                android:src="@drawable/ic_find_next_24"
+                app:tint="@color/toolbar_text" />
+
+            <ImageButton
+                android:id="@+id/close_find"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/text_close_find"
+                android:padding="12dp"
+                android:src="@drawable/ic_close_24"
+                app:tint="@color/toolbar_text" />
+
+        </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/truncation_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:accessibilityLiveRegion="polite"
+        android:background="?attr/colorSecondary"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:textColor="?attr/colorOnSecondary"
+        android:textSize="14sp"
+        android:visibility="gone"
+        tools:text="Truncated page: showing only the first 8 MB"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/blocked_resources_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:accessibilityLiveRegion="polite"
+        android:background="?attr/colorSecondary"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="10dp"
+        android:textColor="?attr/colorOnSecondary"
+        android:textSize="14sp"
+        android:visibility="gone"
+        tools:text="Blocked network resources: 2"
+        tools:visibility="visible" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -31,7 +135,7 @@
         android:layout_weight="1">
 
         <WebView
-            android:id="@+id/preview_web_view"
+            android:id="@+id/previewer_web_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="invisible" />
@@ -43,18 +147,36 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
-        <TextView
-            android:id="@+id/error_text"
+        <LinearLayout
+            android:id="@+id/error_panel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:orientation="vertical"
             android:padding="24dp"
-            android:text="@string/text_cannot_read_file"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="16sp"
             android:visibility="gone"
-            tools:visibility="visible" />
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/error_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/text_cannot_read_file"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="16sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/previewer_truncated_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                tools:text="View first 8 MB"
+                tools:visibility="visible" />
+
+        </LinearLayout>
 
     </FrameLayout>
 

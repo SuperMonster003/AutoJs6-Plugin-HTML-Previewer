@@ -30,6 +30,31 @@ class HtmlPreviewerIntentPolicyInstrumentationTest {
         assertEquals(documentUri, resolved?.documentUri)
         assertEquals(parentUri, resolved?.parentUri)
         assertEquals("index.html", resolved?.displayName)
+        assertEquals(HtmlPreviewerDocumentFormat.HTML, resolved?.format)
+    }
+
+    @Test
+    fun mhtmlExplorerContractSelectsTheArchivePipeline() {
+        val resolved = HtmlPreviewerIntentPolicy.resolve(
+            Intent(validIntent())
+                .setDataAndType(documentUri, "multipart/related")
+                .putExtra(ExplorerActionIntentExtras.DISPLAY_NAME, "saved-page.mhtml"),
+        )
+
+        assertNotNull(resolved)
+        assertEquals(HtmlPreviewerDocumentFormat.MHTML, resolved?.format)
+    }
+
+    @Test
+    fun anOversizedDeclarationRemainsEligibleForExplicitTruncatedPreviewer() {
+        val resolved = HtmlPreviewerIntentPolicy.resolve(
+            Intent(validIntent()).putExtra(
+                ExplorerActionIntentExtras.SIZE,
+                HtmlPreviewerActivity.MAX_HTML_BYTES.toLong() + 1L,
+            ),
+        )
+
+        assertNotNull(resolved)
     }
 
     @Test

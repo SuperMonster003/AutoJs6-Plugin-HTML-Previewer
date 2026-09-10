@@ -15,15 +15,25 @@ internal class HtmlPreviewerTextReader(
     private val contentResolver: ContentResolver,
 ) {
 
-    fun read(uri: Uri, maxBytes: Int): String {
+    fun read(
+        uri: Uri,
+        maxBytes: Int,
+        allowTruncated: Boolean = false,
+    ): HtmlPreviewerTextReadResult {
         require(maxBytes > 0) { "maxBytes must be positive" }
         require(uri.scheme.equals(ContentResolver.SCHEME_CONTENT, ignoreCase = true)) {
             "Document URI must use the content scheme"
         }
-        val bytes = contentResolver.openInputStream(uri)?.use { input ->
-            HtmlPreviewerTextCodec.readBounded(input, maxBytes)
-        } ?: throw IOException("Cannot open the preview document")
-        return HtmlPreviewerTextCodec.decode(bytes)
+        val byteResult = contentResolver.openInputStream(uri)?.use { input ->
+            HtmlPreviewerTextCodec.readPrefix(input, maxBytes)
+        } ?: throw IOException("Cannot open the previewer document")
+        if (byteResult.isTruncated && !allowTruncated) {
+            throw HtmlPreviewerTooLargeException(maxBytes)
+        }
+        return HtmlPreviewerTextReadResult(
+            text = HtmlPreviewerTextCodec.decode(byteResult.bytes),
+            isTruncated = byteResult.isTruncated,
+        )
     }
 }
 

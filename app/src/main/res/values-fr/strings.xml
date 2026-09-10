@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_html_previewer">Prévisualiser HTML</string>
-    <string name="app_name">Aperçu HTML</string>
+    <string name="app_name">Prévisualiseur HTML</string>
     <string name="dialog_button_cancel">Annuler</string>
     <string name="dialog_button_confirm">Confirmer</string>
     <string name="error_html_file_too_large">Le fichier HTML dépasse la limite de prévisualisation de %1$s</string>
-    <string name="plugin_description">Plugin de gestionnaire de fichiers. Aperçu sécurisé en lecture seule des fichiers HTML</string>
+    <string name="error_mhtml_file_too_large">L’archive MHTML dépasse la limite de %1$s et ne peut pas être prévisualisée partiellement en toute sécurité</string>
+    <string name="plugin_description">Plugin de gestionnaire de fichiers. Aperçu sécurisé en lecture seule des fichiers HTML et MHTML</string>
     <string name="text_cannot_open_link">Ouverture du lien impossible</string>
     <string name="text_cannot_read_file">Lecture du fichier HTML impossible</string>
+    <string name="text_close_find">Fermer la recherche</string>
+    <string name="text_find_in_page">Rechercher dans la page</string>
+    <string name="text_find_match_count">%1$d/%2$d</string>
     <string name="text_fullscreen_mode">Mode plein écran</string>
-    <string name="text_preview">Aperçu</string>
+    <string name="text_interactive_mode">Mode interactif</string>
+    <string name="text_interactive_mode_summary">Exécute les scripts des fichiers HTML complets. À activer uniquement pour les pages de confiance. La vue source et l\'export PDF restent sans scripts.</string>
+    <string name="text_load_network_resources">Charger les ressources réseau</string>
+    <string name="text_next_match">Résultat suivant</string>
+    <string name="text_previewer">Prévisualiseur</string>
+    <string name="text_previous_match">Résultat précédent</string>
     <string name="text_refresh">Actualiser</string>
+    <string name="text_export_pdf">Exporter en PDF</string>
+    <string name="text_preparing_pdf">Préparation du PDF...</string>
+    <string name="text_cannot_export_pdf">Impossible d’exporter le PDF</string>
+    <string name="text_view_source">Afficher le code source</string>
+    <string name="text_view_previewer">Afficher l’aperçu</string>
     <string name="text_settings">Paramètres</string>
     <string name="text_start_in_fullscreen_mode">Démarrer en mode plein écran</string>
+    <string name="text_text_size">Taille du texte</string>
+    <string name="text_text_size_percentage">Taille du texte : %1$d %%</string>
+    <string name="text_theme">Thème</string>
+    <string name="text_theme_dark">Sombre</string>
+    <string name="text_theme_follow_system">Suivre AutoJs6</string>
+    <string name="text_theme_light">Clair</string>
+    <string name="text_previewer_first_limit">Prévisualiser les premiers %1$s</string>
+    <string name="text_truncated_previewer_banner">Aperçu tronqué : seuls les premiers %1$s sont affichés</string>
+    <string name="text_truncated_previewer_marker">L’aperçu s’arrête à %1$s ; le reste du contenu a été omis</string>
+    <string name="text_load_network_images">Charger les images réseau</string>
+    <string name="text_blocked_resource_count">Ressources réseau bloquées : %1$d</string>
 </resources>

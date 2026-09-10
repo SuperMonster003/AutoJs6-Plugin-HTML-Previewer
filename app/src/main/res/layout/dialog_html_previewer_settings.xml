@@ -1,12 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingHorizontal="16dp">
 
-    <com.google.android.material.materialswitch.MaterialSwitch
+    <TextView
+        android:id="@+id/text_zoom_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:paddingTop="8dp"
+        android:text="@string/text_text_size"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="16sp" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/text_zoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/text_text_size"
+        android:stepSize="25"
+        android:valueFrom="75"
+        android:valueTo="200"
+        app:labelBehavior="gone" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:paddingTop="8dp"
+        android:text="@string/text_theme"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="16sp" />
+
+    <RadioGroup
+        android:id="@+id/theme_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            app:useMaterialThemeColors="false"
+            android:id="@+id/theme_follow_system"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingHorizontal="8dp"
+            android:text="@string/text_theme_follow_system"
+            android:textSize="16sp" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            app:useMaterialThemeColors="false"
+            android:id="@+id/theme_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingHorizontal="8dp"
+            android:text="@string/text_theme_light"
+            android:textSize="16sp" />
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            app:useMaterialThemeColors="false"
+            android:id="@+id/theme_dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingHorizontal="8dp"
+            android:text="@string/text_theme_dark"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/interactive_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="48dp"
+        android:paddingHorizontal="8dp"
+        android:text="@string/text_interactive_mode"
+        android:textOn=""
+        android:textOff=""
+        android:textSize="16sp"
+        style="@style/Widget.MaterialComponents.CompoundButton.Switch"
+        app:showText="false" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="8dp"
+        android:paddingBottom="8dp"
+        android:text="@string/text_interactive_mode_summary"
+        android:textSize="12sp" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        style="@style/Widget.MaterialComponents.CompoundButton.Switch"
+        app:showText="false"
+        android:textOn=""
+        android:textOff=""
+        android:id="@+id/load_network_images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="48dp"
+        android:paddingHorizontal="8dp"
+        android:text="@string/text_load_network_images"
+        android:textSize="16sp" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        style="@style/Widget.MaterialComponents.CompoundButton.Switch"
+        app:showText="false"
+        android:textOn=""
+        android:textOff=""
         android:id="@+id/start_in_fullscreen_mode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

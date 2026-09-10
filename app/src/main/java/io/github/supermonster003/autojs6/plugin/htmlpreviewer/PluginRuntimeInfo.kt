@@ -27,6 +27,8 @@ internal object HtmlPreviewerPlugin {
     val MIME_TYPES = arrayOf(
         "text/html",
         "application/xhtml+xml",
+        "multipart/related",
+        "application/x-mimearchive",
     )
     val EXTENSIONS = arrayOf(
         "html",
@@ -35,6 +37,8 @@ internal object HtmlPreviewerPlugin {
         "shtml",
         "xht",
         "xhtml",
+        "mht",
+        "mhtml",
     )
 }
 

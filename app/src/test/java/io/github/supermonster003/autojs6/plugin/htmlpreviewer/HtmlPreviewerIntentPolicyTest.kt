@@ -11,9 +11,29 @@ class HtmlPreviewerIntentPolicyTest {
     @Test
     fun htmlCanBeResolvedFromExtensionOrMimeType() {
         assertTrue(HtmlPreviewerIntentPolicy.isSupportedHtml("application/octet-stream", "index.html"))
-        assertTrue(HtmlPreviewerIntentPolicy.isSupportedHtml("text/html; charset=utf-8", "preview"))
+        assertTrue(HtmlPreviewerIntentPolicy.isSupportedHtml("text/html; charset=utf-8", "previewer"))
         assertTrue(HtmlPreviewerIntentPolicy.isSupportedHtml(null, "index.XHTML"))
-        assertTrue(HtmlPreviewerIntentPolicy.isSupportedHtml("application/xhtml+xml", "preview"))
+        assertTrue(HtmlPreviewerIntentPolicy.isSupportedHtml("application/xhtml+xml", "previewer"))
+        assertEquals(
+            HtmlPreviewerDocumentFormat.HTML,
+            HtmlPreviewerIntentPolicy.documentFormat("application/octet-stream", "index.html"),
+        )
+    }
+
+    @Test
+    fun mhtmlCanBeResolvedFromArchiveExtensionOrExplicitMimeType() {
+        assertEquals(
+            HtmlPreviewerDocumentFormat.MHTML,
+            HtmlPreviewerIntentPolicy.documentFormat("application/octet-stream", "saved-page.MHT"),
+        )
+        assertEquals(
+            HtmlPreviewerDocumentFormat.MHTML,
+            HtmlPreviewerIntentPolicy.documentFormat("multipart/related; boundary=archive", "previewer"),
+        )
+        assertEquals(
+            HtmlPreviewerDocumentFormat.MHTML,
+            HtmlPreviewerIntentPolicy.documentFormat("application/x-mimearchive", "previewer"),
+        )
     }
 
     @Test
@@ -22,6 +42,8 @@ class HtmlPreviewerIntentPolicyTest {
         assertFalse(HtmlPreviewerIntentPolicy.isSupportedHtml("application/pdf", "document.pdf"))
         assertFalse(HtmlPreviewerIntentPolicy.isSupportedHtml("text/plain", "notes.txt"))
         assertFalse(HtmlPreviewerIntentPolicy.isSupportedHtml("text/markdown", "index.html"))
+        assertFalse(HtmlPreviewerIntentPolicy.isSupportedHtml("message/rfc822", "email"))
+        assertFalse(HtmlPreviewerIntentPolicy.isSupportedHtml("multipart/related", "email.eml"))
     }
 
     @Test
