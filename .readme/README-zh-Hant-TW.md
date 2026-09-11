@@ -177,12 +177,13 @@ Explorer Action v2 同時支援單一檔案的主預覽按鈕和溢位選單, �
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `新增` 預設停用指令碼. 對於可信的完整一般 HTML 檔案, 可在 `設定` 中開啟 `互動模式`, 支援 JavaScript, 按鈕事件, WebGL 和本機儲存. MHTML, 截斷 HTML, 原始碼檢視和 PDF 匯出始終停用指令碼.
 - `修復` 在外掛程式中心啟用外掛程式時可能提示啟用失敗的問題
 - `修復` 修復主預覽按鈕協定拒絕和設定當機; 同步宿主個人化組態, 頁面列配色及對話方塊黑白控制項
 - `優化` 更簡潔的外掛程式名稱與描述, 更易讀的使用文件
+- `優化` 建置階段阻止意外引入原生相依套件, 並輸出 JSON 校驗報告
 
 #### v1.0.0
 
@@ -245,3 +246,6 @@ app/src/main/res/raw-*/plugin_instruction.md
 
 - AutoJs6 文件: https://docs.autojs6.com
 - HTML Living Standard: https://html.spec.whatwg.org
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/docs/16kb.md)

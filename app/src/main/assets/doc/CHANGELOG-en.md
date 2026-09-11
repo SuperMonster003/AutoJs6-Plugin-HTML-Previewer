@@ -6,12 +6,13 @@
 
 # v1.0.1
 
-###### 2026/08/08
+###### 2026/09/11
 
 * `Feature` Scripts are disabled by default. For a trusted, complete ordinary HTML file, enable `Interactive mode` in `Settings` to run JavaScript, button events, WebGL, and local storage. MHTML, truncated HTML, source view, and PDF export always keep scripts disabled.
 * `Fix` An issue where enabling the plugin in the plugin center could fail with an error
 * `Fix` Fixed primary previewer protocol rejection and settings crashes; synchronized the host appearance, page chrome, and monochrome dialog controls
 * `Improvement` Leaner plugin name and description, easier-to-read user documentation
+* `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
 
 # v1.0.0
 

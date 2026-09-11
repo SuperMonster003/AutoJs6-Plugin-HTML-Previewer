@@ -177,12 +177,13 @@ Explorer Action v2 同时支持单文件的主预览按钮和溢出菜单, 通�
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `新增` 默认禁用脚本. 对于可信的完整普通 HTML 文件, 可在 `设置` 中开启 `交互模式`, 支持 JavaScript, 按钮事件, WebGL 和本地存储. MHTML, 截断 HTML, 源码视图和 PDF 导出始终禁用脚本.
 - `修复` 在插件中心启用插件时可能提示启用失败的问题
 - `修复` 修复主预览按钮协议拒绝和设置崩溃; 同步宿主个性化配置, 页面栏位配色及对话框黑白控件
 - `优化` 更简洁的插件名称与描述, 更易读的使用文档
+- `优化` 构建阶段阻止意外引入原生依赖, 并输出 JSON 校验报告
 
 #### v1.0.0
 
@@ -245,3 +246,6 @@ app/src/main/res/raw-*/plugin_instruction.md
 
 - AutoJs6 文档: https://docs.autojs6.com
 - HTML Living Standard: https://html.spec.whatwg.org
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/docs/16kb.md)

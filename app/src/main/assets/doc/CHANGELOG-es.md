@@ -6,12 +6,13 @@
 
 # v1.0.1
 
-###### 2026/08/08
+###### 2026/09/11
 
 * `Función` Los scripts están desactivados por defecto. Para un HTML normal completo y de confianza, active el modo interactivo en ajustes para JavaScript, botones, WebGL y almacenamiento local. MHTML, HTML truncado, código fuente y exportación PDF siempre desactivan los scripts.
 * `Corrección` Fallo ocasional al activar el complemento en el centro de complementos
 * `Corrección` Corregidos el rechazo de protocolo del botón principal y los cierres de ajustes; sincronizados la apariencia de AutoJs6, las barras y los controles monocromos
 * `Mejora` Nombre y descripción del complemento más concisos, documentación de usuario más legible
+* `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
 
 # v1.0.0
 

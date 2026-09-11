@@ -179,3 +179,6 @@ app/src/main/res/raw-*/plugin_instruction.md
 
 - {{ text_link_autojs6_docs }}: {{ docs_autojs6_url }}
 - {{ text_link_format_reference }}: {{ format_reference_url }}
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/docs/16kb.md)

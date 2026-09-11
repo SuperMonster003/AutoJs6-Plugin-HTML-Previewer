@@ -177,12 +177,13 @@ audited host protocol: 22
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `ميزة` تكون البرامج النصية معطلة افتراضيا. لملف HTML عادي كامل وموثوق, فعّل الوضع التفاعلي في الإعدادات لتشغيل JavaScript وأحداث الأزرار وWebGL والتخزين المحلي. تبقى النصوص معطلة دائما في MHTML وHTML المقتطع وعرض المصدر وتصدير PDF.
 - `إصلاح` مشكلة قد تجعل تفعيل الملحق في مركز الملحقات يفشل مع ظهور خطأ
 - `إصلاح` إصلاح رفض بروتوكول زر العرض الرئيسي وتعطل الإعدادات; مزامنة مظهر المضيف وألوان الأشرطة وعناصر الحوارات بالأبيض والأسود
 - `تحسين` اسم ووصف أكثر إيجازا للملحق ووثائق مستخدم أسهل قراءة
+- `تحسين` التحقق أثناء البناء لمنع إدخال تبعيات أصلية غير مقصودة, مع تقرير JSON
 
 #### v1.0.0
 
@@ -245,3 +246,6 @@ app/src/main/res/raw-*/plugin_instruction.md
 
 - وثائق AutoJs6: https://docs.autojs6.com
 - HTML Living Standard: https://html.spec.whatwg.org
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/docs/16kb.md)

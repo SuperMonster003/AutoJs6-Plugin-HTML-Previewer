@@ -177,12 +177,13 @@ Las capacidades previstas y su estado se registran como lista marcable en ROADMA
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `Función` Los scripts están desactivados por defecto. Para un HTML normal completo y de confianza, active el modo interactivo en ajustes para JavaScript, botones, WebGL y almacenamiento local. MHTML, HTML truncado, código fuente y exportación PDF siempre desactivan los scripts.
 - `Corrección` Fallo ocasional al activar el complemento en el centro de complementos
 - `Corrección` Corregidos el rechazo de protocolo del botón principal y los cierres de ajustes; sincronizados la apariencia de AutoJs6, las barras y los controles monocromos
 - `Mejora` Nombre y descripción del complemento más concisos, documentación de usuario más legible
+- `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
 
 #### v1.0.0
 
@@ -245,3 +246,6 @@ app/src/main/res/raw-*/plugin_instruction.md
 
 - Documentación de AutoJs6: https://docs.autojs6.com
 - HTML Living Standard: https://html.spec.whatwg.org
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/docs/16kb.md)

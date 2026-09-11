@@ -177,12 +177,13 @@ Les capacités prévues et leur avancement sont suivis sous forme de liste cocha
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `Fonctionnalité` Les scripts sont désactivés par défaut. Pour un fichier HTML ordinaire complet et fiable, activez le mode interactif dans les paramètres pour JavaScript, les boutons, WebGL et le stockage local. MHTML, HTML tronqué, code source et export PDF gardent les scripts désactivés.
 - `Correctif` Échec possible de l'activation du plugin dans le centre de plugins
 - `Correctif` Correction du rejet du protocole du bouton principal et des plantages des paramètres; apparence AutoJs6, couleurs des barres et contrôles monochromes synchronisés
 - `Amélioration` Nom et description du plugin allégés, documentation utilisateur plus lisible
+- `Amélioration` La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON
 
 #### v1.0.0
 
@@ -245,3 +246,6 @@ app/src/main/res/raw-*/plugin_instruction.md
 
 - Documentation AutoJs6: https://docs.autojs6.com
 - HTML Living Standard: https://html.spec.whatwg.org
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/docs/16kb.md)

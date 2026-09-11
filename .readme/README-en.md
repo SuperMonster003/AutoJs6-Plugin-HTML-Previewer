@@ -177,12 +177,13 @@ Planned capabilities and their completion status are tracked as a checkable list
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `Feature` Scripts are disabled by default. For a trusted, complete ordinary HTML file, enable `Interactive mode` in `Settings` to run JavaScript, button events, WebGL, and local storage. MHTML, truncated HTML, source view, and PDF export always keep scripts disabled.
 - `Fix` An issue where enabling the plugin in the plugin center could fail with an error
 - `Fix` Fixed primary previewer protocol rejection and settings crashes; synchronized the host appearance, page chrome, and monochrome dialog controls
 - `Improvement` Leaner plugin name and description, easier-to-read user documentation
+- `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
 
 #### v1.0.0
 
@@ -245,3 +246,6 @@ app/src/main/res/raw-*/plugin_instruction.md
 
 - AutoJs6 documentation: https://docs.autojs6.com
 - HTML Living Standard: https://html.spec.whatwg.org
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/docs/16kb.md)

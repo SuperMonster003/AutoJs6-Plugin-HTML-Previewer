@@ -177,12 +177,13 @@ Explorer Action v2는 단일 파일의 기본 미리보기 버튼과 메뉴를 �
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `기능` 스크립트는 기본적으로 비활성화됩니다. 신뢰할 수 있는 완전한 일반 HTML 파일에서는 설정의 상호작용 모드를 켜면 JavaScript, 버튼 이벤트, WebGL, 로컬 저장소를 사용할 수 있습니다. MHTML, 잘린 HTML, 소스 보기, PDF 내보내기는 항상 스크립트를 비활성화합니다.
 - `수정` 플러그인 센터에서 플러그인을 활성화할 때 오류로 실패할 수 있는 문제
 - `수정` 기본 미리보기 버튼의 프로토콜 거부 및 설정 충돌 수정; 호스트 외관, 표시줄 색상, 대화상자 흑백 컨트롤 동기화
 - `개선` 더 간결한 플러그인 이름과 설명, 더 읽기 쉬운 사용자 문서
+- `개선` 빌드 시 의도하지 않은 네이티브 의존성을 거부하고 JSON 보고서 생성
 
 #### v1.0.0
 
@@ -245,3 +246,6 @@ app/src/main/res/raw-*/plugin_instruction.md
 
 - AutoJs6 문서: https://docs.autojs6.com
 - HTML Living Standard: https://html.spec.whatwg.org
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/docs/16kb.md)
