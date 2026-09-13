@@ -51,6 +51,34 @@ class PublicHttpsClientTest {
         Response.Builder().request(request).protocol(Protocol.HTTP_1_1).code(code).message("Test")
             .body("image".toResponseBody()).apply { location?.let { header("Location", it) } }.build()
 
+    @Test fun preservesPartialContentStatusAndRangeWithAnHttp2ReasonFallback() {
+        val client = PublicHttpsClient({ true }) { request ->
+            assertEquals("bytes=2-4", request.header("Range"))
+            Response.Builder().request(request).protocol(Protocol.HTTP_2).code(206).message("")
+                .header("Content-Range", "bytes 2-4/10").body("234".toResponseBody()).build()
+        }
+        val resource = client.open("https://public.example/media", "GET", mapOf("Range" to "bytes=2-4"))
+        resource.body.use {
+            assertEquals(206, resource.statusCode)
+            assertEquals("Partial Content", resource.reasonPhrase)
+            assertEquals("bytes 2-4/10", resource.headers.entries.single { it.key.equals("Content-Range", true) }.value)
+            assertEquals("234", it.reader().readText())
+        }
+    }
+
+    @Test fun preservesLegalSuccessStatusAndSanitizesNonAsciiReasonPhrases() {
+        for ((message, expected) in listOf("Accepted by server" to "Accepted by server", "成功" to "Accepted")) {
+            val client = PublicHttpsClient({ true }) { request ->
+                response(request, 202).newBuilder().message(message).build()
+            }
+            val resource = client.open("https://public.example/resource", "GET", emptyMap())
+            resource.body.use {
+                assertEquals(202, resource.statusCode)
+                assertEquals(expected, resource.reasonPhrase)
+            }
+        }
+    }
+
     @Test fun validatesEveryRedirectBeforeSendingItAndDropsCredentials() {
         val visited = mutableListOf<String>()
         val client = PublicHttpsClient({ it.startsWith("https://public.example/") }) { request ->

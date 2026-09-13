@@ -126,7 +126,7 @@ class HtmlPreviewerWebController(
                 ) {
                     return try {
                         val resource = publicHttpsClient.open(uri.toString(), request.method, request.requestHeaders)
-                        WebResourceResponse(resource.mimeType, resource.encoding, 200, "OK", resource.headers, resource.body)
+                        WebResourceResponse(resource.mimeType, resource.encoding, resource.statusCode, resource.reasonPhrase, resource.headers, resource.body)
                     } catch (_: java.io.IOException) {
                         forbidden()
                     } catch (_: IllegalArgumentException) {
