@@ -5,7 +5,7 @@
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-previewer-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>File manager plugin. Secure read-only previewer for HTML and MHTML files</p>
+  <p>Preview HTML and MHTML files</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Previewer?label=Release"/></a>
@@ -123,14 +123,15 @@ The current version is scoped to single-file read-only viewing: there is no edit
 
 ******
 
-The plugin assumes the viewed file is untrusted and applies several layers of protection:
+Interactive mode is off for every new preview and must be enabled explicitly for the currently trusted document. CSP blocks fetch, WebSocket, workers and frames. Interactive JavaScript is not a general network sandbox: APIs such as WebRTC may use the network independently of the resource switch. Keep unfamiliar documents in the default static mode.
 
 - In the default safe mode: Sanitize before display: scripts, event handler attributes, embedded frames, embedded objects, and form targets are removed, and unsafe link or resource addresses are filtered out.
 - Cookies, direct file/content access, native JavaScript bridges, and new windows remain disabled. Safe mode disables page storage; interactive mode allows local storage for page preferences and game scores. Source view and PDF use a fresh sanitized rendering.
-- Local resources are read from the authorized directory, or from the selected MHTML archive. Safe mode allows public HTTPS images; interactive mode also allows public HTTPS scripts, styles, and requests when `Load network resources` is enabled. Turning the network switch off blocks outbound WebView requests. Interactive scripts can send page data to remote services, so enable this mode only for trusted pages.
+- Interactive mode is off for every new preview and must be enabled explicitly for the currently trusted document. CSP blocks fetch, WebSocket, workers and frames. Interactive JavaScript is not a general network sandbox: APIs such as WebRTC may use the network independently of the resource switch. Keep unfamiliar documents in the default static mode.
 - Least privilege: the plugin only receives the temporary content URI read permission granted by the host, never sees filesystem paths, and sends PDF output through Android's system print service instead of writing to storage itself.
 - Bounded input: reads are capped at 8 MB; MHTML also limits MIME parts, nesting, headers, and decoded bodies; file names and resource paths are strictly validated to prevent out-of-scope access.
-- Cookies, direct file/content access, native JavaScript bridges, and new windows remain disabled. Safe mode disables page storage; interactive mode allows local storage for page preferences and game scores. Source view and PDF use a fresh sanitized rendering.
+- Enable only for this trusted document. Scripts can use network APIs outside the resource switch, including WebRTC. Every new preview starts with scripts off.
+- Static preview and the controlled HTTPS resource client validate and bind public DNS addresses and recheck every redirect. The resource switch controls this client; requests are limited to GET and HEAD.
 
 In the default safe mode: The source manifest requests only the network permission (used when HTTPS images are enabled) and the AutoJs6 plugin permission. AndroidX also contributes a package-scoped signature permission that protects non-exported dynamic receivers; it grants no access to device data. Turning network images off prevents WebView outbound requests. PDF destination access belongs to Android's system print and file-picker UI, so the plugin requests no storage, media, camera, location, or other sensitive permissions.
 
@@ -174,6 +175,16 @@ Planned capabilities and their completion status are tracked as a checkable list
 ### Release History
 
 ******
+
+#### v1.1.0
+
+_2026/09/13_
+
+- `Feature` Local release history is available from the interface, with localized text and an English fallback
+- `Fix` Static preview and the controlled HTTPS resource client validate and bind public DNS addresses and recheck every redirect. The resource switch controls this client; requests are limited to GET and HEAD.
+- `Fix` Enable only for this trusted document. Scripts can use network APIs outside the resource switch, including WebRTC. Every new preview starts with scripts off.
+- `Improvement` Release packages are checked for a complete signing configuration, exact APK contents and reproducible documentation
+- `Dependency` Add OkHttp 4.12.0 for controlled HTTPS resource loading
 
 #### v1.0.1
 

@@ -1,7 +1,7 @@
 {
   "$name": "繁體中文 (香港)",
   "text_current_lowercase": "目前",
-  "text_plugin_synopsis": "檔案管理器外掛程式. 安全唯讀預覽 HTML 及 MHTML 檔案",
+  "text_plugin_synopsis": "預覽 HTML 和 MHTML 檔案",
   "h3_languages_with_ascii": "語言 (Languages)",
   "p_languages_all_supported_for_readme": "目前 README.md 支援以下語言",
   "h3_introduction": "簡介",
@@ -59,14 +59,15 @@
     }
   ],
   "h3_security": "權限與安全",
-  "p_security_intro": "外掛程式在設計上假定被預覽的檔案不可信, 因此採取多層防護:",
+  "p_security_intro": "每次新預覽均關閉互動模式, 僅在明確信任目前文件時手動啟用. CSP 阻止 fetch, WebSocket, worker 和框架. 互動 JavaScript 不是通用網絡沙箱: WebRTC 等介面可能獨立於資源開關連網. 陌生文件應保持預設靜態模式.",
   "security_points": [
     "預設安全模式下: 顯示前淨化: 移除腳本, 事件處理屬性, 內嵌框架, 嵌入物件與表單提交位址, 並過濾不安全的連結和資源位址.",
     "Cookie, 直接檔案/content 存取, 原生 JavaScript 橋和新視窗保持停用. 安全模式停用頁面儲存; 互動模式允許本機儲存, 用於頁面偏好或遊戲分數. 原始碼檢視與 PDF 使用重新淨化的內容.",
-    "本機資源來自已授權目錄或選取的 MHTML 封存檔. 安全模式允許公共 HTTPS 圖片; 互動模式開啟 `載入網絡資源` 後亦允許公共 HTTPS 指令碼, 樣式及請求. 關閉網絡開關會攔截 WebView 對外請求. 互動指令碼能夠向遠端服務傳送頁面資料, 因此僅應對可信頁面啟用.",
+    "每次新預覽均關閉互動模式, 僅在明確信任目前文件時手動啟用. CSP 阻止 fetch, WebSocket, worker 和框架. 互動 JavaScript 不是通用網絡沙箱: WebRTC 等介面可能獨立於資源開關連網. 陌生文件應保持預設靜態模式.",
     "最小權限: 外掛程式只接收宿主授予的臨時 content URI 讀取權限, 接觸不到檔案系統路徑; PDF 輸出交由 Android 系統列印服務處理, 外掛程式本身不寫入儲存空間.",
     "輸入有界: 讀取大小上限為 {{ max_html_size }}; MHTML 亦限制 MIME 部件數, 嵌套層數, 頭部與解碼總量; 檔案名與資源路徑均經過嚴格校驗, 防止越界存取.",
-    "Cookie, 直接檔案/content 存取, 原生 JavaScript 橋和新視窗保持停用. 安全模式停用頁面儲存; 互動模式允許本機儲存, 用於頁面偏好或遊戲分數. 原始碼檢視與 PDF 使用重新淨化的內容."
+    "僅為目前可信文件啟用. 指令碼可能透過 WebRTC 等介面連網, 不受資源開關控制. 每次新預覽預設關閉指令碼.",
+    "靜態預覽和受控 HTTPS 資源用戶端驗證並綁定公網 DNS 位址, 每次重新導向均重新驗證. 資源開關控制該用戶端, 請求僅支援 GET 和 HEAD."
   ],
   "p_security_permission": "預設安全模式下: 來源清單僅申請網絡權限 (在開啟 HTTPS 圖片時使用) 與 AutoJs6 外掛程式權限. AndroidX 還會自動加入一個僅限本應用程式簽名的權限, 用於保護未匯出的動態接收器, 不授予任何裝置資料存取能力. 關閉網絡圖片後 WebView 不會發出對外請求. PDF 目標位置的存取由 Android 系統列印與檔案選擇介面負責, 因此外掛程式不申請儲存空間, 媒體, 相機, 位置等其他敏感權限.",
   "h3_plugin_interface": "插件介面",

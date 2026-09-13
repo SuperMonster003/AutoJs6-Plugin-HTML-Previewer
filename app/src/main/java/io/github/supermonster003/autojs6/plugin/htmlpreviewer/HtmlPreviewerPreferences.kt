@@ -29,9 +29,9 @@ class HtmlPreviewerPreferences(context: Context) {
         )
         set(value) = preferences.edit { putString(KEY_THEME_MODE, value.preferenceValue) }
 
-    var interactiveMode: Boolean
-        get() = preferences.getBoolean(KEY_INTERACTIVE_MODE, false)
-        set(value) = preferences.edit { putBoolean(KEY_INTERACTIVE_MODE, value) }
+    // Trust is granted to this preview session, never inherited by the next document.
+    // Ignore the legacy persisted value, including values saved by older releases.
+    var interactiveMode: Boolean = false
 
     var loadNetworkImages: Boolean
         get() = preferences.getBoolean(KEY_LOAD_NETWORK_IMAGES, true)

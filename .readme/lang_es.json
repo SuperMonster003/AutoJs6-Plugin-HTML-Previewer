@@ -1,7 +1,7 @@
 {
   "$name": "Español",
   "text_current_lowercase": "actual",
-  "text_plugin_synopsis": "Complemento del gestor de archivos. Vista previa segura de solo lectura de archivos HTML y MHTML",
+  "text_plugin_synopsis": "Previsualiza archivos HTML y MHTML",
   "h3_languages_with_ascii": "Idiomas (Languages)",
   "p_languages_all_supported_for_readme": "El README.md actual admite los siguientes idiomas",
   "h3_introduction": "Introducción",
@@ -59,14 +59,15 @@
     }
   ],
   "h3_security": "Permisos y seguridad",
-  "p_security_intro": "El complemento asume que el archivo previsualizado no es de confianza y aplica varias capas de protección:",
+  "p_security_intro": "El modo interactivo comienza desactivado en cada vista y requiere activación explícita para el documento actual de confianza. CSP bloquea fetch, WebSocket, workers y marcos. JavaScript interactivo no es un aislamiento de red general: WebRTC puede comunicarse al margen del control de recursos. Mantenga los documentos desconocidos en el modo estático predeterminado.",
   "security_points": [
     "En el modo seguro predeterminado: Saneamiento previo: se eliminan scripts, atributos de controladores de eventos, marcos incrustados, objetos incrustados y destinos de formularios, y se filtran las direcciones de enlaces o recursos no seguras.",
     "Cookies, acceso directo a archivos/content, puentes JavaScript nativos y ventanas nuevas permanecen desactivados. Solo el modo interactivo permite almacenamiento local para preferencias y puntuaciones. El código fuente y PDF usan contenido saneado de nuevo.",
-    "Los recursos locales proceden de la carpeta autorizada o del archivo MHTML. El modo seguro permite imágenes HTTPS públicas; el interactivo permite también scripts, estilos y solicitudes HTTPS públicos al activar los recursos de red. Desactivar la red bloquea las solicitudes salientes de WebView. Los scripts interactivos pueden enviar datos a servicios remotos; use este modo solo con páginas de confianza.",
+    "El modo interactivo comienza desactivado en cada vista y requiere activación explícita para el documento actual de confianza. CSP bloquea fetch, WebSocket, workers y marcos. JavaScript interactivo no es un aislamiento de red general: WebRTC puede comunicarse al margen del control de recursos. Mantenga los documentos desconocidos en el modo estático predeterminado.",
     "Privilegio mínimo: el complemento solo recibe el permiso temporal de lectura por URI de contenido concedido por el anfitrión, nunca ve rutas del sistema de archivos y envía la salida PDF mediante el servicio de impresión de Android en vez de escribirla él mismo.",
     "Entrada acotada: la lectura se limita a {{ max_html_size }}; MHTML limita además partes, anidamiento, cabeceras y cuerpos decodificados; los nombres de archivo y rutas de recursos se validan estrictamente para impedir accesos fuera de ámbito.",
-    "Cookies, acceso directo a archivos/content, puentes JavaScript nativos y ventanas nuevas permanecen desactivados. Solo el modo interactivo permite almacenamiento local para preferencias y puntuaciones. El código fuente y PDF usan contenido saneado de nuevo."
+    "Active solo para el documento actual de confianza. WebRTC y otras API pueden conectarse fuera del control de recursos. Cada vista nueva desactiva los scripts.",
+    "La vista estática y el cliente HTTPS controlado validan y fijan las direcciones DNS públicas y revisan cada redirección. El control de recursos gobierna este cliente, que solo admite GET y HEAD."
   ],
   "p_security_permission": "En el modo seguro predeterminado: El manifiesto fuente solo solicita el permiso de red (usado cuando se activan imágenes HTTPS) y el permiso de complemento de AutoJs6. AndroidX también añade un permiso de firma limitado al paquete para proteger receptores dinámicos no exportados; no concede acceso a datos del dispositivo. Al desactivar las imágenes de red, WebView no realiza solicitudes salientes. El acceso al destino PDF pertenece a las interfaces de impresión y selección de archivos de Android, por lo que no solicita almacenamiento, contenido multimedia, cámara, ubicación ni otros permisos sensibles.",
   "h3_plugin_interface": "Interfaz del complemento",

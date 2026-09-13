@@ -5,6 +5,22 @@
   "changelog_label_improvement": "Mejora",
   "changelog_label_dependency": "Dependencia",
   "$data": {
+    "v1.1.0": {
+      "released_date": "2026/09/13",
+      "improvement": [
+        "Comprobación de la firma completa, los APK esperados y la documentación reproducible de cada versión"
+      ],
+      "fix": [
+        "La vista estática y el cliente HTTPS controlado validan y fijan las direcciones DNS públicas y revisan cada redirección. El control de recursos gobierna este cliente, que solo admite GET y HEAD.",
+        "Active solo para el documento actual de confianza. WebRTC y otras API pueden conectarse fuera del control de recursos. Cada vista nueva desactiva los scripts."
+      ],
+      "dependency": [
+        "Añadir OkHttp 4.12.0 para la carga controlada de recursos HTTPS"
+      ],
+      "feature": [
+        "Historial de versiones local desde la interfaz con traducciones y alternativa en inglés"
+      ]
+    },
     "v1.0.1": {
       "released_date": "2026/09/11",
       "fix": [

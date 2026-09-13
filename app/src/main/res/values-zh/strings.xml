@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_html_previewer">预览 HTML</string>
-    <string name="app_name">HTML 预览器</string>
     <string name="dialog_button_cancel">取消</string>
     <string name="dialog_button_confirm">确认</string>
     <string name="error_html_file_too_large">HTML 文件超过 %1$s 的预览限制</string>
     <string name="error_mhtml_file_too_large">MHTML 归档超过 %1$s 限制, 无法安全地截断预览</string>
-    <string name="plugin_description">文件管理器插件. 安全只读预览 HTML 与 MHTML 文件</string>
+    <string name="plugin_description">预览 HTML 和 MHTML 文件</string>
+    <string name="release_history">发行历史</string>
+    <string name="release_history_unavailable">发行历史暂不可用</string>
+    <string name="text_blocked_resource_count">已拦截网络资源: %1$d</string>
+    <string name="text_cannot_export_pdf">无法导出 PDF</string>
     <string name="text_cannot_open_link">无法打开链接</string>
     <string name="text_cannot_read_file">无法读取 HTML 文件</string>
     <string name="text_close_find">关闭查找</string>
+    <string name="text_export_pdf">导出 PDF</string>
     <string name="text_find_in_page">在页面中查找</string>
     <string name="text_find_match_count">%1$d/%2$d</string>
     <string name="text_fullscreen_mode">全屏模式</string>
     <string name="text_interactive_mode">交互模式</string>
-    <string name="text_interactive_mode_summary">允许完整 HTML 文件运行脚本. 仅用于可信页面. 源码视图和 PDF 导出始终禁用脚本.</string>
+    <string name="text_interactive_mode_summary">仅为当前可信文档启用. 脚本可能通过 WebRTC 等接口联网, 不受资源开关控制. 每次新预览默认关闭脚本.</string>
+    <string name="text_load_network_images">加载网络图片</string>
     <string name="text_load_network_resources">加载网络资源</string>
     <string name="text_next_match">下一个匹配项</string>
+    <string name="text_preparing_pdf" tools:ignore="TypographyEllipsis">正在准备 PDF...</string>
     <string name="text_previewer">预览器</string>
+    <string name="text_previewer_first_limit">仅预览前 %1$s</string>
     <string name="text_previous_match">上一个匹配项</string>
     <string name="text_refresh">刷新</string>
-    <string name="text_export_pdf">导出 PDF</string>
-    <string name="text_preparing_pdf">正在准备 PDF...</string>
-    <string name="text_cannot_export_pdf">无法导出 PDF</string>
-    <string name="text_view_source">查看源码</string>
-    <string name="text_view_previewer">查看预览</string>
     <string name="text_settings">设置</string>
     <string name="text_start_in_fullscreen_mode">以全屏模式启动</string>
     <string name="text_text_size">字号</string>
@@ -33,9 +35,8 @@
     <string name="text_theme_dark">深色</string>
     <string name="text_theme_follow_system">跟随 AutoJs6</string>
     <string name="text_theme_light">浅色</string>
-    <string name="text_previewer_first_limit">仅预览前 %1$s</string>
     <string name="text_truncated_previewer_banner">截断预览: 仅显示前 %1$s</string>
     <string name="text_truncated_previewer_marker">预览在 %1$s 处结束; 其余内容已省略</string>
-    <string name="text_load_network_images">加载网络图片</string>
-    <string name="text_blocked_resource_count">已拦截网络资源: %1$d</string>
+    <string name="text_view_previewer">查看预览</string>
+    <string name="text_view_source">查看源码</string>
 </resources>

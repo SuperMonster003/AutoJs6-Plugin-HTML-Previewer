@@ -5,7 +5,7 @@
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-previewer-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>Plugin de gestionnaire de fichiers. Aperçu sécurisé en lecture seule des fichiers HTML et MHTML</p>
+  <p>Affiche un aperçu des fichiers HTML et MHTML</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Previewer?label=Release"/></a>
@@ -123,14 +123,15 @@ La version actuelle se limite à l'aperçu en lecture seule d'un seul fichier: p
 
 ******
 
-Le plugin part du principe que le fichier prévisualisé n'est pas fiable et applique plusieurs couches de protection:
+Le mode interactif est désactivé pour chaque nouvel aperçu et exige une activation explicite pour le document actuel de confiance. La CSP bloque fetch, WebSocket, les workers et les cadres. JavaScript interactif ne constitue pas un bac à sable réseau général: WebRTC peut communiquer indépendamment du réglage des ressources. Gardez les documents inconnus en mode statique par défaut.
 
 - En mode sûr par défaut: Nettoyage avant affichage: scripts, attributs de gestionnaires d'événements, cadres intégrés, objets intégrés et cibles de formulaires sont supprimés, et les adresses de liens ou de ressources non sûres sont filtrées.
 - Cookies, accès direct aux fichiers/content, ponts JavaScript natifs et nouvelles fenêtres restent désactivés. Le stockage local est réservé au mode interactif, pour les préférences et scores. Le code source et le PDF utilisent un contenu assaini à nouveau.
-- Les ressources locales proviennent du dossier autorisé ou de l’archive MHTML sélectionnée. Le mode sûr autorise les images HTTPS publiques; le mode interactif autorise aussi scripts, styles et requêtes HTTPS publics lorsque les ressources réseau sont activées. Désactiver le réseau bloque les requêtes WebView sortantes. Les scripts interactifs peuvent envoyer des données à des services distants; réservez ce mode aux pages fiables.
+- Le mode interactif est désactivé pour chaque nouvel aperçu et exige une activation explicite pour le document actuel de confiance. La CSP bloque fetch, WebSocket, les workers et les cadres. JavaScript interactif ne constitue pas un bac à sable réseau général: WebRTC peut communiquer indépendamment du réglage des ressources. Gardez les documents inconnus en mode statique par défaut.
 - Moindre privilège: le plugin ne reçoit que l'autorisation temporaire de lecture par URI de contenu accordée par l'hôte, ne voit jamais les chemins du système de fichiers et transmet la sortie PDF au service d'impression Android au lieu d'écrire lui-même dans le stockage.
 - Entrée bornée: la lecture est plafonnée à 8 MB; MHTML limite aussi les parties, l'imbrication, les en-têtes et les corps décodés; les noms de fichiers et chemins de ressources sont strictement validés pour empêcher tout accès hors périmètre.
-- Cookies, accès direct aux fichiers/content, ponts JavaScript natifs et nouvelles fenêtres restent désactivés. Le stockage local est réservé au mode interactif, pour les préférences et scores. Le code source et le PDF utilisent un contenu assaini à nouveau.
+- Activez uniquement pour le document actuel de confiance. WebRTC et certaines API peuvent communiquer hors du réglage des ressources. Chaque nouvel aperçu désactive les scripts.
+- L’aperçu statique et le client HTTPS contrôlé valident les adresses DNS publiques, les fixent pour la connexion et revérifient chaque redirection. Le réglage des ressources contrôle ce client, limité à GET et HEAD.
 
 En mode sûr par défaut: Le manifeste source ne demande que l'autorisation réseau (utilisée lorsque les images HTTPS sont activées) et l'autorisation de plugin AutoJs6. AndroidX ajoute aussi une autorisation de signature limitée au paquet pour protéger les récepteurs dynamiques non exportés; elle ne donne accès à aucune donnée de l'appareil. Lorsque les images réseau sont désactivées, WebView n'émet aucune requête sortante. L'accès à la destination PDF appartient aux interfaces d'impression et de sélection de fichiers Android; aucune autorisation de stockage, de médias, d'appareil photo, de localisation ou autre autorisation sensible n'est donc demandée.
 
@@ -174,6 +175,16 @@ Les capacités prévues et leur avancement sont suivis sous forme de liste cocha
 ### Historique des versions
 
 ******
+
+#### v1.1.0
+
+_2026/09/13_
+
+- `Fonctionnalité` Historique local accessible depuis l'interface, avec traductions et repli en anglais
+- `Correctif` L’aperçu statique et le client HTTPS contrôlé valident les adresses DNS publiques, les fixent pour la connexion et revérifient chaque redirection. Le réglage des ressources contrôle ce client, limité à GET et HEAD.
+- `Correctif` Activez uniquement pour le document actuel de confiance. WebRTC et certaines API peuvent communiquer hors du réglage des ressources. Chaque nouvel aperçu désactive les scripts.
+- `Amélioration` Vérification de la signature complète, des APK attendus et de la reproductibilité de la documentation
+- `Dépendance` Ajout de OkHttp 4.12.0 pour le chargement contrôlé des ressources HTTPS
 
 #### v1.0.1
 
