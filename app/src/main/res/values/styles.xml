@@ -2,6 +2,7 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="actionOverflowButtonStyle">@style/Widget.PluginOverflowButton</item>
         <item name="materialAlertDialogTheme">@style/AppTheme.PreviewerDialog</item>
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryVariant">@color/color_primary_dark</item>
@@ -34,6 +35,11 @@
 
     <style name="Widget.Previewer.DialogButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:textColor">@color/dialog_foreground</item>
+    </style>
+
+    <style name="Widget.PluginOverflowButton" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
     </style>
 
 </resources>
