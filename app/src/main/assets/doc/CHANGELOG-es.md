@@ -11,6 +11,7 @@
 * `Función` Historial de versiones local desde la interfaz con traducciones y alternativa en inglés
 * `Corrección` La vista estática y el cliente HTTPS controlado validan y fijan las direcciones DNS públicas y revisan cada redirección. El control de recursos gobierna este cliente, que solo admite GET y HEAD.
 * `Corrección` Active solo para el documento actual de confianza. WebRTC y otras API pueden conectarse fuera del control de recursos. Cada vista nueva desactiva los scripts.
+* `Corrección` Conservar HTTP 206 y otros estados correctos al cargar recursos remotos
 * `Mejora` Comprobación de la firma completa, los APK esperados y la documentación reproducible de cada versión
 * `Dependencia` Añadir OkHttp 4.12.0 para la carga controlada de recursos HTTPS
 

@@ -12,7 +12,8 @@
       ],
       "fix": [
         "Static preview and the controlled HTTPS resource client validate and bind public DNS addresses and recheck every redirect. The resource switch controls this client; requests are limited to GET and HEAD.",
-        "Enable only for this trusted document. Scripts can use network APIs outside the resource switch, including WebRTC. Every new preview starts with scripts off."
+        "Enable only for this trusted document. Scripts can use network APIs outside the resource switch, including WebRTC. Every new preview starts with scripts off.",
+        "Preserve HTTP 206 and other successful status codes when loading remote resources"
       ],
       "dependency": [
         "Add OkHttp 4.12.0 for controlled HTTPS resource loading"

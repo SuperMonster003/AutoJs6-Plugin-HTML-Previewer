@@ -12,7 +12,8 @@
       ],
       "fix": [
         "La vista estática y el cliente HTTPS controlado validan y fijan las direcciones DNS públicas y revisan cada redirección. El control de recursos gobierna este cliente, que solo admite GET y HEAD.",
-        "Active solo para el documento actual de confianza. WebRTC y otras API pueden conectarse fuera del control de recursos. Cada vista nueva desactiva los scripts."
+        "Active solo para el documento actual de confianza. WebRTC y otras API pueden conectarse fuera del control de recursos. Cada vista nueva desactiva los scripts.",
+        "Conservar HTTP 206 y otros estados correctos al cargar recursos remotos"
       ],
       "dependency": [
         "Añadir OkHttp 4.12.0 para la carga controlada de recursos HTTPS"

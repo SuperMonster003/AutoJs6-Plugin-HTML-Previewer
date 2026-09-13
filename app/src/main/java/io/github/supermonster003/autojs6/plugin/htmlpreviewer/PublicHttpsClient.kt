@@ -85,7 +85,7 @@ internal class PublicHttpsClient(
                 }.mapValues { it.value.joinToString(", ") } + mapOf("Cache-Control" to "no-store")
                 return PublicHttpsResource(
                     mediaType?.let { "${it.type}/${it.subtype}" } ?: "application/octet-stream",
-                    mediaType?.charset()?.name(), responseHeaders,
+                    mediaType?.charset()?.name(), response.code, reasonPhrase(response), responseHeaders,
                     LimitedResourceStream(body.byteStream(), MAX_RESOURCE_BYTES) { response.close() },
                 )
             }
@@ -94,6 +94,18 @@ internal class PublicHttpsClient(
     }
 
     companion object {
+        private fun reasonPhrase(response: Response): String = response.message.takeIf { phrase ->
+            phrase.isNotBlank() && phrase.all { it.code in 32..126 }
+        } ?: when (response.code) {
+            200 -> "OK"
+            201 -> "Created"
+            202 -> "Accepted"
+            204 -> "No Content"
+            205 -> "Reset Content"
+            206 -> "Partial Content"
+            else -> "Success"
+        }
+
         internal const val MAX_REDIRECTS = 5
         internal const val MAX_RESOURCE_BYTES = 32L * 1024 * 1024
         private val REDIRECT_CODES = setOf(301, 302, 303, 307, 308)
@@ -119,6 +131,8 @@ internal class PublicHttpsClient(
 internal data class PublicHttpsResource(
     val mimeType: String,
     val encoding: String?,
+    val statusCode: Int,
+    val reasonPhrase: String,
     val headers: Map<String, String>,
     val body: InputStream,
 )
