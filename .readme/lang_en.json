@@ -1,7 +1,7 @@
 {
   "$name": "English",
   "text_current_lowercase": "current",
-  "text_plugin_synopsis": "File manager plugin. Secure read-only previewer for HTML and MHTML files",
+  "text_plugin_synopsis": "Preview HTML and MHTML files",
   "h3_languages_with_ascii": "Languages",
   "p_languages_all_supported_for_readme": "The current README.md supports the following languages",
   "h3_introduction": "Introduction",
@@ -59,14 +59,15 @@
     }
   ],
   "h3_security": "Permissions and Security",
-  "p_security_intro": "The plugin assumes the viewed file is untrusted and applies several layers of protection:",
+  "p_security_intro": "Interactive mode is off for every new preview and must be enabled explicitly for the currently trusted document. CSP blocks fetch, WebSocket, workers and frames. Interactive JavaScript is not a general network sandbox: APIs such as WebRTC may use the network independently of the resource switch. Keep unfamiliar documents in the default static mode.",
   "security_points": [
     "In the default safe mode: Sanitize before display: scripts, event handler attributes, embedded frames, embedded objects, and form targets are removed, and unsafe link or resource addresses are filtered out.",
     "Cookies, direct file/content access, native JavaScript bridges, and new windows remain disabled. Safe mode disables page storage; interactive mode allows local storage for page preferences and game scores. Source view and PDF use a fresh sanitized rendering.",
-    "Local resources are read from the authorized directory, or from the selected MHTML archive. Safe mode allows public HTTPS images; interactive mode also allows public HTTPS scripts, styles, and requests when `Load network resources` is enabled. Turning the network switch off blocks outbound WebView requests. Interactive scripts can send page data to remote services, so enable this mode only for trusted pages.",
+    "Interactive mode is off for every new preview and must be enabled explicitly for the currently trusted document. CSP blocks fetch, WebSocket, workers and frames. Interactive JavaScript is not a general network sandbox: APIs such as WebRTC may use the network independently of the resource switch. Keep unfamiliar documents in the default static mode.",
     "Least privilege: the plugin only receives the temporary content URI read permission granted by the host, never sees filesystem paths, and sends PDF output through Android's system print service instead of writing to storage itself.",
     "Bounded input: reads are capped at {{ max_html_size }}; MHTML also limits MIME parts, nesting, headers, and decoded bodies; file names and resource paths are strictly validated to prevent out-of-scope access.",
-    "Cookies, direct file/content access, native JavaScript bridges, and new windows remain disabled. Safe mode disables page storage; interactive mode allows local storage for page preferences and game scores. Source view and PDF use a fresh sanitized rendering."
+    "Enable only for this trusted document. Scripts can use network APIs outside the resource switch, including WebRTC. Every new preview starts with scripts off.",
+    "Static preview and the controlled HTTPS resource client validate and bind public DNS addresses and recheck every redirect. The resource switch controls this client; requests are limited to GET and HEAD."
   ],
   "p_security_permission": "In the default safe mode: The source manifest requests only the network permission (used when HTTPS images are enabled) and the AutoJs6 plugin permission. AndroidX also contributes a package-scoped signature permission that protects non-exported dynamic receivers; it grants no access to device data. Turning network images off prevents WebView outbound requests. PDF destination access belongs to Android's system print and file-picker UI, so the plugin requests no storage, media, camera, location, or other sensitive permissions.",
   "h3_plugin_interface": "Plugin Interface",

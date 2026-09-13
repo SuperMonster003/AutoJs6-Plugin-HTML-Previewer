@@ -5,6 +5,22 @@
   "changelog_label_improvement": "優化",
   "changelog_label_dependency": "相依性",
   "$data": {
+    "v1.1.0": {
+      "released_date": "2026/09/13",
+      "improvement": [
+        "校驗發行簽章設定, 預期 APK 集合與可重現文件"
+      ],
+      "fix": [
+        "靜態預覽和受控 HTTPS 資源用戶端驗證並綁定公網 DNS 位址, 每次重新導向均重新驗證. 資源開關控制該用戶端, 請求僅支援 GET 和 HEAD.",
+        "僅為目前可信文件啟用. 指令碼可能透過 WebRTC 等介面連網, 不受資源開關控制. 每次新預覽預設關閉指令碼."
+      ],
+      "dependency": [
+        "附加 OkHttp 4.12.0 用於受控 HTTPS 資源載入"
+      ],
+      "feature": [
+        "介面提供本地發行歷史, 支援多語言及英語回退"
+      ]
+    },
     "v1.0.1": {
       "released_date": "2026/09/11",
       "fix": [

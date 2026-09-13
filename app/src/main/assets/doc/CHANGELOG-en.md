@@ -4,6 +4,16 @@
 
 ******
 
+# v1.1.0
+
+###### 2026/09/13
+
+* `Feature` Local release history is available from the interface, with localized text and an English fallback
+* `Fix` Static preview and the controlled HTTPS resource client validate and bind public DNS addresses and recheck every redirect. The resource switch controls this client; requests are limited to GET and HEAD.
+* `Fix` Enable only for this trusted document. Scripts can use network APIs outside the resource switch, including WebRTC. Every new preview starts with scripts off.
+* `Improvement` Release packages are checked for a complete signing configuration, exact APK contents and reproducible documentation
+* `Dependency` Add OkHttp 4.12.0 for controlled HTTPS resource loading
+
 # v1.0.1
 
 ###### 2026/09/11

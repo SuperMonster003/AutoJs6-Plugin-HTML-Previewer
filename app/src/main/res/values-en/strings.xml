@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_html_previewer">HTML Previewer</string>
-    <string name="app_name">HTML Previewer</string>
     <string name="dialog_button_cancel">Cancel</string>
     <string name="dialog_button_confirm">Confirm</string>
     <string name="error_html_file_too_large">The HTML file exceeds the %1$s previewer limit</string>
     <string name="error_mhtml_file_too_large">The MHTML archive exceeds the %1$s limit and cannot be safely viewed in part</string>
-    <string name="plugin_description">File manager plugin. Secure read-only previewer for HTML and MHTML files</string>
+    <string name="plugin_description">Preview HTML and MHTML files</string>
+    <string name="release_history">Release history</string>
+    <string name="release_history_unavailable">Release history is unavailable</string>
+    <string name="text_blocked_resource_count">Blocked network resources: %1$d</string>
+    <string name="text_cannot_export_pdf">Cannot export PDF</string>
     <string name="text_cannot_open_link">Cannot open the link</string>
     <string name="text_cannot_read_file">Cannot read the HTML file</string>
     <string name="text_close_find">Close find</string>
+    <string name="text_export_pdf">Export PDF</string>
     <string name="text_find_in_page">Find in page</string>
     <string name="text_find_match_count">%1$d/%2$d</string>
     <string name="text_fullscreen_mode">Fullscreen mode</string>
     <string name="text_interactive_mode">Interactive mode</string>
-    <string name="text_interactive_mode_summary">Run scripts in complete HTML files. Enable only for trusted pages. Source view and PDF export stay script-free.</string>
+    <string name="text_interactive_mode_summary">Enable only for this trusted document. Scripts can use network APIs outside the resource switch, including WebRTC. Every new preview starts with scripts off.</string>
+    <string name="text_load_network_images">Load network images</string>
     <string name="text_load_network_resources">Load network resources</string>
     <string name="text_next_match">Next match</string>
+    <string name="text_preparing_pdf" tools:ignore="TypographyEllipsis">Preparing PDF...</string>
     <string name="text_previewer">Previewer</string>
+    <string name="text_previewer_first_limit">View first %1$s</string>
     <string name="text_previous_match">Previous match</string>
     <string name="text_refresh">Refresh</string>
-    <string name="text_export_pdf">Export PDF</string>
-    <string name="text_preparing_pdf">Preparing PDF...</string>
-    <string name="text_cannot_export_pdf">Cannot export PDF</string>
-    <string name="text_view_source">View source</string>
-    <string name="text_view_previewer">View rendered page</string>
     <string name="text_settings">Settings</string>
     <string name="text_start_in_fullscreen_mode">Start in fullscreen mode</string>
     <string name="text_text_size">Text size</string>
@@ -33,9 +35,8 @@
     <string name="text_theme_dark">Dark</string>
     <string name="text_theme_follow_system">Follow AutoJs6</string>
     <string name="text_theme_light">Light</string>
-    <string name="text_previewer_first_limit">View first %1$s</string>
     <string name="text_truncated_previewer_banner">Truncated page: showing only the first %1$s</string>
     <string name="text_truncated_previewer_marker">Rendered content ends here at %1$s; remaining content was omitted</string>
-    <string name="text_load_network_images">Load network images</string>
-    <string name="text_blocked_resource_count">Blocked network resources: %1$d</string>
+    <string name="text_view_previewer">View rendered page</string>
+    <string name="text_view_source">View source</string>
 </resources>

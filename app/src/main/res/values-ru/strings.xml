@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_html_previewer">Предпросмотр HTML</string>
-    <string name="app_name">Средство просмотра HTML</string>
     <string name="dialog_button_cancel">Отмена</string>
     <string name="dialog_button_confirm">Подтвердить</string>
     <string name="error_html_file_too_large">Файл HTML превышает ограничение просмотра %1$s</string>
     <string name="error_mhtml_file_too_large">Архив MHTML превышает лимит %1$s, поэтому его нельзя безопасно просмотреть частично</string>
-    <string name="plugin_description">Плагин файлового менеджера. Безопасный просмотр файлов HTML и MHTML только для чтения</string>
+    <string name="plugin_description">Предпросмотр файлов HTML и MHTML</string>
+    <string name="release_history">История выпусков</string>
+    <string name="release_history_unavailable">История выпусков недоступна</string>
+    <string name="text_blocked_resource_count">Заблокировано сетевых ресурсов: %1$d</string>
+    <string name="text_cannot_export_pdf">Не удалось экспортировать PDF</string>
     <string name="text_cannot_open_link">Не удалось открыть ссылку</string>
     <string name="text_cannot_read_file">Не удалось прочитать файл HTML</string>
     <string name="text_close_find">Закрыть поиск</string>
+    <string name="text_export_pdf">Экспорт в PDF</string>
     <string name="text_find_in_page">Найти на странице</string>
     <string name="text_find_match_count">%1$d/%2$d</string>
     <string name="text_fullscreen_mode">Полноэкранный режим</string>
     <string name="text_interactive_mode">Интерактивный режим</string>
-    <string name="text_interactive_mode_summary">Выполняет скрипты в полных HTML-файлах. Включайте только для доверенных страниц. Просмотр исходного кода и экспорт PDF не выполняют скрипты.</string>
+    <string name="text_interactive_mode_summary">Включайте только для текущего доверенного документа. WebRTC и другие API могут обращаться к сети независимо от настройки ресурсов. Каждый новый просмотр отключает скрипты.</string>
+    <string name="text_load_network_images">Загружать сетевые изображения</string>
     <string name="text_load_network_resources">Загружать сетевые ресурсы</string>
     <string name="text_next_match">Следующее совпадение</string>
+    <string name="text_preparing_pdf" tools:ignore="TypographyEllipsis">Подготовка PDF...</string>
     <string name="text_previewer">Средство просмотра</string>
+    <string name="text_previewer_first_limit">Предпросмотр первых %1$s</string>
     <string name="text_previous_match">Предыдущее совпадение</string>
     <string name="text_refresh">Обновить</string>
-    <string name="text_export_pdf">Экспорт в PDF</string>
-    <string name="text_preparing_pdf">Подготовка PDF...</string>
-    <string name="text_cannot_export_pdf">Не удалось экспортировать PDF</string>
-    <string name="text_view_source">Показать исходный код</string>
-    <string name="text_view_previewer">Показать предпросмотр</string>
     <string name="text_settings">Настройки</string>
     <string name="text_start_in_fullscreen_mode">Запускать в полноэкранном режиме</string>
     <string name="text_text_size">Размер текста</string>
@@ -33,9 +35,8 @@
     <string name="text_theme_dark">Тёмная</string>
     <string name="text_theme_follow_system">Как в AutoJs6</string>
     <string name="text_theme_light">Светлая</string>
-    <string name="text_previewer_first_limit">Предпросмотр первых %1$s</string>
     <string name="text_truncated_previewer_banner">Усечённый предпросмотр: показаны только первые %1$s</string>
     <string name="text_truncated_previewer_marker">Предпросмотр заканчивается на отметке %1$s; остальное содержимое опущено</string>
-    <string name="text_load_network_images">Загружать сетевые изображения</string>
-    <string name="text_blocked_resource_count">Заблокировано сетевых ресурсов: %1$d</string>
+    <string name="text_view_previewer">Показать предпросмотр</string>
+    <string name="text_view_source">Показать исходный код</string>
 </resources>

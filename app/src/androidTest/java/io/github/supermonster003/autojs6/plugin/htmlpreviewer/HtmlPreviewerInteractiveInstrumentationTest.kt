@@ -9,6 +9,59 @@ import java.util.concurrent.TimeUnit
 
 class HtmlPreviewerInteractiveInstrumentationTest {
     @Test
+    fun interactiveCspBlocksFetchWebSocketAndWorkers() {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        val context = instrumentation.targetContext
+        val activity = instrumentation.startActivitySync(
+            Intent(context, HtmlPreviewerWebViewTestActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+        ) as HtmlPreviewerWebViewTestActivity
+        var controller: HtmlPreviewerWebController? = null
+        try {
+            val ready = CountDownLatch(1)
+            val rendered = HtmlPreviewerRenderer().renderResult("""
+                <script>
+                window.policyViolations=[];
+                document.addEventListener('securitypolicyviolation', function(event) {
+                    window.policyViolations.push(event.violatedDirective);
+                });
+                window.tryBlockedApis=function() {
+                    fetch('https://csp-test.invalid/fetch').catch(function() {});
+                    try { new WebSocket('wss://csp-test.invalid/socket'); } catch(error) {}
+                    try { new Worker(URL.createObjectURL(new Blob(['postMessage(1)'], {type:'text/javascript'}))); } catch(error) {}
+                };
+                </script>
+            """.trimIndent(), interactive = true, loadNetworkImages = true)
+            instrumentation.runOnMainSync {
+                controller = HtmlPreviewerWebController(activity, activity.webView,
+                    resourceRoot = HtmlPreviewerTestContentProvider.parentUri(),
+                    onExternalLink = {}, onPageFinished = { ready.countDown() })
+                controller!!.show(rendered.html, loadNetworkImages = true, interactive = true)
+            }
+            assertTrue("CSP test page did not load", ready.await(20, TimeUnit.SECONDS))
+            instrumentation.runOnMainSync { activity.webView.evaluateJavascript("window.tryBlockedApis()", null) }
+            val deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(10)
+            var violations = ""
+            while (System.nanoTime() < deadline) {
+                val checked = CountDownLatch(1)
+                instrumentation.runOnMainSync {
+                    activity.webView.evaluateJavascript("JSON.stringify(window.policyViolations)") {
+                        violations = it
+                        checked.countDown()
+                    }
+                }
+                assertTrue(checked.await(5, TimeUnit.SECONDS))
+                if (violations.split("connect-src").size >= 3 && violations.contains("worker-src")) break
+                Thread.sleep(100)
+            }
+            assertTrue("Fetch and WebSocket must both be rejected by CSP: $violations",
+                violations.split("connect-src").size >= 3)
+            assertTrue("Workers must be rejected by CSP: $violations", violations.contains("worker-src"))
+        } finally {
+            instrumentation.runOnMainSync { controller?.destroy(); activity.finish() }
+        }
+    }
+
+    @Test
     fun interactivePagesLoadLocalScriptsRunWebGlAndHandleTheStartButton() {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         val context = instrumentation.targetContext

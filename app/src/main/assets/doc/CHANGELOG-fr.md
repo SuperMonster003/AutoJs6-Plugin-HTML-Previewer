@@ -4,6 +4,16 @@
 
 ******
 
+# v1.1.0
+
+###### 2026/09/13
+
+* `Fonctionnalité` Historique local accessible depuis l'interface, avec traductions et repli en anglais
+* `Correctif` L’aperçu statique et le client HTTPS contrôlé valident les adresses DNS publiques, les fixent pour la connexion et revérifient chaque redirection. Le réglage des ressources contrôle ce client, limité à GET et HEAD.
+* `Correctif` Activez uniquement pour le document actuel de confiance. WebRTC et certaines API peuvent communiquer hors du réglage des ressources. Chaque nouvel aperçu désactive les scripts.
+* `Amélioration` Vérification de la signature complète, des APK attendus et de la reproductibilité de la documentation
+* `Dépendance` Ajout de OkHttp 4.12.0 pour le chargement contrôlé des ressources HTTPS
+
 # v1.0.1
 
 ###### 2026/09/11

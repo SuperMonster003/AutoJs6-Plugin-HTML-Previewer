@@ -5,6 +5,21 @@ import org.junit.Assert.*
 import org.junit.Test
 
 class HtmlPreviewerInteractiveRendererTest {
+    @org.junit.Test
+    fun interactivePolicyBlocksScriptConnectionsWorkersAndSpeculativeLoads() {
+        val result = HtmlPreviewerRenderer().renderResult(
+            "<link rel='preconnect' href='https://blocked.invalid'><link rel='dns-prefetch' href='//blocked.invalid'><script>window.ok=true</script>",
+            interactive = true,
+        )
+        val document = Jsoup.parse(result.html)
+        val policy = document.selectFirst("meta[http-equiv=Content-Security-Policy]")!!.attr("content")
+        assertTrue(policy.contains("connect-src 'none'"))
+        assertTrue(policy.contains("webrtc 'block'"))
+        assertTrue(policy.contains("worker-src 'none'"))
+        assertTrue(policy.contains("frame-src 'none'"))
+        assertTrue(document.select("link[rel=preconnect], link[rel=dns-prefetch]").isEmpty())
+        assertTrue(document.select("script").isNotEmpty())
+    }
     private val source = "<button onclick='startGame()'>Start</button>" +
         "<script src='https://cdn.example.com/three.js'></script><script>function startGame(){}</script>"
 

@@ -35,4 +35,5 @@
         android:title="@string/text_settings"
         app:showAsAction="never" />
 
+    <item android:id="@+id/action_release_history" android:title="@string/release_history" app:showAsAction="never" />
 </menu>

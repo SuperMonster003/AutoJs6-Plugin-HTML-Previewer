@@ -23,6 +23,26 @@ import java.util.concurrent.atomic.AtomicReference
 class HtmlPreviewerPreferencesInstrumentationTest {
 
     @Test
+    fun interactiveTrustDoesNotPersistToAnotherDocumentOrInheritLegacySettings() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val storage = context.getSharedPreferences(HtmlPreviewerPreferences.PREFERENCES_NAME, Context.MODE_PRIVATE)
+        val previous = storage.all[HtmlPreviewerPreferences.KEY_INTERACTIVE_MODE]
+        try {
+            assertTrue(storage.edit().putBoolean(HtmlPreviewerPreferences.KEY_INTERACTIVE_MODE, true).commit())
+            val currentDocument = HtmlPreviewerPreferences(context)
+            assertEquals(false, currentDocument.interactiveMode)
+            currentDocument.interactiveMode = true
+            assertEquals(true, currentDocument.interactiveMode)
+            assertEquals(false, HtmlPreviewerPreferences(context).interactiveMode)
+        } finally {
+            storage.edit().apply {
+                if (previous is Boolean) putBoolean(HtmlPreviewerPreferences.KEY_INTERACTIVE_MODE, previous)
+                else remove(HtmlPreviewerPreferences.KEY_INTERACTIVE_MODE)
+            }.commit()
+        }
+    }
+
+    @Test
     fun networkImagesDefaultToEnabledWhenNoValueIsStored() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val sharedPreferences = context.getSharedPreferences(

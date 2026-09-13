@@ -380,7 +380,7 @@ class HtmlPreviewerWebControllerInstrumentationTest {
                     assertFalse(allowFileAccessFromFileURLs)
                     assertFalse(allowUniversalAccessFromFileURLs)
                     assertFalse(blockNetworkImage)
-                    assertFalse(blockNetworkLoads)
+                    assertTrue(blockNetworkLoads)
                     assertTrue(builtInZoomControls)
                     assertFalse(displayZoomControls)
                     assertEquals(175, textZoom)
@@ -468,7 +468,7 @@ class HtmlPreviewerWebControllerInstrumentationTest {
             instrumentation.runOnMainSync {
                 requireNotNull(activity.get()).webView.settings.apply {
                     assertFalse(blockNetworkImage)
-                    assertFalse(blockNetworkLoads)
+                    assertTrue(blockNetworkLoads)
                 }
             }
         } finally {

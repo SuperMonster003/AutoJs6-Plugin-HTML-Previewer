@@ -138,6 +138,10 @@ class HtmlPreviewerRenderer {
     ): Pair<Document, Int> {
         val document = Jsoup.parse(html)
         document.select("base, iframe, frame, frameset, object, embed, applet").remove()
+        document.select("link[rel]").filter { element ->
+            element.attr("rel").lowercase(Locale.ROOT).split(Regex("\\s+"))
+                .any { it in setOf("preconnect", "dns-prefetch", "prefetch", "prerender") }
+        }.forEach(Element::remove)
         if (!interactive) document.select("script").remove()
         document.select("meta[http-equiv]").remove()
         val blockedNetworkResourceCount = document.allElements.sumOf { element ->
@@ -261,9 +265,9 @@ internal object HtmlPreviewerSecurityPolicy {
             return "default-src 'none'; style-src 'self' 'unsafe-inline'$network; " +
                 "script-src 'self' 'unsafe-inline' 'unsafe-eval'$network; " +
                 "img-src 'self' data: blob:$network; font-src 'self' data:$network; " +
-                "media-src 'self' data: blob:$network; connect-src 'self'$network; " +
+                "media-src 'self' data: blob:$network; connect-src 'none'; " +
                 "frame-src 'none'; child-src 'none'; object-src 'none'; worker-src 'none'; " +
-                "manifest-src 'none'; base-uri 'none'; form-action 'none'"
+                "manifest-src 'none'; base-uri 'none'; form-action 'none'; webrtc 'block'"
         }
         return "default-src 'none'; style-src 'self' 'unsafe-inline'; " +
             "img-src 'self' data:${if (loadNetworkImages) " https:" else ""}; " +

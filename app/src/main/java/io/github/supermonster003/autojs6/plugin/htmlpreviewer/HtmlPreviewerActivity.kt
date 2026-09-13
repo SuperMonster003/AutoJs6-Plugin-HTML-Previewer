@@ -148,6 +148,7 @@ class HtmlPreviewerActivity : PreviewerHostActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.action_release_history -> { showReleaseHistory(); true }
         android.R.id.home -> true.also { finish() }
         R.id.action_find_in_page -> true.also { openFindBar() }
         R.id.action_toggle_source -> true.also { toggleViewMode() }

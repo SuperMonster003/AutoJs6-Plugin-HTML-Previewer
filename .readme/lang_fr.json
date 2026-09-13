@@ -1,7 +1,7 @@
 {
   "$name": "Français",
   "text_current_lowercase": "actuel",
-  "text_plugin_synopsis": "Plugin de gestionnaire de fichiers. Aperçu sécurisé en lecture seule des fichiers HTML et MHTML",
+  "text_plugin_synopsis": "Affiche un aperçu des fichiers HTML et MHTML",
   "h3_languages_with_ascii": "Langues (Languages)",
   "p_languages_all_supported_for_readme": "Le fichier README.md actuel prend en charge les langues suivantes",
   "h3_introduction": "Introduction",
@@ -59,14 +59,15 @@
     }
   ],
   "h3_security": "Autorisations et sécurité",
-  "p_security_intro": "Le plugin part du principe que le fichier prévisualisé n'est pas fiable et applique plusieurs couches de protection:",
+  "p_security_intro": "Le mode interactif est désactivé pour chaque nouvel aperçu et exige une activation explicite pour le document actuel de confiance. La CSP bloque fetch, WebSocket, les workers et les cadres. JavaScript interactif ne constitue pas un bac à sable réseau général: WebRTC peut communiquer indépendamment du réglage des ressources. Gardez les documents inconnus en mode statique par défaut.",
   "security_points": [
     "En mode sûr par défaut: Nettoyage avant affichage: scripts, attributs de gestionnaires d'événements, cadres intégrés, objets intégrés et cibles de formulaires sont supprimés, et les adresses de liens ou de ressources non sûres sont filtrées.",
     "Cookies, accès direct aux fichiers/content, ponts JavaScript natifs et nouvelles fenêtres restent désactivés. Le stockage local est réservé au mode interactif, pour les préférences et scores. Le code source et le PDF utilisent un contenu assaini à nouveau.",
-    "Les ressources locales proviennent du dossier autorisé ou de l’archive MHTML sélectionnée. Le mode sûr autorise les images HTTPS publiques; le mode interactif autorise aussi scripts, styles et requêtes HTTPS publics lorsque les ressources réseau sont activées. Désactiver le réseau bloque les requêtes WebView sortantes. Les scripts interactifs peuvent envoyer des données à des services distants; réservez ce mode aux pages fiables.",
+    "Le mode interactif est désactivé pour chaque nouvel aperçu et exige une activation explicite pour le document actuel de confiance. La CSP bloque fetch, WebSocket, les workers et les cadres. JavaScript interactif ne constitue pas un bac à sable réseau général: WebRTC peut communiquer indépendamment du réglage des ressources. Gardez les documents inconnus en mode statique par défaut.",
     "Moindre privilège: le plugin ne reçoit que l'autorisation temporaire de lecture par URI de contenu accordée par l'hôte, ne voit jamais les chemins du système de fichiers et transmet la sortie PDF au service d'impression Android au lieu d'écrire lui-même dans le stockage.",
     "Entrée bornée: la lecture est plafonnée à {{ max_html_size }}; MHTML limite aussi les parties, l'imbrication, les en-têtes et les corps décodés; les noms de fichiers et chemins de ressources sont strictement validés pour empêcher tout accès hors périmètre.",
-    "Cookies, accès direct aux fichiers/content, ponts JavaScript natifs et nouvelles fenêtres restent désactivés. Le stockage local est réservé au mode interactif, pour les préférences et scores. Le code source et le PDF utilisent un contenu assaini à nouveau."
+    "Activez uniquement pour le document actuel de confiance. WebRTC et certaines API peuvent communiquer hors du réglage des ressources. Chaque nouvel aperçu désactive les scripts.",
+    "L’aperçu statique et le client HTTPS contrôlé valident les adresses DNS publiques, les fixent pour la connexion et revérifient chaque redirection. Le réglage des ressources contrôle ce client, limité à GET et HEAD."
   ],
   "p_security_permission": "En mode sûr par défaut: Le manifeste source ne demande que l'autorisation réseau (utilisée lorsque les images HTTPS sont activées) et l'autorisation de plugin AutoJs6. AndroidX ajoute aussi une autorisation de signature limitée au paquet pour protéger les récepteurs dynamiques non exportés; elle ne donne accès à aucune donnée de l'appareil. Lorsque les images réseau sont désactivées, WebView n'émet aucune requête sortante. L'accès à la destination PDF appartient aux interfaces d'impression et de sélection de fichiers Android; aucune autorisation de stockage, de médias, d'appareil photo, de localisation ou autre autorisation sensible n'est donc demandée.",
   "h3_plugin_interface": "Interface du plugin",

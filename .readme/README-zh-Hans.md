@@ -5,7 +5,7 @@
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-previewer-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>文件管理器插件. 安全只读预览 HTML 与 MHTML 文件</p>
+  <p>预览 HTML 和 MHTML 文件</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-HTML-Previewer?label=Release"/></a>
@@ -123,14 +123,15 @@ html, htm, shtm, shtml, xht, xhtml, mht, mhtml
 
 ******
 
-插件在设计上假定被预览的文件不可信, 因此采取多层防护:
+每次新预览均关闭交互模式, 仅在明确信任当前文档时手动启用. CSP 阻止 fetch, WebSocket, worker 和框架. 交互 JavaScript 不是通用网络沙箱: WebRTC 等接口可能独立于资源开关联网. 陌生文档应保持默认静态模式.
 
 - 默认安全模式下: 显示前净化: 移除脚本, 事件处理属性, 内嵌框架, 嵌入对象与表单提交地址, 并过滤不安全的链接和资源地址.
 - Cookie, 直接文件/content 访问, 原生 JavaScript 桥和新窗口保持禁用. 安全模式禁用页面存储; 交互模式允许本地存储, 用于页面偏好或游戏分数. 源码视图与 PDF 使用重新净化的内容.
-- 本地资源来自已授权目录或选中的 MHTML 归档. 安全模式允许公共 HTTPS 图片; 交互模式开启 `加载网络资源` 后还允许公共 HTTPS 脚本, 样式及请求. 关闭网络开关会拦截 WebView 出站请求. 交互脚本能够向远程服务发送页面数据, 因此仅应对可信页面启用.
+- 每次新预览均关闭交互模式, 仅在明确信任当前文档时手动启用. CSP 阻止 fetch, WebSocket, worker 和框架. 交互 JavaScript 不是通用网络沙箱: WebRTC 等接口可能独立于资源开关联网. 陌生文档应保持默认静态模式.
 - 最小权限: 插件只接收宿主授予的临时 content URI 读取权限, 接触不到文件系统路径; PDF 输出交由 Android 系统打印服务处理, 插件自身不写入存储空间.
 - 输入有界: 读取大小上限为 8 MB; MHTML 还限制 MIME 部件数, 嵌套层数, 头部与解码总量; 文件名与资源路径均经过严格校验, 防止越界访问.
-- Cookie, 直接文件/content 访问, 原生 JavaScript 桥和新窗口保持禁用. 安全模式禁用页面存储; 交互模式允许本地存储, 用于页面偏好或游戏分数. 源码视图与 PDF 使用重新净化的内容.
+- 仅为当前可信文档启用. 脚本可能通过 WebRTC 等接口联网, 不受资源开关控制. 每次新预览默认关闭脚本.
+- 静态预览和受控 HTTPS 资源客户端校验并绑定公网 DNS 地址, 每次重定向均重新校验. 资源开关控制该客户端, 请求仅支持 GET 和 HEAD.
 
 默认安全模式下: 源清单仅申请网络权限 (在开启 HTTPS 图片时使用) 与 AutoJs6 插件权限. AndroidX 还会自动加入一个仅限本应用签名的权限, 用于保护未导出的动态接收器, 不授予任何设备数据访问能力. 关闭网络图片后 WebView 不会发出出站请求. PDF 目标位置的访问由 Android 系统打印与文件选择界面负责, 因此插件不申请存储, 媒体, 相机, 位置等其他敏感权限.
 
@@ -174,6 +175,16 @@ Explorer Action v2 同时支持单文件的主预览按钮和溢出菜单, 通�
 ### 发行历史
 
 ******
+
+#### v1.1.0
+
+_2026/09/13_
+
+- `新增` 界面提供本地发行历史, 支持多语言及英语回退
+- `修复` 静态预览和受控 HTTPS 资源客户端校验并绑定公网 DNS 地址, 每次重定向均重新校验. 资源开关控制该客户端, 请求仅支持 GET 和 HEAD.
+- `修复` 仅为当前可信文档启用. 脚本可能通过 WebRTC 等接口联网, 不受资源开关控制. 每次新预览默认关闭脚本.
+- `优化` 校验发行签名配置, 预期 APK 集合与可复现文档
+- `依赖` 附加 OkHttp 4.12.0 用于受控 HTTPS 资源加载
 
 #### v1.0.1
 

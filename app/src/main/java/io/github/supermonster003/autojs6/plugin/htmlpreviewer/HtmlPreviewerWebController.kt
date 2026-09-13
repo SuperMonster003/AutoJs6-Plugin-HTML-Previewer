@@ -42,6 +42,10 @@ class HtmlPreviewerWebController(
     @Volatile
     private var initiallyBlockedResourceCount = 0
 
+    private val publicHttpsClient = PublicHttpsClient(allowedUrl = { url ->
+        HtmlPreviewerRequestPolicy.shouldLetWebViewLoadHttpsSubresource(url, false)
+    })
+
     private val assetLoader = WebViewAssetLoader.Builder()
         .setDomain(HtmlPreviewerWebOrigin.DOMAIN)
         .addPathHandler(
@@ -75,7 +79,7 @@ class HtmlPreviewerWebController(
             allowUniversalAccessFromFileURLs = false
             mixedContentMode = WebSettings.MIXED_CONTENT_NEVER_ALLOW
             blockNetworkImage = false
-            blockNetworkLoads = false
+            blockNetworkLoads = true
 
             setSupportMultipleWindows(false)
             setSupportZoom(true)
@@ -120,7 +124,14 @@ class HtmlPreviewerWebController(
                         loadNetworkImages,
                     )
                 ) {
-                    return null
+                    return try {
+                        val resource = publicHttpsClient.open(uri.toString(), request.method, request.requestHeaders)
+                        WebResourceResponse(resource.mimeType, resource.encoding, 200, "OK", resource.headers, resource.body)
+                    } catch (_: java.io.IOException) {
+                        forbidden()
+                    } catch (_: IllegalArgumentException) {
+                        forbidden()
+                    }
                 }
                 if (
                     !request.isForMainFrame &&
@@ -251,10 +262,10 @@ class HtmlPreviewerWebController(
     fun setLoadNetworkImages(enabled: Boolean) {
         loadNetworkImages = enabled
         // Preserve images served from the previewer's own virtual origin. CSP, sanitization and
-        // request interception decide which image URLs are admissible; blockNetworkLoads remains
-        // the final WebView-level guard against every outbound request when this is disabled.
+        // request interception uses the DNS-bound client. This blocks WebView's ordinary loader;
+        // trusted interactive scripts are not a network sandbox for every browser API (e.g. WebRTC).
         webView.settings.blockNetworkImage = false
-        webView.settings.blockNetworkLoads = !enabled
+        webView.settings.blockNetworkLoads = true
         if (!enabled) {
             webView.stopLoading()
         }
