@@ -154,12 +154,21 @@ class PluginContractInstrumentationTest {
         val receiverProtectionPermission =
             "${context.packageName}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
 
+        // API 37 splits ACCESS_LOCAL_NETWORK off INTERNET for packages that target an older SDK,
+        // so the installed package lists a permission the manifest never declares.
+        val splitFromInternet =
+            if (android.os.Build.VERSION.SDK_INT >= 37 && context.applicationInfo.targetSdkVersion < 37) {
+                setOf("android.permission.ACCESS_LOCAL_NETWORK")
+            } else {
+                emptySet()
+            }
+
         assertEquals(
             setOf(
                 android.Manifest.permission.INTERNET,
                 ExplorerActionPluginPermissions.PLUGIN,
                 receiverProtectionPermission,
-            ),
+            ) + splitFromInternet,
             packageInfo.requestedPermissions.orEmpty().toSet(),
         )
         val permissionInfo = context.packageManager.getPermissionInfo(
