@@ -176,6 +176,12 @@ Planned capabilities and their completion status are tracked as a checkable list
 
 ******
 
+#### v1.1.2
+
+_2026/09/16_
+
+- `Improvement` Raise targetSdk to 37 (Android 17) after compileSdk; the plugin's behavior does not depend on the new target
+
 #### v1.1.1
 
 _2026/09/15_
@@ -192,16 +198,6 @@ _2026/09/13_
 - `Fix` Preserve HTTP 206 and other successful status codes when loading remote resources
 - `Improvement` Release packages are checked for a complete signing configuration, exact APK contents and reproducible documentation
 - `Dependency` Add OkHttp 4.12.0 for controlled HTTPS resource loading
-
-#### v1.0.1
-
-_2026/09/11_
-
-- `Feature` Scripts are disabled by default. For a trusted, complete ordinary HTML file, enable `Interactive mode` in `Settings` to run JavaScript, button events, WebGL, and local storage. MHTML, truncated HTML, source view, and PDF export always keep scripts disabled.
-- `Fix` An issue where enabling the plugin in the plugin center could fail with an error
-- `Fix` Fixed primary previewer protocol rejection and settings crashes; synchronized the host appearance, page chrome, and monochrome dialog controls
-- `Improvement` Leaner plugin name and description, easier-to-read user documentation
-- `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
 
 ##### For more release history
 
@@ -223,7 +219,7 @@ Release build:
 .\gradlew.bat :app:assembleRelease
 ```
 
-Build parameters come from `version.properties`. The current minimum SDK is 24 and the target SDK is 36.
+Build parameters come from `version.properties`. The current minimum SDK is 24 and the target SDK is 37.
 
 ******
 

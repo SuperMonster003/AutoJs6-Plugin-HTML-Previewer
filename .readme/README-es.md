@@ -176,6 +176,12 @@ Las capacidades previstas y su estado se registran como lista marcable en ROADMA
 
 ******
 
+#### v1.1.2
+
+_2026/09/16_
+
+- `Mejora` Tras compileSdk, targetSdk sube a 37 (Android 17); el comportamiento del plugin no depende del nuevo objetivo
+
 #### v1.1.1
 
 _2026/09/15_
@@ -192,16 +198,6 @@ _2026/09/13_
 - `Corrección` Conservar HTTP 206 y otros estados correctos al cargar recursos remotos
 - `Mejora` Comprobación de la firma completa, los APK esperados y la documentación reproducible de cada versión
 - `Dependencia` Añadir OkHttp 4.12.0 para la carga controlada de recursos HTTPS
-
-#### v1.0.1
-
-_2026/09/11_
-
-- `Función` Los scripts están desactivados por defecto. Para un HTML normal completo y de confianza, active el modo interactivo en ajustes para JavaScript, botones, WebGL y almacenamiento local. MHTML, HTML truncado, código fuente y exportación PDF siempre desactivan los scripts.
-- `Corrección` Fallo ocasional al activar el complemento en el centro de complementos
-- `Corrección` Corregidos el rechazo de protocolo del botón principal y los cierres de ajustes; sincronizados la apariencia de AutoJs6, las barras y los controles monocromos
-- `Mejora` Nombre y descripción del complemento más concisos, documentación de usuario más legible
-- `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
 
 ##### Para consultar más historial de versiones
 
@@ -223,7 +219,7 @@ Compilación Release:
 .\gradlew.bat :app:assembleRelease
 ```
 
-Los parámetros de compilación provienen de `version.properties`. El SDK mínimo actual es 24 y el SDK de destino es 36.
+Los parámetros de compilación provienen de `version.properties`. El SDK mínimo actual es 24 y el SDK de destino es 37.
 
 ******
 

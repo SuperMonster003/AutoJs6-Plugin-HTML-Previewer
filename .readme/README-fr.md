@@ -176,6 +176,12 @@ Les capacités prévues et leur avancement sont suivis sous forme de liste cocha
 
 ******
 
+#### v1.1.2
+
+_2026/09/16_
+
+- `Amélioration` Après compileSdk, targetSdk passe à 37 (Android 17) ; le comportement du plugin ne dépend pas de la nouvelle cible
+
 #### v1.1.1
 
 _2026/09/15_
@@ -192,16 +198,6 @@ _2026/09/13_
 - `Correctif` Conserver HTTP 206 et les autres codes de succès lors du chargement des ressources distantes
 - `Amélioration` Vérification de la signature complète, des APK attendus et de la reproductibilité de la documentation
 - `Dépendance` Ajout de OkHttp 4.12.0 pour le chargement contrôlé des ressources HTTPS
-
-#### v1.0.1
-
-_2026/09/11_
-
-- `Fonctionnalité` Les scripts sont désactivés par défaut. Pour un fichier HTML ordinaire complet et fiable, activez le mode interactif dans les paramètres pour JavaScript, les boutons, WebGL et le stockage local. MHTML, HTML tronqué, code source et export PDF gardent les scripts désactivés.
-- `Correctif` Échec possible de l'activation du plugin dans le centre de plugins
-- `Correctif` Correction du rejet du protocole du bouton principal et des plantages des paramètres; apparence AutoJs6, couleurs des barres et contrôles monochromes synchronisés
-- `Amélioration` Nom et description du plugin allégés, documentation utilisateur plus lisible
-- `Amélioration` La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON
 
 ##### Pour plus d'historique des versions
 
@@ -223,7 +219,7 @@ Compilation Release:
 .\gradlew.bat :app:assembleRelease
 ```
 
-Les paramètres de compilation proviennent de `version.properties`. Le SDK minimum actuel est 24 et le SDK cible est 36.
+Les paramètres de compilation proviennent de `version.properties`. Le SDK minimum actuel est 24 et le SDK cible est 37.
 
 ******
 

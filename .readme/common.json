@@ -18,5 +18,5 @@
   "supported_formats": "html, htm, shtm, shtml, xht, xhtml, mht, mhtml",
   "max_html_size": "8 MB",
   "android_min_sdk": "24",
-  "android_target_sdk": "36"
+  "android_target_sdk": "37"
 }
