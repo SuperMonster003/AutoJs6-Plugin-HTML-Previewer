@@ -176,6 +176,12 @@ Les capacités prévues et leur avancement sont suivis sous forme de liste cocha
 
 ******
 
+#### v1.1.1
+
+_2026/09/15_
+
+- `Amélioration` compileSdk passe à 37 (Android 17) ; targetSdk reste à 36 jusqu'à la vérification du comportement dépendant de la cible
+
 #### v1.1.0
 
 _2026/09/13_
@@ -196,17 +202,6 @@ _2026/09/11_
 - `Correctif` Correction du rejet du protocole du bouton principal et des plantages des paramètres; apparence AutoJs6, couleurs des barres et contrôles monochromes synchronisés
 - `Amélioration` Nom et description du plugin allégés, documentation utilisateur plus lisible
 - `Amélioration` La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON
-
-#### v1.0.0
-
-_2026/08/06_
-
-- `Fonctionnalité` Première version: une action de menu `Prévisualiser HTML` pour les fichiers HTML dans le gestionnaire de fichiers d'AutoJs6 (ID de plugin `html-previewer`)
-- `Fonctionnalité` Visionneuse sécurisée: scripts, cadres, objets intégrés et envois de formulaires supprimés avant l'affichage, entièrement en lecture seule et sans jamais exécuter JavaScript
-- `Fonctionnalité` Chargement des ressources: prend en charge les styles de la page, les ressources locales voisines du fichier et les images web HTTPS selon des règles contrôlées, toutes les autres requêtes étant bloquées
-- `Fonctionnalité` Confort de lecture: thème clair/sombre automatique, zoom par pincement, actualisation, mode plein écran et réglage `Démarrer en mode plein écran`
-- `Fonctionnalité` Limites de sécurité: seule l'autorisation temporaire de lecture accordée par l'hôte est acceptée, chaque fichier est plafonné à 8 MB, et les noms de fichiers comme les chemins de ressources sont strictement validés
-- `Fonctionnalité` Multilingue: interface, instructions, README et changelog en 10 langues
 
 ##### Pour plus d'historique des versions
 
