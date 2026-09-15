@@ -176,6 +176,12 @@ Las capacidades previstas y su estado se registran como lista marcable en ROADMA
 
 ******
 
+#### v1.1.1
+
+_2026/09/15_
+
+- `Mejora` compileSdk sube a 37 (Android 17); targetSdk se mantiene en 36 hasta verificar el comportamiento que depende del objetivo
+
 #### v1.1.0
 
 _2026/09/13_
@@ -196,17 +202,6 @@ _2026/09/11_
 - `Corrección` Corregidos el rechazo de protocolo del botón principal y los cierres de ajustes; sincronizados la apariencia de AutoJs6, las barras y los controles monocromos
 - `Mejora` Nombre y descripción del complemento más concisos, documentación de usuario más legible
 - `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
-
-#### v1.0.0
-
-_2026/08/06_
-
-- `Función` Primera versión: una acción de menú `Vista previa de HTML` para archivos HTML en el gestor de archivos de AutoJs6 (ID de complemento `html-previewer`)
-- `Función` Visor seguro: los scripts, marcos, objetos incrustados y envíos de formularios se eliminan antes de mostrar, todo en modo de solo lectura y sin ejecutar nunca JavaScript
-- `Función` Carga de recursos: admite los estilos de la página, los recursos locales junto al archivo y las imágenes web HTTPS bajo reglas controladas, con el resto de peticiones bloqueadas
-- `Función` Experiencia de lectura: tema claro/oscuro automático, zoom con dos dedos, actualización, modo de pantalla completa y ajuste `Iniciar en modo de pantalla completa`
-- `Función` Límites de seguridad: solo se acepta el permiso temporal de lectura concedido por el anfitrión, cada archivo se limita a 8 MB, y los nombres de archivo y las rutas de recursos se validan estrictamente
-- `Función` Multilingüe: interfaz, instrucciones, README y changelog en 10 idiomas
 
 ##### Para consultar más historial de versiones
 

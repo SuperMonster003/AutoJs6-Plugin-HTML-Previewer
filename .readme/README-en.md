@@ -176,6 +176,12 @@ Planned capabilities and their completion status are tracked as a checkable list
 
 ******
 
+#### v1.1.1
+
+_2026/09/15_
+
+- `Improvement` Raise compileSdk to 37 (Android 17); targetSdk stays at 36 until the behavior that depends on the target is verified
+
 #### v1.1.0
 
 _2026/09/13_
@@ -196,17 +202,6 @@ _2026/09/11_
 - `Fix` Fixed primary previewer protocol rejection and settings crashes; synchronized the host appearance, page chrome, and monochrome dialog controls
 - `Improvement` Leaner plugin name and description, easier-to-read user documentation
 - `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
-
-#### v1.0.0
-
-_2026/08/06_
-
-- `Feature` First release: an `HTML Previewer` menu action for HTML files in the AutoJs6 file manager (plugin ID `html-previewer`)
-- `Feature` Secure viewer: scripts, frames, embedded objects, and form submissions are removed before display, fully read-only with JavaScript never executed
-- `Feature` Resource loading: supports page styles, local resources next to the file, and HTTPS web images under guarded rules, while all other requests are blocked
-- `Feature` Reading experience: automatic light/dark theme, pinch-to-zoom, refresh, fullscreen mode, and a `Start in fullscreen mode` setting
-- `Feature` Safety bounds: only the temporary read permission granted by the host is accepted, single files are capped at 8 MB, and file names as well as resource paths are strictly validated
-- `Feature` Multilingual: interface, instructions, README, and changelog in 10 languages
 
 ##### For more release history
 
