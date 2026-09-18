@@ -109,6 +109,8 @@ class HtmlPreviewerActivity : PreviewerHostActivity() {
             webView = binding.previewerWebView,
             resourceRoot = previewerRequest.parentUri,
             onExternalLink = ::openExternalLink,
+            // Match visible HTML even while scripts or other subresources are still loading.
+            onPageCommitVisible = { chrome.samplePage() },
             onPageFinished = {
                 documentReady = true
                 chrome.samplePage()

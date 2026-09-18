@@ -5,6 +5,12 @@
   "changelog_label_improvement": "優化",
   "changelog_label_dependency": "相依性",
   "$data": {
+    "v1.1.3": {
+      "released_date": "2026/09/18",
+      "fix": [
+        "頁面背景繪製後及時更新狀態列和導覽列色彩, 無需等待 JavaScript 載入完成"
+      ]
+    },
     "v1.1.2": {
       "released_date": "2026/09/16",
       "improvement": [

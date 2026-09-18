@@ -21,6 +21,7 @@ class HtmlPreviewerTestContentProvider : ContentProvider() {
             ?: throw FileNotFoundException("Invalid test document URI")
         val file = fileFor(requireNotNull(context), name)
         if (!file.isFile) throw FileNotFoundException("Missing test document: $name")
+        beforeOpenFile?.invoke(name)
         return ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)
     }
 
@@ -51,6 +52,9 @@ class HtmlPreviewerTestContentProvider : ContentProvider() {
         const val AUTHORITY = "io.github.supermonster003.autojs6.plugin.htmlpreviewer.test.documents"
 
         private val SAFE_FILE_NAME = Regex("[A-Za-z0-9._-]+")
+
+        @Volatile
+        var beforeOpenFile: ((String) -> Unit)? = null
 
         fun documentUri(name: String): Uri = "content://$AUTHORITY/documents/$name".toUri()
 

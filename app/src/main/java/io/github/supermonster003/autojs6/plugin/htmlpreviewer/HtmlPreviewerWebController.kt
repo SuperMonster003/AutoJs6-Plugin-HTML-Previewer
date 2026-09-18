@@ -28,6 +28,7 @@ class HtmlPreviewerWebController(
     private val onFindResult: (HtmlPreviewerFindResult) -> Unit = {},
     private val onBlockedResourceCountChanged: (Int) -> Unit = {},
     private val awaitVisualStateBeforePageFinished: Boolean = true,
+    private val onPageCommitVisible: () -> Unit = {},
 ) {
 
     private val documentPathHandler = HtmlPreviewerDocumentPathHandler(context.contentResolver, resourceRoot)
@@ -154,6 +155,10 @@ class HtmlPreviewerWebController(
                     onExternalLink(uri)
                 }
                 return true
+            }
+
+            override fun onPageCommitVisible(view: WebView, url: String) {
+                if (url != "about:blank") onPageCommitVisible()
             }
 
             override fun onPageFinished(view: WebView, url: String) {

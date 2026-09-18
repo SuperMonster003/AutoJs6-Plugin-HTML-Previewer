@@ -4,6 +4,12 @@
 
 ******
 
+# v1.1.3
+
+###### 2026/09/18
+
+* `Fix` Status and navigation bar colors follow the rendered page background without waiting for JavaScript to finish loading
+
 # v1.1.2
 
 ###### 2026/09/16

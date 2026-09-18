@@ -5,6 +5,12 @@
   "changelog_label_improvement": "Amélioration",
   "changelog_label_dependency": "Dépendance",
   "$data": {
+    "v1.1.3": {
+      "released_date": "2026/09/18",
+      "fix": [
+        "Les couleurs des barres de statut et de navigation suivent le fond de la page dès son affichage, sans attendre la fin du chargement de JavaScript"
+      ]
+    },
     "v1.1.2": {
       "released_date": "2026/09/16",
       "improvement": [

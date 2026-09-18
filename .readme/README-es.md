@@ -176,6 +176,12 @@ Las capacidades previstas y su estado se registran como lista marcable en ROADMA
 
 ******
 
+#### v1.1.3
+
+_2026/09/18_
+
+- `Corrección` Los colores de las barras de estado y navegación se adaptan al fondo de la página en cuanto se muestra, sin esperar a que termine de cargar JavaScript
+
 #### v1.1.2
 
 _2026/09/16_
@@ -187,17 +193,6 @@ _2026/09/16_
 _2026/09/15_
 
 - `Mejora` compileSdk sube a 37 (Android 17); targetSdk se mantiene en 36 hasta verificar el comportamiento que depende del objetivo
-
-#### v1.1.0
-
-_2026/09/13_
-
-- `Función` Historial de versiones local desde la interfaz con traducciones y alternativa en inglés
-- `Corrección` La vista estática y el cliente HTTPS controlado validan y fijan las direcciones DNS públicas y revisan cada redirección. El control de recursos gobierna este cliente, que solo admite GET y HEAD.
-- `Corrección` Active solo para el documento actual de confianza. WebRTC y otras API pueden conectarse fuera del control de recursos. Cada vista nueva desactiva los scripts.
-- `Corrección` Conservar HTTP 206 y otros estados correctos al cargar recursos remotos
-- `Mejora` Comprobación de la firma completa, los APK esperados y la documentación reproducible de cada versión
-- `Dependencia` Añadir OkHttp 4.12.0 para la carga controlada de recursos HTTPS
 
 ##### Para consultar más historial de versiones
 
