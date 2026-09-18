@@ -4,6 +4,12 @@
 
 ******
 
+# v1.1.3
+
+###### 2026/09/18
+
+* `Corrección` Los colores de las barras de estado y navegación se adaptan al fondo de la página en cuanto se muestra, sin esperar a que termine de cargar JavaScript
+
 # v1.1.2
 
 ###### 2026/09/16

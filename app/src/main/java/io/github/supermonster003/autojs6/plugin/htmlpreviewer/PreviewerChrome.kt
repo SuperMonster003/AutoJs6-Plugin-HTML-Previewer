@@ -110,7 +110,7 @@ internal class PreviewerChrome(
         }
     }
 
-    /** Sample once after a complete frame; never follow animation frames or scrolling. */
+    /** Sample a rendered frame at page visibility/completion; never follow animations or scrolling. */
     fun samplePage() {
         val expected = generation
         webView.postVisualStateCallback(expected, object : WebView.VisualStateCallback() {

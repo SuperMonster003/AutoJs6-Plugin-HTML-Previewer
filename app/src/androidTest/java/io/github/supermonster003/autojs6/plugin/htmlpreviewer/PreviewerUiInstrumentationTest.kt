@@ -23,10 +23,90 @@ import org.junit.Assert.*
 import org.junit.Assume.assumeTrue
 import org.junit.Test
 import java.io.File
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 class PreviewerUiInstrumentationTest {
     private val instrumentation = InstrumentationRegistry.getInstrumentation()
     private val context = instrumentation.targetContext
+
+    @Test
+    fun systemBarsMatchVisibleBackgroundWhileScriptIsStillLoading() {
+        assumeTrue(Build.VERSION.SDK_INT >= 29)
+        val scriptRequested = CountDownLatch(1)
+        val releaseScript = CountDownLatch(1)
+        val request = request(HtmlPreviewerPlugin.PRIMARY_ACTION_ID)
+        HtmlPreviewerTestContentProvider.fileFor(context, "appearance.html").writeText(
+            """
+            <html><head><style>body { margin: 0; min-height: 100vh; background: #123456; }</style></head>
+            <body><script>
+            var script = document.createElement('script');
+            script.src = 'slow-chrome.js';
+            document.head.appendChild(script);
+            </script></body></html>
+            """.trimIndent(),
+        )
+        HtmlPreviewerTestContentProvider.fileFor(context, "slow-chrome.js")
+            .writeText("document.title = 'Script finished';")
+        HtmlPreviewerTestContentProvider.beforeOpenFile = { name ->
+            if (name == "slow-chrome.js") {
+                scriptRequested.countDown()
+                check(releaseScript.await(30, TimeUnit.SECONDS)) { "Script was never released" }
+            }
+        }
+        val activity = instrumentation.startActivitySync(request) as HtmlPreviewerActivity
+        try {
+            await { activity.findViewById<View>(R.id.loading_indicator).visibility != View.VISIBLE }
+            main {
+                val item = PopupMenu(activity, View(activity)).menu.add(0, R.id.action_html_previewer_settings, 0, "")
+                activity.onOptionsItemSelected(item)
+            }
+            await { dialogButton() != null }
+            main {
+                val button = requireNotNull(dialogButton())
+                button.rootView.findViewById<SwitchMaterial>(R.id.interactive_mode).isChecked = true
+                button.performClick()
+            }
+            assertTrue("The delayed script must be requested", scriptRequested.await(10, TimeUnit.SECONDS))
+            val location = IntArray(2)
+            main {
+                activity.findViewById<WebView>(R.id.previewer_web_view).getLocationOnScreen(location)
+            }
+            // Observe the actual displayed background independently of WebView load callbacks.
+            val deadline = SystemClock.uptimeMillis() + 10000
+            var painted = false
+            while (!painted && SystemClock.uptimeMillis() < deadline) {
+                val screenshot = requireNotNull(instrumentation.uiAutomation.takeScreenshot())
+                try {
+                    painted = screenshot.getPixel(location[0] + 4, location[1] + 40) == 0xFF123456.toInt()
+                } finally {
+                    screenshot.recycle()
+                }
+                if (!painted) SystemClock.sleep(50)
+            }
+            assertTrue("The HTML background must be visible before releasing the script", painted)
+            await("System bars must match the visible HTML before the script finishes") {
+                (activity.findViewById<View>(R.id.toolbar).background as? android.graphics.drawable.ColorDrawable)?.color == 0xFF123456.toInt()
+            }
+            main {
+                assertEquals("Page completion must still be pending", View.VISIBLE, activity.findViewById<View>(R.id.loading_indicator).visibility)
+                val contentRoot = activity.findViewById<android.view.ViewGroup>(android.R.id.content).getChildAt(0)
+                assertEquals(0xFF123456.toInt(), (contentRoot.background as android.graphics.drawable.ColorDrawable).color)
+                if (Build.VERSION.SDK_INT < 35) {
+                    assertEquals(0xFF123456.toInt(), activity.window.statusBarColor)
+                    assertEquals(0xFF123456.toInt(), activity.window.navigationBarColor)
+                }
+                assertFalse(androidx.core.view.WindowInsetsControllerCompat(activity.window, activity.window.decorView).isAppearanceLightStatusBars)
+            }
+            releaseScript.countDown()
+            await { activity.findViewById<View>(R.id.loading_indicator).visibility != View.VISIBLE }
+        } finally {
+            releaseScript.countDown()
+            HtmlPreviewerTestContentProvider.beforeOpenFile = null
+            main { activity.finish() }
+            instrumentation.waitForIdleSync()
+        }
+    }
 
     @Test
     fun primaryAndOverflowIntentsBothOpenAndSettingsCanBeCancelled() {
@@ -166,7 +246,7 @@ class PreviewerUiInstrumentationTest {
     private fun dialogButton(): Button? = WindowInspector.getGlobalWindowViews()
         .firstNotNullOfOrNull { it.findViewById<Button>(android.R.id.button1)?.takeIf(View::isShown) }
 
-    private fun await(condition: () -> Boolean) {
+    private fun await(message: String = "Timed out waiting for the viewer or settings dialog", condition: () -> Boolean) {
         val deadline = SystemClock.uptimeMillis() + 10000
         while (SystemClock.uptimeMillis() < deadline) {
             var ready = false
@@ -174,7 +254,7 @@ class PreviewerUiInstrumentationTest {
             if (ready) return
             SystemClock.sleep(50)
         }
-        fail("Timed out waiting for the viewer or settings dialog")
+        fail(message)
     }
 
     private fun main(action: () -> Unit) = instrumentation.runOnMainSync(action)

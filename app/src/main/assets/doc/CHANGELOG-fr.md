@@ -4,6 +4,12 @@
 
 ******
 
+# v1.1.3
+
+###### 2026/09/18
+
+* `Correctif` Les couleurs des barres de statut et de navigation suivent le fond de la page dès son affichage, sans attendre la fin du chargement de JavaScript
+
 # v1.1.2
 
 ###### 2026/09/16

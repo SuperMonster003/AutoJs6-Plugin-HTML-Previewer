@@ -5,6 +5,12 @@
   "changelog_label_improvement": "Mejora",
   "changelog_label_dependency": "Dependencia",
   "$data": {
+    "v1.1.3": {
+      "released_date": "2026/09/18",
+      "fix": [
+        "Los colores de las barras de estado y navegación se adaptan al fondo de la página en cuanto se muestra, sin esperar a que termine de cargar JavaScript"
+      ]
+    },
     "v1.1.2": {
       "released_date": "2026/09/16",
       "improvement": [

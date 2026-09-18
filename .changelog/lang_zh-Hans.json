@@ -5,6 +5,12 @@
   "changelog_label_improvement": "优化",
   "changelog_label_dependency": "依赖",
   "$data": {
+    "v1.1.3": {
+      "released_date": "2026/09/18",
+      "fix": [
+        "页面背景渲染后及时更新状态栏和导航栏颜色, 无需等待 JavaScript 加载完成"
+      ]
+    },
     "v1.1.2": {
       "released_date": "2026/09/16",
       "improvement": [

@@ -176,6 +176,12 @@ Planned capabilities and their completion status are tracked as a checkable list
 
 ******
 
+#### v1.1.3
+
+_2026/09/18_
+
+- `Fix` Status and navigation bar colors follow the rendered page background without waiting for JavaScript to finish loading
+
 #### v1.1.2
 
 _2026/09/16_
@@ -187,17 +193,6 @@ _2026/09/16_
 _2026/09/15_
 
 - `Improvement` Raise compileSdk to 37 (Android 17); targetSdk stays at 36 until the behavior that depends on the target is verified
-
-#### v1.1.0
-
-_2026/09/13_
-
-- `Feature` Local release history is available from the interface, with localized text and an English fallback
-- `Fix` Static preview and the controlled HTTPS resource client validate and bind public DNS addresses and recheck every redirect. The resource switch controls this client; requests are limited to GET and HEAD.
-- `Fix` Enable only for this trusted document. Scripts can use network APIs outside the resource switch, including WebRTC. Every new preview starts with scripts off.
-- `Fix` Preserve HTTP 206 and other successful status codes when loading remote resources
-- `Improvement` Release packages are checked for a complete signing configuration, exact APK contents and reproducible documentation
-- `Dependency` Add OkHttp 4.12.0 for controlled HTTPS resource loading
 
 ##### For more release history
 

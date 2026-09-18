@@ -5,6 +5,12 @@
   "changelog_label_improvement": "改善",
   "changelog_label_dependency": "依存関係",
   "$data": {
+    "v1.1.3": {
+      "released_date": "2026/09/18",
+      "fix": [
+        "ページの背景が描画されるとすぐにステータスバーとナビゲーションバーの色を更新し, JavaScript の読み込み完了を待たないように変更"
+      ]
+    },
     "v1.1.2": {
       "released_date": "2026/09/16",
       "improvement": [
