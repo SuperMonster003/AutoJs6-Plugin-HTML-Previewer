@@ -6,9 +6,10 @@
   "changelog_label_dependency": "依赖",
   "$data": {
     "v1.1.3": {
-      "released_date": "2026/09/18",
+      "released_date": "2026/09/19",
       "fix": [
-        "页面背景渲染后及时更新状态栏和导航栏颜色, 无需等待 JavaScript 加载完成"
+        "页面背景渲染后及时更新状态栏和导航栏颜色, 无需等待 JavaScript 加载完成",
+        "AGP 9.1 构建时的 SDK XML v4 解析警告及 JVM 单元测试组装任务误触发 APK 原生库对齐检查的问题 (共享构建插件 1.8.3)"
       ]
     },
     "v1.1.2": {

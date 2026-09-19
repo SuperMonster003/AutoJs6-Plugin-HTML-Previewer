@@ -6,9 +6,10 @@
   "changelog_label_dependency": "Dependency",
   "$data": {
     "v1.1.3": {
-      "released_date": "2026/09/18",
+      "released_date": "2026/09/19",
       "fix": [
-        "Status and navigation bar colors follow the rendered page background without waiting for JavaScript to finish loading"
+        "Status and navigation bar colors follow the rendered page background without waiting for JavaScript to finish loading",
+        "SDK XML v4 parsing warnings with AGP 9.1 and APK native alignment checks incorrectly triggered by JVM unit-test assembly tasks, using shared build plugins 1.8.3"
       ]
     },
     "v1.1.2": {
