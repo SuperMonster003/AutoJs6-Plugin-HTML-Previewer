@@ -6,10 +6,11 @@
 
 # v1.1.3
 
-###### 2026/09/19
+###### 2026/10/05
 
 * `Fix` Status and navigation bar colors follow the rendered page background without waiting for JavaScript to finish loading
 * `Fix` SDK XML v4 parsing warnings with AGP 9.1 and APK native alignment checks incorrectly triggered by JVM unit-test assembly tasks, using shared build plugins 1.8.3
+* `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
 
 # v1.1.2
 
