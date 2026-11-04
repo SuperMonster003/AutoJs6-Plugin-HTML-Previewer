@@ -176,25 +176,24 @@ Las capacidades previstas y su estado se registran como lista marcable en ROADMA
 
 ******
 
+#### v1.1.4
+
+_2026/11/04_
+
+- `Mejora` Los iconos de información de la aplicación de Android comparten las imágenes y los fondos claros y oscuros de Icon Studio, conservando las imágenes transparentes del centro de plugins y las opciones del lanzador
+
 #### v1.1.3
 
-_2026/10/05_
+_2026/09/19_
 
 - `Corrección` Los colores de las barras de estado y navegación se adaptan al fondo de la página en cuanto se muestra, sin esperar a que termine de cargar JavaScript
 - `Corrección` Advertencias de lectura de SDK XML v4 con AGP 9.1 y comprobaciones de alineación nativa de APK activadas por error al ensamblar pruebas unitarias JVM, mediante los plugins de compilación compartidos 1.8.3
-- `Mejora` Los iconos de información de la aplicación de Android comparten las imágenes y los fondos claros y oscuros de Icon Studio, conservando las imágenes transparentes del centro de plugins y las opciones del lanzador
 
 #### v1.1.2
 
 _2026/09/16_
 
 - `Mejora` Tras compileSdk, targetSdk sube a 37 (Android 17); el comportamiento del plugin no depende del nuevo objetivo
-
-#### v1.1.1
-
-_2026/09/15_
-
-- `Mejora` compileSdk sube a 37 (Android 17); targetSdk se mantiene en 36 hasta verificar el comportamiento que depende del objetivo
 
 ##### Para consultar más historial de versiones
 

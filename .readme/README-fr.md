@@ -176,25 +176,24 @@ Les capacités prévues et leur avancement sont suivis sous forme de liste cocha
 
 ******
 
+#### v1.1.4
+
+_2026/11/04_
+
+- `Amélioration` Les icônes des informations d'application Android utilisent les illustrations et les fonds clairs et sombres d'Icon Studio, en conservant les images transparentes du centre de plugins et les choix du lanceur
+
 #### v1.1.3
 
-_2026/10/05_
+_2026/09/19_
 
 - `Correctif` Les couleurs des barres de statut et de navigation suivent le fond de la page dès son affichage, sans attendre la fin du chargement de JavaScript
 - `Correctif` Avertissements de lecture SDK XML v4 avec AGP 9.1 et contrôles d'alignement natif des APK déclenchés par erreur lors de l'assemblage des tests unitaires JVM, avec les plugins de compilation partagés 1.8.3
-- `Amélioration` Les icônes des informations d'application Android utilisent les illustrations et les fonds clairs et sombres d'Icon Studio, en conservant les images transparentes du centre de plugins et les choix du lanceur
 
 #### v1.1.2
 
 _2026/09/16_
 
 - `Amélioration` Après compileSdk, targetSdk passe à 37 (Android 17) ; le comportement du plugin ne dépend pas de la nouvelle cible
-
-#### v1.1.1
-
-_2026/09/15_
-
-- `Amélioration` compileSdk passe à 37 (Android 17) ; targetSdk reste à 36 jusqu'à la vérification du comportement dépendant de la cible
 
 ##### Pour plus d'historique des versions
 
