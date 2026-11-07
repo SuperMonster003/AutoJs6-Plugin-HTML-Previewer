@@ -5,6 +5,12 @@
   "changelog_label_improvement": "優化",
   "changelog_label_dependency": "相依性",
   "$data": {
+    "v1.1.6": {
+      "released_date": "2026/11/08",
+      "improvement": [
+        "英文介面中檔案選單的動作名稱改為 \"Preview HTML\", 不再與第一層選單 \"HTML Previewer\" 同名"
+      ]
+    },
     "v1.1.5": {
       "released_date": "2026/11/07",
       "improvement": [

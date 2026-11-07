@@ -5,6 +5,12 @@
   "changelog_label_improvement": "تحسين",
   "changelog_label_dependency": "تبعية",
   "$data": {
+    "v1.1.6": {
+      "released_date": "2026/11/08",
+      "improvement": [
+        "في الواجهة الإنجليزية, أصبح اسم إجراء قائمة الملف \"Preview HTML\" بدلا من تكرار اسم القائمة من المستوى الأول \"HTML Previewer\""
+      ]
+    },
     "v1.1.5": {
       "released_date": "2026/11/07",
       "improvement": [

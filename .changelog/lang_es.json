@@ -5,6 +5,12 @@
   "changelog_label_improvement": "Mejora",
   "changelog_label_dependency": "Dependencia",
   "$data": {
+    "v1.1.6": {
+      "released_date": "2026/11/08",
+      "improvement": [
+        "En la interfaz en inglés, la acción del menú de archivos se llama ahora \"Preview HTML\" en lugar de repetir el nombre del menú de primer nivel \"HTML Previewer\""
+      ]
+    },
     "v1.1.5": {
       "released_date": "2026/11/07",
       "improvement": [

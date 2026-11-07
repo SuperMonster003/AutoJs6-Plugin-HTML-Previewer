@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="action_html_previewer">HTML Previewer</string>
+    <string name="action_html_previewer">Preview HTML</string>
     <string name="dialog_button_cancel">Cancel</string>
     <string name="dialog_button_confirm">Confirm</string>
     <string name="error_html_file_too_large">The HTML file exceeds the %1$s previewer limit</string>

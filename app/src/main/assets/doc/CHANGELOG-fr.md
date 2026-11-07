@@ -4,6 +4,12 @@
 
 ******
 
+# v1.1.6
+
+###### 2026/11/08
+
+* `Amélioration` Dans l'interface en anglais, l'action du menu de fichier s'appelle désormais "Preview HTML" au lieu de reprendre le nom du menu de premier niveau "HTML Previewer"
+
 # v1.1.5
 
 ###### 2026/11/07

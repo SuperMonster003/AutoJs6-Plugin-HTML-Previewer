@@ -5,11 +5,11 @@
   "h3_languages_with_ascii": "Languages",
   "p_languages_all_supported_for_readme": "The current README.md supports the following languages",
   "h3_introduction": "Introduction",
-  "p_introduction_what": "One-tap viewing: open web files straight from the file manager via the `HTML Previewer` menu, with no browser required and no network needed for purely local pages.",
+  "p_introduction_what": "One-tap viewing: open web files straight from the file manager via the `Preview HTML` menu action, with no browser required and no network needed for purely local pages.",
   "p_introduction_how": "Scripts are disabled by default. For a trusted, complete ordinary HTML file, enable `Interactive mode` in `Settings` to run JavaScript, button events, WebGL, and local storage. MHTML, truncated HTML, source view, and PDF export always keep scripts disabled.",
   "h3_features": "Features",
   "features": [
-    "One-tap viewing: open web files straight from the file manager via the `HTML Previewer` menu, with no browser required and no network needed for purely local pages.",
+    "One-tap viewing: open web files straight from the file manager via the `Preview HTML` menu action, with no browser required and no network needed for purely local pages.",
     "Scripts are disabled by default. For a trusted, complete ordinary HTML file, enable `Interactive mode` in `Settings` to run JavaScript, button events, WebGL, and local storage. MHTML, truncated HTML, source view, and PDF export always keep scripts disabled.",
     "Safe source view: switch between the sanitized page and a read-only monospace view of the original HTML, or the decoded root HTML for MHTML; tags stay literal and source mode never makes network requests.",
     "System PDF export: choose `Export PDF` to send a freshly sanitized, light-themed copy to Android's print panel, where page settings and `Save as PDF` are handled without storage permission.",
@@ -24,7 +24,7 @@
     "Download the latest plugin APK from the [Releases]({{ repo_url }}/releases) page and install it on your device.",
     "Open the AutoJs6 plugin center and enable the `HTML Previewer` plugin.",
     "In the AutoJs6 file manager, locate the HTML or MHTML file you want to view and open its overflow menu (more actions).",
-    "Choose `HTML Previewer` (under the top-level menu `HTML Previewer` since AutoJs6 6.8.1); the page opens in a dedicated viewer.",
+    "Choose `Preview HTML` (under the top-level menu `HTML Previewer` since AutoJs6 6.8.1); the page opens in a dedicated viewer.",
     "While reading, use the top-right menu to find text, switch between `View source` and `View rendered page`, `Export PDF`, `Refresh`, toggle `Fullscreen mode`, or open `Settings` to adjust text size, theme, network images, and fullscreen startup; press Back to close search, leave fullscreen, or close the viewer."
   ],
   "p_usage_note": "If the plugin does not appear in the plugin center, update AutoJs6 to a recent version first (internal build {{ required_host_build }} or later). Explorer Action v2 supports both the primary previewer button and the overflow menu for a single file, using temporary read grants for the document and its parent directory. AutoJs6 build 5269 or later is required.",

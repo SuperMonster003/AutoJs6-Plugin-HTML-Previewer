@@ -5,6 +5,12 @@
   "changelog_label_improvement": "Улучшение",
   "changelog_label_dependency": "Зависимость",
   "$data": {
+    "v1.1.6": {
+      "released_date": "2026/11/08",
+      "improvement": [
+        "В английском интерфейсе пункт меню файла теперь называется \"Preview HTML\" и больше не совпадает с названием меню первого уровня \"HTML Previewer\""
+      ]
+    },
     "v1.1.5": {
       "released_date": "2026/11/07",
       "improvement": [

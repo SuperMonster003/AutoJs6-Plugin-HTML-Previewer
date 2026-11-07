@@ -17,7 +17,7 @@ internal object HtmlPreviewerPlugin {
     const val PRIMARY_PLACEMENT = 2
     const val VARIANT = "default"
     const val LABEL_RESOURCE_NAME = "action_html_previewer"
-    const val LABEL_FALLBACK = "HTML Previewer"
+    const val LABEL_FALLBACK = "Preview HTML"
     const val ACTIVITY_CLASS_NAME =
         "io.github.supermonster003.autojs6.plugin.htmlpreviewer.HtmlPreviewerActivity"
 

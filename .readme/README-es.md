@@ -176,6 +176,12 @@ Las capacidades previstas y su estado se registran como lista marcable en ROADMA
 
 ******
 
+#### v1.1.6
+
+_2026/11/08_
+
+- `Mejora` En la interfaz en inglés, la acción del menú de archivos se llama ahora "Preview HTML" en lugar de repetir el nombre del menú de primer nivel "HTML Previewer"
+
 #### v1.1.5
 
 _2026/11/07_
@@ -187,13 +193,6 @@ _2026/11/07_
 _2026/11/04_
 
 - `Mejora` Los iconos de información de la aplicación de Android comparten las imágenes y los fondos claros y oscuros de Icon Studio, conservando las imágenes transparentes del centro de plugins y las opciones del lanzador
-
-#### v1.1.3
-
-_2026/09/19_
-
-- `Corrección` Los colores de las barras de estado y navegación se adaptan al fondo de la página en cuanto se muestra, sin esperar a que termine de cargar JavaScript
-- `Corrección` Advertencias de lectura de SDK XML v4 con AGP 9.1 y comprobaciones de alineación nativa de APK activadas por error al ensamblar pruebas unitarias JVM, mediante los plugins de compilación compartidos 1.8.3
 
 ##### Para consultar más historial de versiones
 

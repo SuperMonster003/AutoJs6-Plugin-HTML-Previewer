@@ -176,6 +176,12 @@ Les capacités prévues et leur avancement sont suivis sous forme de liste cocha
 
 ******
 
+#### v1.1.6
+
+_2026/11/08_
+
+- `Amélioration` Dans l'interface en anglais, l'action du menu de fichier s'appelle désormais "Preview HTML" au lieu de reprendre le nom du menu de premier niveau "HTML Previewer"
+
 #### v1.1.5
 
 _2026/11/07_
@@ -187,13 +193,6 @@ _2026/11/07_
 _2026/11/04_
 
 - `Amélioration` Les icônes des informations d'application Android utilisent les illustrations et les fonds clairs et sombres d'Icon Studio, en conservant les images transparentes du centre de plugins et les choix du lanceur
-
-#### v1.1.3
-
-_2026/09/19_
-
-- `Correctif` Les couleurs des barres de statut et de navigation suivent le fond de la page dès son affichage, sans attendre la fin du chargement de JavaScript
-- `Correctif` Avertissements de lecture SDK XML v4 avec AGP 9.1 et contrôles d'alignement natif des APK déclenchés par erreur lors de l'assemblage des tests unitaires JVM, avec les plugins de compilation partagés 1.8.3
 
 ##### Pour plus d'historique des versions
 

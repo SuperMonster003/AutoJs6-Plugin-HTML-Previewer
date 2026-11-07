@@ -39,7 +39,7 @@ The current README.md supports the following languages:
 
 ******
 
-One-tap viewing: open web files straight from the file manager via the `HTML Previewer` menu, with no browser required and no network needed for purely local pages.
+One-tap viewing: open web files straight from the file manager via the `Preview HTML` menu action, with no browser required and no network needed for purely local pages.
 
 Scripts are disabled by default. For a trusted, complete ordinary HTML file, enable `Interactive mode` in `Settings` to run JavaScript, button events, WebGL, and local storage. MHTML, truncated HTML, source view, and PDF export always keep scripts disabled.
 
@@ -49,7 +49,7 @@ Scripts are disabled by default. For a trusted, complete ordinary HTML file, ena
 
 ******
 
-- One-tap viewing: open web files straight from the file manager via the `HTML Previewer` menu, with no browser required and no network needed for purely local pages.
+- One-tap viewing: open web files straight from the file manager via the `Preview HTML` menu action, with no browser required and no network needed for purely local pages.
 - Scripts are disabled by default. For a trusted, complete ordinary HTML file, enable `Interactive mode` in `Settings` to run JavaScript, button events, WebGL, and local storage. MHTML, truncated HTML, source view, and PDF export always keep scripts disabled.
 - Safe source view: switch between the sanitized page and a read-only monospace view of the original HTML, or the decoded root HTML for MHTML; tags stay literal and source mode never makes network requests.
 - System PDF export: choose `Export PDF` to send a freshly sanitized, light-themed copy to Android's print panel, where page settings and `Save as PDF` are handled without storage permission.
@@ -68,7 +68,7 @@ Scripts are disabled by default. For a trusted, complete ordinary HTML file, ena
 1. Download the latest plugin APK from the [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/releases) page and install it on your device.
 2. Open the AutoJs6 plugin center and enable the `HTML Previewer` plugin.
 3. In the AutoJs6 file manager, locate the HTML or MHTML file you want to view and open its overflow menu (more actions).
-4. Choose `HTML Previewer` (under the top-level menu `HTML Previewer` since AutoJs6 6.8.1); the page opens in a dedicated viewer.
+4. Choose `Preview HTML` (under the top-level menu `HTML Previewer` since AutoJs6 6.8.1); the page opens in a dedicated viewer.
 5. While reading, use the top-right menu to find text, switch between `View source` and `View rendered page`, `Export PDF`, `Refresh`, toggle `Fullscreen mode`, or open `Settings` to adjust text size, theme, network images, and fullscreen startup; press Back to close search, leave fullscreen, or close the viewer.
 
 > If the plugin does not appear in the plugin center, update AutoJs6 to a recent version first (internal build 5269 or later). Explorer Action v2 supports both the primary previewer button and the overflow menu for a single file, using temporary read grants for the document and its parent directory. AutoJs6 build 5269 or later is required.
@@ -176,6 +176,12 @@ Planned capabilities and their completion status are tracked as a checkable list
 
 ******
 
+#### v1.1.6
+
+_2026/11/08_
+
+- `Improvement` In the English interface, the file menu action is now named "Preview HTML" instead of repeating the top-level menu name "HTML Previewer"
+
 #### v1.1.5
 
 _2026/11/07_
@@ -187,13 +193,6 @@ _2026/11/07_
 _2026/11/04_
 
 - `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
-
-#### v1.1.3
-
-_2026/09/19_
-
-- `Fix` Status and navigation bar colors follow the rendered page background without waiting for JavaScript to finish loading
-- `Fix` SDK XML v4 parsing warnings with AGP 9.1 and APK native alignment checks incorrectly triggered by JVM unit-test assembly tasks, using shared build plugins 1.8.3
 
 ##### For more release history
 
