@@ -68,7 +68,7 @@ Les scripts sont désactivés par défaut. Pour un fichier HTML ordinaire comple
 1. Téléchargez le dernier APK du plugin depuis la page [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/releases) et installez-le sur votre appareil.
 2. Ouvrez le centre de plugins d'AutoJs6 et activez le plugin `Aperçu HTML`.
 3. Dans le gestionnaire de fichiers d'AutoJs6, repérez le fichier HTML ou MHTML à consulter et ouvrez son menu contextuel (actions supplémentaires).
-4. Choisissez `Prévisualiser HTML`; la page s'ouvre dans une visionneuse dédiée.
+4. Choisissez `Prévisualiser HTML` (depuis AutoJs6 6.8.1, dans le menu de premier niveau `HTML Previewer`); la page s'ouvre dans une visionneuse dédiée.
 5. Pendant la lecture, utilisez le menu en haut à droite pour rechercher du texte, alterner entre `Afficher le code source` et `Afficher l'aperçu`, `Exporter en PDF`, `Actualiser`, basculer le `Mode plein écran` ou ouvrir `Paramètres` afin de régler la taille, le thème, les images réseau et le démarrage en plein écran; Retour ferme la recherche, quitte le plein écran ou ferme la visionneuse.
 
 > Si le plugin n'apparaît pas dans le centre de plugins, mettez d'abord AutoJs6 à jour vers une version récente (build interne 5269 ou ultérieur). Explorer Action v2 prend en charge le bouton principal et le menu contextuel pour un fichier, avec une autorisation temporaire de lecture du document et de son dossier parent. AutoJs6 build 5269 ou ultérieur est requis.
@@ -176,6 +176,12 @@ Les capacités prévues et leur avancement sont suivis sous forme de liste cocha
 
 ******
 
+#### v1.1.5
+
+_2026/11/07_
+
+- `Amélioration` Dans le menu de fichier d'AutoJs6 6.8.1 et versions ultérieures, "Prévisualiser HTML" se trouve dans le menu de premier niveau "HTML Previewer" (inchangé dans les versions antérieures d'AutoJs6)
+
 #### v1.1.4
 
 _2026/11/04_
@@ -188,12 +194,6 @@ _2026/09/19_
 
 - `Correctif` Les couleurs des barres de statut et de navigation suivent le fond de la page dès son affichage, sans attendre la fin du chargement de JavaScript
 - `Correctif` Avertissements de lecture SDK XML v4 avec AGP 9.1 et contrôles d'alignement natif des APK déclenchés par erreur lors de l'assemblage des tests unitaires JVM, avec les plugins de compilation partagés 1.8.3
-
-#### v1.1.2
-
-_2026/09/16_
-
-- `Amélioration` Après compileSdk, targetSdk passe à 37 (Android 17) ; le comportement du plugin ne dépend pas de la nouvelle cible
 
 ##### Pour plus d'historique des versions
 

@@ -4,6 +4,12 @@
 
 ******
 
+# v1.1.5
+
+###### 2026/11/07
+
+* `Improvement` "HTML Previewer" now sits under the top-level menu "HTML Previewer" in the file menu of AutoJs6 6.8.1 and later (unchanged in older AutoJs6 versions)
+
 # v1.1.4
 
 ###### 2026/11/04

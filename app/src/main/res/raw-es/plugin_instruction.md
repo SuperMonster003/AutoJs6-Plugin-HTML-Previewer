@@ -2,7 +2,7 @@ Use HTML Previewer desde el gestor de archivos:
 
 1. Instale y active el complemento `HTML Previewer`.
 2. Abra el menú secundario de un archivo HTML o MHTML compatible.
-3. Seleccione `Vista previa de HTML`.
+3. Seleccione `Vista previa de HTML` (desde AutoJs6 6.8.1, dentro del menú de primer nivel `HTML Previewer`).
 
 El complemento recibe acceso temporal de lectura al archivo seleccionado y a su directorio principal mediante URI de contenido. No recibe una ruta directa del sistema de archivos.
 

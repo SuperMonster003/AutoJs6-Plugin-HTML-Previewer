@@ -4,6 +4,12 @@
 
 ******
 
+# v1.1.5
+
+###### 2026/11/07
+
+* `Mejora` En el menú de archivos de AutoJs6 6.8.1 y posteriores, "Vista previa de HTML" está en el menú de primer nivel "HTML Previewer" (sin cambios en versiones anteriores de AutoJs6)
+
 # v1.1.4
 
 ###### 2026/11/04

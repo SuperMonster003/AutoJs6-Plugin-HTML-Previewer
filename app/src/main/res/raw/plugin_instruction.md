@@ -2,7 +2,7 @@ Use HTML Previewer from the file manager:
 
 1. Install and enable the `HTML Previewer` plugin.
 2. Open the overflow menu for one supported HTML or MHTML file.
-3. Select `HTML Previewer`.
+3. Select `HTML Previewer` (under the top-level menu `HTML Previewer` since AutoJs6 6.8.1).
 
 The plugin receives temporary read access to the selected file and its parent directory through content URIs. It does not receive a raw filesystem path.
 

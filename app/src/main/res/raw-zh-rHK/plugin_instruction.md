@@ -2,7 +2,7 @@
 
 1. 安裝並啟用 `HTML Previewer` 插件.
 2. 開啟一個受支援 HTML 或 MHTML 檔案的更多選單.
-3. 選擇 `預覽 HTML`.
+3. 選擇 `預覽 HTML` (AutoJs6 6.8.1 起位於一級選單 `HTML Previewer` 中).
 
 插件透過 content URI 臨時取得所選檔案及其上層目錄的讀取權限. 插件不會接收原始檔案系統路徑.
 

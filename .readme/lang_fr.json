@@ -24,7 +24,7 @@
     "Téléchargez le dernier APK du plugin depuis la page [Releases]({{ repo_url }}/releases) et installez-le sur votre appareil.",
     "Ouvrez le centre de plugins d'AutoJs6 et activez le plugin `Aperçu HTML`.",
     "Dans le gestionnaire de fichiers d'AutoJs6, repérez le fichier HTML ou MHTML à consulter et ouvrez son menu contextuel (actions supplémentaires).",
-    "Choisissez `Prévisualiser HTML`; la page s'ouvre dans une visionneuse dédiée.",
+    "Choisissez `Prévisualiser HTML` (depuis AutoJs6 6.8.1, dans le menu de premier niveau `HTML Previewer`); la page s'ouvre dans une visionneuse dédiée.",
     "Pendant la lecture, utilisez le menu en haut à droite pour rechercher du texte, alterner entre `Afficher le code source` et `Afficher l'aperçu`, `Exporter en PDF`, `Actualiser`, basculer le `Mode plein écran` ou ouvrir `Paramètres` afin de régler la taille, le thème, les images réseau et le démarrage en plein écran; Retour ferme la recherche, quitte le plein écran ou ferme la visionneuse."
   ],
   "p_usage_note": "Si le plugin n'apparaît pas dans le centre de plugins, mettez d'abord AutoJs6 à jour vers une version récente (build interne {{ required_host_build }} ou ultérieur). Explorer Action v2 prend en charge le bouton principal et le menu contextuel pour un fichier, avec une autorisation temporaire de lecture du document et de son dossier parent. AutoJs6 build 5269 ou ultérieur est requis.",

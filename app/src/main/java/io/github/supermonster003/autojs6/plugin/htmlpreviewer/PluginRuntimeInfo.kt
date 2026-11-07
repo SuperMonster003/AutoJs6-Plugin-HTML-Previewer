@@ -24,6 +24,10 @@ internal object HtmlPreviewerPlugin {
     val REQUIRED_HOST_VERSION = HtmlPreviewerExplorerCompatibility.minimumHostVersionCode
     val PROTOCOL_VERSION = HtmlPreviewerExplorerCompatibility.declaredProtocolVersion
 
+    // First-level menu of the plugin's action in the host's file menu (AutoJs6 6.8.1+): the display name, as in
+    // the Plugin Center. Older hosts ignore it, so the catalog keeps its protocol version.
+    val MENU_GROUP_LABEL = ExplorerMenuGroupKeys.entries(resourceName = "app_name", fallback = "HTML Previewer")
+
     val MIME_TYPES = arrayOf(
         "text/html",
         "application/xhtml+xml",
@@ -92,6 +96,7 @@ internal fun htmlPreviewerActionCatalog(): Bundle {
     }
     return Bundle().apply {
         putInt(ExplorerActionCatalogKeys.PROTOCOL_VERSION, HtmlPreviewerPlugin.PROTOCOL_VERSION)
+        HtmlPreviewerPlugin.MENU_GROUP_LABEL.forEach { (key, value) -> putString(key, value) }
         putParcelableArrayList(
             ExplorerActionCatalogKeys.ACTIONS,
             arrayListOf(

@@ -2,7 +2,7 @@ Utilisez HTML Previewer depuis le gestionnaire de fichiers:
 
 1. Installez et activez le plugin `HTML Previewer`.
 2. Ouvrez le menu secondaire d'un fichier HTML ou MHTML pris en charge.
-3. Sélectionnez `Prévisualiser HTML`.
+3. Sélectionnez `Prévisualiser HTML` (depuis AutoJs6 6.8.1, dans le menu de premier niveau `HTML Previewer`).
 
 Le plugin reçoit un accès temporaire en lecture au fichier sélectionné et à son dossier parent par des URI de contenu. Il ne reçoit aucun chemin brut du système de fichiers.
 

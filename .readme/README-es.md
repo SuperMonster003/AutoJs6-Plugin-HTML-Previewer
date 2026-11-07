@@ -68,7 +68,7 @@ Los scripts están desactivados por defecto. Para un HTML normal completo y de c
 1. Descargue el APK más reciente del complemento desde la página [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/releases) e instálelo en el dispositivo.
 2. Abra el centro de complementos de AutoJs6 y active el complemento `Vista previa de HTML`.
 3. En el gestor de archivos de AutoJs6, localice el archivo HTML o MHTML que desea ver y abra su menú adicional (más acciones).
-4. Elija `Vista previa de HTML`; la página se abrirá en un visor dedicado.
+4. Elija `Vista previa de HTML` (desde AutoJs6 6.8.1, dentro del menú de primer nivel `HTML Previewer`); la página se abrirá en un visor dedicado.
 5. Durante la lectura, use el menú superior derecho para buscar texto, alternar entre `Ver código fuente` y `Ver vista previa`, `Exportar PDF`, `Actualizar`, cambiar el `Modo de pantalla completa` o abrir `Configuración` para ajustar el tamaño, el tema, las imágenes de red y el inicio a pantalla completa; pulse Atrás para cerrar la búsqueda, salir de pantalla completa o cerrar el visor.
 
 > Si el complemento no aparece en el centro de complementos, actualice primero AutoJs6 a una versión reciente (compilación interna 5269 o posterior). Explorer Action v2 admite el botón principal y el menú contextual para un archivo, con permisos temporales de lectura del documento y su carpeta. Se requiere AutoJs6 build 5269 o posterior.
@@ -176,6 +176,12 @@ Las capacidades previstas y su estado se registran como lista marcable en ROADMA
 
 ******
 
+#### v1.1.5
+
+_2026/11/07_
+
+- `Mejora` En el menú de archivos de AutoJs6 6.8.1 y posteriores, "Vista previa de HTML" está en el menú de primer nivel "HTML Previewer" (sin cambios en versiones anteriores de AutoJs6)
+
 #### v1.1.4
 
 _2026/11/04_
@@ -188,12 +194,6 @@ _2026/09/19_
 
 - `Corrección` Los colores de las barras de estado y navegación se adaptan al fondo de la página en cuanto se muestra, sin esperar a que termine de cargar JavaScript
 - `Corrección` Advertencias de lectura de SDK XML v4 con AGP 9.1 y comprobaciones de alineación nativa de APK activadas por error al ensamblar pruebas unitarias JVM, mediante los plugins de compilación compartidos 1.8.3
-
-#### v1.1.2
-
-_2026/09/16_
-
-- `Mejora` Tras compileSdk, targetSdk sube a 37 (Android 17); el comportamiento del plugin no depende del nuevo objetivo
 
 ##### Para consultar más historial de versiones
 

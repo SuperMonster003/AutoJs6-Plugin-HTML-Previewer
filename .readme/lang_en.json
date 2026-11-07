@@ -24,7 +24,7 @@
     "Download the latest plugin APK from the [Releases]({{ repo_url }}/releases) page and install it on your device.",
     "Open the AutoJs6 plugin center and enable the `HTML Previewer` plugin.",
     "In the AutoJs6 file manager, locate the HTML or MHTML file you want to view and open its overflow menu (more actions).",
-    "Choose `HTML Previewer`; the page opens in a dedicated viewer.",
+    "Choose `HTML Previewer` (under the top-level menu `HTML Previewer` since AutoJs6 6.8.1); the page opens in a dedicated viewer.",
     "While reading, use the top-right menu to find text, switch between `View source` and `View rendered page`, `Export PDF`, `Refresh`, toggle `Fullscreen mode`, or open `Settings` to adjust text size, theme, network images, and fullscreen startup; press Back to close search, leave fullscreen, or close the viewer."
   ],
   "p_usage_note": "If the plugin does not appear in the plugin center, update AutoJs6 to a recent version first (internal build {{ required_host_build }} or later). Explorer Action v2 supports both the primary previewer button and the overflow menu for a single file, using temporary read grants for the document and its parent directory. AutoJs6 build 5269 or later is required.",

@@ -2,7 +2,7 @@
 
 1. 安裝並啟用 `HTML Previewer` 外掛.
 2. 開啟一個受支援 HTML 或 MHTML 檔案的更多選單.
-3. 選擇 `預覽 HTML`.
+3. 選擇 `預覽 HTML` (AutoJs6 6.8.1 起位於第一層選單 `HTML Previewer` 中).
 
 外掛透過 content URI 暫時取得所選檔案及其上層目錄的讀取權限. 外掛不會接收原始檔案系統路徑.
 

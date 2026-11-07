@@ -68,7 +68,7 @@ Scripts are disabled by default. For a trusted, complete ordinary HTML file, ena
 1. Download the latest plugin APK from the [Releases](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/releases) page and install it on your device.
 2. Open the AutoJs6 plugin center and enable the `HTML Previewer` plugin.
 3. In the AutoJs6 file manager, locate the HTML or MHTML file you want to view and open its overflow menu (more actions).
-4. Choose `HTML Previewer`; the page opens in a dedicated viewer.
+4. Choose `HTML Previewer` (under the top-level menu `HTML Previewer` since AutoJs6 6.8.1); the page opens in a dedicated viewer.
 5. While reading, use the top-right menu to find text, switch between `View source` and `View rendered page`, `Export PDF`, `Refresh`, toggle `Fullscreen mode`, or open `Settings` to adjust text size, theme, network images, and fullscreen startup; press Back to close search, leave fullscreen, or close the viewer.
 
 > If the plugin does not appear in the plugin center, update AutoJs6 to a recent version first (internal build 5269 or later). Explorer Action v2 supports both the primary previewer button and the overflow menu for a single file, using temporary read grants for the document and its parent directory. AutoJs6 build 5269 or later is required.
@@ -176,6 +176,12 @@ Planned capabilities and their completion status are tracked as a checkable list
 
 ******
 
+#### v1.1.5
+
+_2026/11/07_
+
+- `Improvement` "HTML Previewer" now sits under the top-level menu "HTML Previewer" in the file menu of AutoJs6 6.8.1 and later (unchanged in older AutoJs6 versions)
+
 #### v1.1.4
 
 _2026/11/04_
@@ -188,12 +194,6 @@ _2026/09/19_
 
 - `Fix` Status and navigation bar colors follow the rendered page background without waiting for JavaScript to finish loading
 - `Fix` SDK XML v4 parsing warnings with AGP 9.1 and APK native alignment checks incorrectly triggered by JVM unit-test assembly tasks, using shared build plugins 1.8.3
-
-#### v1.1.2
-
-_2026/09/16_
-
-- `Improvement` Raise targetSdk to 37 (Android 17) after compileSdk; the plugin's behavior does not depend on the new target
 
 ##### For more release history
 

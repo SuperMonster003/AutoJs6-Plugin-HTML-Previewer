@@ -5,6 +5,12 @@
   "changelog_label_improvement": "Improvement",
   "changelog_label_dependency": "Dependency",
   "$data": {
+    "v1.1.5": {
+      "released_date": "2026/11/07",
+      "improvement": [
+        "\"HTML Previewer\" now sits under the top-level menu \"HTML Previewer\" in the file menu of AutoJs6 6.8.1 and later (unchanged in older AutoJs6 versions)"
+      ]
+    },
     "v1.1.4": {
       "released_date": "2026/11/04",
       "improvement": [

@@ -5,6 +5,12 @@
   "changelog_label_improvement": "優化",
   "changelog_label_dependency": "依賴",
   "$data": {
+    "v1.1.5": {
+      "released_date": "2026/11/07",
+      "improvement": [
+        "AutoJs6 6.8.1 及以上版本的檔案選單中, \"預覽 HTML\" 位於一級選單 \"HTML Previewer\" 之下 (舊版本 AutoJs6 中位置不變)"
+      ]
+    },
     "v1.1.4": {
       "released_date": "2026/11/04",
       "improvement": [
