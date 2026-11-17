@@ -179,7 +179,7 @@ Les capacités prévues et leur avancement sont suivis sous forme de liste cocha
 
 #### v1.1.7
 
-_2026/11/17_
+_2026/11/18_
 
 - `Amélioration` Icône du plugin redessinée en un motif monochrome sur fond transparent, bien lisible avec les thèmes clair et sombre
 

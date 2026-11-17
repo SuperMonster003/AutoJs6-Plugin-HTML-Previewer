@@ -179,7 +179,7 @@ Las capacidades previstas y su estado se registran como lista marcable en ROADMA
 
 #### v1.1.7
 
-_2026/11/17_
+_2026/11/18_
 
 - `Mejora` Icono del plugin rediseñado como una figura de un solo color sobre fondo transparente, bien visible en los temas claro y oscuro
 

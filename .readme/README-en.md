@@ -179,7 +179,7 @@ Planned capabilities and their completion status are tracked as a checkable list
 
 #### v1.1.7
 
-_2026/11/17_
+_2026/11/18_
 
 - `Improvement` Redesigned the plugin icon as a single-color glyph on a transparent background that stays clear in both light and dark themes
 
