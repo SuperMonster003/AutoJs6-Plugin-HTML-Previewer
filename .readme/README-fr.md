@@ -2,6 +2,7 @@
 
 <div align="center">
   <p>
+    <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-previewer-ic-launcher" border="0" width="128" />
   </p>
 
@@ -176,6 +177,12 @@ Les capacités prévues et leur avancement sont suivis sous forme de liste cocha
 
 ******
 
+#### v1.1.7
+
+_2026/11/17_
+
+- `Amélioration` Icône du plugin redessinée en un motif monochrome sur fond transparent, bien lisible avec les thèmes clair et sombre
+
 #### v1.1.6
 
 _2026/11/08_
@@ -187,12 +194,6 @@ _2026/11/08_
 _2026/11/07_
 
 - `Amélioration` Dans le menu de fichier d'AutoJs6 6.8.1 et versions ultérieures, "Prévisualiser HTML" se trouve dans le menu de premier niveau "HTML Previewer" (inchangé dans les versions antérieures d'AutoJs6)
-
-#### v1.1.4
-
-_2026/11/04_
-
-- `Amélioration` Les icônes des informations d'application Android utilisent les illustrations et les fonds clairs et sombres d'Icon Studio, en conservant les images transparentes du centre de plugins et les choix du lanceur
 
 ##### Pour plus d'historique des versions
 

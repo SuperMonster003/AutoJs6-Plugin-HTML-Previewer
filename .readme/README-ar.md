@@ -2,6 +2,7 @@
 
 <div align="center">
   <p>
+    <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-previewer-ic-launcher" border="0" width="128" />
   </p>
 
@@ -176,6 +177,12 @@ audited host protocol: 22
 
 ******
 
+#### v1.1.7
+
+_2026/11/17_
+
+- `تحسين` أُعيد تصميم أيقونة الملحق كرسم بلون واحد على خلفية شفافة يظهر بوضوح في السمتين الفاتحة والداكنة
+
 #### v1.1.6
 
 _2026/11/08_
@@ -187,12 +194,6 @@ _2026/11/08_
 _2026/11/07_
 
 - `تحسين` في قائمة الملف في AutoJs6 6.8.1 والإصدارات الأحدث, يقع "معاينة HTML" ضمن القائمة من المستوى الأول "HTML Previewer" (دون تغيير في إصدارات AutoJs6 الأقدم)
-
-#### v1.1.4
-
-_2026/11/04_
-
-- `تحسين` تستخدم أيقونات معلومات التطبيق في Android صور Icon Studio وخلفياته الفاتحة والداكنة مع الحفاظ على الصور الشفافة في مركز الملحقات وخيارات المشغل الحالية
 
 ##### لمزيد من سجل الإصدارات
 

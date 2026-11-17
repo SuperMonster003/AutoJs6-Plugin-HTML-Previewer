@@ -2,6 +2,7 @@
 
 <div align="center">
   <p>
+    <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-previewer-ic-launcher" border="0" width="128" />
   </p>
 
@@ -176,6 +177,12 @@ Planned capabilities and their completion status are tracked as a checkable list
 
 ******
 
+#### v1.1.7
+
+_2026/11/17_
+
+- `Improvement` Redesigned the plugin icon as a single-color glyph on a transparent background that stays clear in both light and dark themes
+
 #### v1.1.6
 
 _2026/11/08_
@@ -187,12 +194,6 @@ _2026/11/08_
 _2026/11/07_
 
 - `Improvement` "HTML Previewer" now sits under the top-level menu "HTML Previewer" in the file menu of AutoJs6 6.8.1 and later (unchanged in older AutoJs6 versions)
-
-#### v1.1.4
-
-_2026/11/04_
-
-- `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
 
 ##### For more release history
 

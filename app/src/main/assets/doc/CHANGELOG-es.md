@@ -4,6 +4,12 @@
 
 ******
 
+# v1.1.7
+
+###### 2026/11/17
+
+* `Mejora` Icono del plugin rediseñado como una figura de un solo color sobre fondo transparente, bien visible en los temas claro y oscuro
+
 # v1.1.6
 
 ###### 2026/11/08

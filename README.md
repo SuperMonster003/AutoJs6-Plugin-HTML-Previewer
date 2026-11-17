@@ -2,6 +2,7 @@
 
 <div align="center">
   <p>
+    <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-previewer-ic-launcher" border="0" width="128" />
   </p>
 
@@ -176,6 +177,12 @@ Explorer Action v2 同时支持单文件的主预览按钮和溢出菜单, 通�
 
 ******
 
+#### v1.1.7
+
+_2026/11/17_
+
+- `优化` 插件图标重新设计为透明背景的单色图案, 在亮色与暗色主题下都清晰可辨
+
 #### v1.1.6
 
 _2026/11/08_
@@ -187,12 +194,6 @@ _2026/11/08_
 _2026/11/07_
 
 - `优化` AutoJs6 6.8.1 及以上版本的文件菜单中, "预览 HTML" 位于一级菜单 "HTML Previewer" 之下 (旧版本 AutoJs6 中位置不变)
-
-#### v1.1.4
-
-_2026/11/04_
-
-- `优化` Android 系统应用信息图标与图标工作台共用图稿和亮暗底色, 保留插件中心透明图稿及现有启动器选项
 
 ##### 更多发行历史可参阅
 

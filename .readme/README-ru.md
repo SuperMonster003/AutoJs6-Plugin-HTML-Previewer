@@ -2,6 +2,7 @@
 
 <div align="center">
   <p>
+    <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-previewer-ic-launcher" border="0" width="128" />
   </p>
 
@@ -176,6 +177,12 @@ Explorer Action v2 поддерживает основную кнопку и к�
 
 ******
 
+#### v1.1.7
+
+_2026/11/17_
+
+- `Улучшение` Значок плагина перерисован в виде одноцветного изображения на прозрачном фоне и хорошо различим в светлой и тёмной темах
+
 #### v1.1.6
 
 _2026/11/08_
@@ -187,12 +194,6 @@ _2026/11/08_
 _2026/11/07_
 
 - `Улучшение` В меню файла AutoJs6 6.8.1 и новее пункт "Предпросмотр HTML" находится в меню первого уровня "HTML Previewer" (в более ранних версиях AutoJs6 без изменений)
-
-#### v1.1.4
-
-_2026/11/04_
-
-- `Улучшение` Значки в сведениях о приложении Android используют изображения и светлый и тёмный фон Icon Studio, сохраняя прозрачные изображения центра плагинов и существующие варианты значков лаунчера
 
 ##### Дополнительная история выпусков
 

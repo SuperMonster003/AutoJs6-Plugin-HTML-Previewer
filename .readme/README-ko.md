@@ -2,6 +2,7 @@
 
 <div align="center">
   <p>
+    <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="html-previewer-ic-launcher" border="0" width="128" />
   </p>
 
@@ -176,6 +177,12 @@ Explorer Action v2는 단일 파일의 기본 미리보기 버튼과 메뉴를 �
 
 ******
 
+#### v1.1.7
+
+_2026/11/17_
+
+- `개선` 플러그인 아이콘을 투명 배경의 단색 그림으로 새로 디자인하여 밝은 테마와 어두운 테마 모두에서 잘 보이도록 함
+
 #### v1.1.6
 
 _2026/11/08_
@@ -187,12 +194,6 @@ _2026/11/08_
 _2026/11/07_
 
 - `개선` AutoJs6 6.8.1 이상의 파일 메뉴에서 "HTML 미리보기" 항목이 최상위 메뉴 "HTML Previewer" 아래에 표시됨 (이전 버전의 AutoJs6 에서는 위치가 바뀌지 않음)
-
-#### v1.1.4
-
-_2026/11/04_
-
-- `개선` Android 앱 정보 아이콘에 Icon Studio의 그림과 밝은 배경 및 어두운 배경을 사용하고 플러그인 센터의 투명 그림과 기존 런처 옵션을 유지
 
 ##### 더 많은 릴리스 기록
 

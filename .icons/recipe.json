@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatorVersion": "1.3.0",
+  "generatorVersion": "1.4.0",
   "profile": "catalog",
   "repository": "AutoJs6-Plugin-HTML-Previewer",
   "packages": [
@@ -9,18 +9,18 @@
   "launcher": false,
   "params": {
     "sources": {
-      "day": "d17ace7928dc600cd43911ef899e90559655883144693623d560418336954f95",
-      "night": "d17ace7928dc600cd43911ef899e90559655883144693623d560418336954f95",
+      "day": "86218054f16749e8ca1095b01115dec1d05c8a707abb26200224271e38b79a3e",
+      "night": "86218054f16749e8ca1095b01115dec1d05c8a707abb26200224271e38b79a3e",
       "alphaMode": "alpha"
     },
     "geometry": {
-      "mode": "preserve",
+      "mode": "normalized",
       "scale": 1.0,
       "offsetX": 0.0,
       "offsetY": 0.0
     },
     "day": {
-      "mode": "original",
+      "mode": "mask",
       "foreground": "#272727",
       "brightness": 1.0,
       "contrast": 1.0,
@@ -29,7 +29,7 @@
       "invert": false
     },
     "night": {
-      "mode": "original",
+      "mode": "mask",
       "foreground": "#d8d8d8",
       "brightness": 1.0,
       "contrast": 1.0,
@@ -128,6 +128,8 @@
     }
   },
   "assets": [
+    "86218054f16749e8ca1095b01115dec1d05c8a707abb26200224271e38b79a3e",
+    "a11c65e4214f08ac768bbd57fba5b73ddfc7930b15ab7b537830ead3cb8d4aab",
     "d17ace7928dc600cd43911ef899e90559655883144693623d560418336954f95"
   ],
   "legacyGenerator": null,
@@ -136,7 +138,12 @@
     "night": "transparent"
   },
   "systemIcon": true,
-  "originalSources": {},
+  "originalSources": {
+    "86218054f16749e8ca1095b01115dec1d05c8a707abb26200224271e38b79a3e": {
+      "asset": "a11c65e4214f08ac768bbd57fba5b73ddfc7930b15ab7b537830ead3cb8d4aab",
+      "filename": "html-previewer-icon.svg"
+    }
+  },
   "systemIconMinSdk": 24,
   "systemIconObsolete": []
 }

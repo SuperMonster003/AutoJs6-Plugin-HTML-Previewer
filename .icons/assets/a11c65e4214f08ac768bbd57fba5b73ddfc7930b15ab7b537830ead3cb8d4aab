@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+<mask id="code" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+  <rect width="512" height="512" fill="#fff"/>
+  <g fill="none" stroke="#000" stroke-width="36" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M182 194 L116 256 L182 318"/>
+    <path d="M288 178 L224 334"/>
+    <path d="M330 194 L396 256 L330 318"/>
+  </g>
+</mask>
+<rect x="32" y="118" width="448" height="276" rx="50" fill="#272727" mask="url(#code)"/>
+</svg>
