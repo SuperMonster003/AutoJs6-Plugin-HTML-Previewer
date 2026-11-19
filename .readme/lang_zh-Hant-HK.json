@@ -83,8 +83,53 @@
   "text_release_build": "Release 構建",
   "p_build_params": "構建參數來自 `version.properties`, 目前最低 SDK 為 {{ android_min_sdk }}, 目標 SDK 為 {{ android_target_sdk }}",
   "h3_resource_layout": "本地化與文件生成",
-  "p_resource_layout": "`strings.xml` 提供插件資訊和檢視器介面的本地化, `plugin_instruction.md` 提供宿主側展示的使用說明. README 與更新日誌一律修改 `.readme/` 與 `.changelog/` 下的 JSON 源檔案, 再執行 `py .python/generate_markdown.py` 重新生成, 生成產物不手工編輯; 執行 `py .python/generate_markdown.py --check` 可校驗源檔案與生成產物是否同步",
+  "p_resource_layout": "`strings.xml` 提供插件資訊和檢視器介面的本地化, `plugin_instruction.md` 提供宿主側展示的使用說明. README, 更新日誌與 `plugin_instruction.md` 一律修改 `.readme/` 與 `.changelog/` 下的 JSON 源檔案, 再執行 `py .python/generate_markdown.py` 重新生成, 生成產物不手工編輯; 執行 `py .python/generate_markdown.py --check` 可校驗源檔案與生成產物是否同步",
   "h3_links": "相關連結",
   "text_link_autojs6_docs": "AutoJs6 文件",
-  "text_link_format_reference": "HTML Living Standard"
+  "text_link_format_reference": "HTML Living Standard",
+  "instruction_p_what": "HTML Previewer 在 AutoJs6 中預覽 HTML 與 MHTML 檔案, 毋須開啟瀏覽器. 頁面預設以安全模式顯示, 不執行指令碼; 亦可檢視原始碼, 在頁面中尋找, 或匯出為 PDF. 預覽全程唯讀, 不修改原檔案.",
+  "instruction_h3_start": "開始使用",
+  "instruction_start_steps": [
+    "在 AutoJs6 的 \"插件中心\" 中確認本插件已啓用.",
+    "開啟 AutoJs6 的檔案管理器, 找到要預覽的 HTML 或 MHTML 檔案.",
+    "在檔案選單中選擇 \"預覽 HTML\" (AutoJs6 6.8.1 或更高版本中位於一級選單 \"HTML Previewer\" 之下).",
+    "在預覽頁右上角的選單中使用尋找, 檢視原始碼, 匯出 PDF 與 \"設定\" 等功能."
+  ],
+  "instruction_h3_features": "主要功能",
+  "instruction_features": [
+    "**在頁面中尋找**: 輸入關鍵字後突出顯示相符項目, 並可在相符項目之間跳轉.",
+    "**檢視原始碼**: 以唯讀的等寬排版顯示原始文字, 選擇 \"檢視預覽\" 即可返回頁面.",
+    "**匯出 PDF**: 開啟系統列印介面, 在其中選擇另存為 PDF 及儲存位置; 插件不需要儲存空間權限.",
+    "**互動模式**: 在 \"設定\" 中開啟後可執行指令碼, 讓按鈕, 動畫與本機儲存空間生效; 每次新預覽都會自動關閉, 請只對可信頁面開啟.",
+    "**網絡資源**: 開啟 \"載入網絡圖片\" 後可顯示 HTTPS 圖片; 開啟互動模式時此項變為 \"載入網絡資源\", 亦允許 HTTPS 指令碼與樣式.",
+    "**文字大小與主題**: 在 \"設定\" 中調整 \"文字大小\", 主題可選 \"跟隨 AutoJs6\", \"淺色\" 或 \"深色\".",
+    "**全螢幕模式**: 隱藏工具列, 專注閱讀; 開啟 \"以全螢幕模式啟動\" 後每次預覽都直接進入全螢幕.",
+    "**MHTML 封存**: 顯示網頁封存中的頁面及其內嵌的樣式, 圖片與字型, 不會把內容解壓到儲存空間."
+  ],
+  "instruction_h3_requirements": "運行要求",
+  "instruction_requirements": [
+    "Android 7.0 或更高版本.",
+    "AutoJs6 6.8.0 或更高版本.",
+    "不需要儲存空間權限; 插件只讀取所選檔案及其所在目錄, 網絡只用於載入 HTTPS 資源."
+  ],
+  "instruction_h3_faq": "常見問題",
+  "instruction_faq": [
+    {
+      "q": "按鈕與動畫沒有反應的原因",
+      "a": "頁面預設不執行指令碼. 對於可信的完整 HTML 檔案, 可在 \"設定\" 中開啟 \"互動模式\". MHTML 檔案, 只顯示了前一部分的大型檔案與原始碼檢視始終不執行指令碼."
+    },
+    {
+      "q": "部分圖片或樣式沒有顯示的原因",
+      "a": "本機圖片與樣式需要位於 HTML 檔案所在的目錄或其子目錄中. 網絡圖片需要開啟 \"載入網絡圖片\", 並且只支援 HTTPS 地址."
+    },
+    {
+      "q": "大型檔案只顯示前一部分的原因",
+      "a": "超過 {{ max_html_size }} 的 HTML 檔案會先詢問, 確認後只顯示前 {{ max_html_size }} 並標示截斷位置. MHTML 封存必須完整顯示, 超過 {{ max_html_size }} 時無法預覽."
+    },
+    {
+      "q": "檔案選單中沒有 \"預覽 HTML\" 的原因",
+      "a": "本插件只處理副檔名為 {{ supported_formats }} 的檔案. 請確認檔案的副檔名, 並在 \"插件中心\" 中確認本插件已啓用."
+    }
+  ],
+  "instruction_p_more": "更多說明見 [項目主頁]({{ repo_url }})."
 }

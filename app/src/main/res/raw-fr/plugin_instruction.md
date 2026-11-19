@@ -1,25 +1,45 @@
-Utilisez HTML Previewer depuis le gestionnaire de fichiers:
+HTML Previewer affiche un aperçu des fichiers HTML et MHTML dans AutoJs6, sans ouvrir de navigateur. Les pages s'ouvrent en mode sécurisé, sans exécuter de scripts; vous pouvez aussi afficher le code source, rechercher dans la page ou l'exporter en PDF. L'aperçu se contente de lire le fichier et ne modifie jamais l'original.
 
-1. Installez et activez le plugin `HTML Previewer`.
-2. Ouvrez le menu secondaire d'un fichier HTML ou MHTML pris en charge.
-3. Sélectionnez `Prévisualiser HTML` (depuis AutoJs6 6.8.1, dans le menu de premier niveau `HTML Previewer`).
+### Prise en main
 
-Le plugin reçoit un accès temporaire en lecture au fichier sélectionné et à son dossier parent par des URI de contenu. Il ne reçoit aucun chemin brut du système de fichiers.
+1. Vérifiez que ce plugin est activé dans le "Centre des plugins" d'AutoJs6.
+2. Ouvrez le gestionnaire de fichiers d'AutoJs6 et repérez le fichier HTML ou MHTML.
+3. Choisissez "Prévisualiser HTML" dans le menu du fichier (dans AutoJs6 6.8.1 et versions ultérieures, il se trouve dans le menu de premier niveau "HTML Previewer").
+4. Le menu en haut à droite de l'aperçu donne accès à la recherche, au code source, à l'export PDF, aux "Paramètres", etc.
 
-Extensions prises en charge: `html`, `htm`, `shtm`, `shtml`, `xht`, `xhtml`, `mht`, `mhtml`.
+### Fonctionnalités principales
 
-Pour MHTML, la visionneuse sélectionne la racine HTML de l'archive et associe les styles, images, polices, contenus audio et vidéo intégrés autorisés à une origine virtuelle isolée. Les emplacements et ID de contenu ne sont que des étiquettes internes; les étiquettes ambiguës sont ignorées et rien n'est extrait vers le stockage.
+- **Rechercher dans la page**: surligne les correspondances du texte saisi et permet de passer de l'une à l'autre.
+- **Afficher le code source**: affiche le texte d'origine en lecture seule et en police à chasse fixe; choisissez "Afficher l'aperçu" pour revenir à la page.
+- **Exporter en PDF**: ouvre l'écran d'impression du système, où vous choisissez d'enregistrer en PDF et l'emplacement; le plugin n'a besoin d'aucune autorisation de stockage.
+- **Mode interactif**: activez-le dans les "Paramètres" pour exécuter les scripts, afin que les boutons, les animations et le stockage local fonctionnent; il se désactive à chaque nouvel aperçu, activez-le uniquement pour des pages de confiance.
+- **Ressources réseau**: activez "Charger les images réseau" pour afficher les images HTTPS; en mode interactif, cette option devient "Charger les ressources réseau" et autorise aussi les scripts et styles HTTPS.
+- **Taille du texte et thème**: réglez la "Taille du texte" dans les "Paramètres" et choisissez le thème "Suivre AutoJs6", "Clair" ou "Sombre".
+- **Mode plein écran**: masque la barre d'outils pour lire sans distraction; activez "Démarrer en mode plein écran" pour ouvrir chaque aperçu en plein écran.
+- **Archives MHTML**: affiche la page d'une archive web avec ses styles, images et polices intégrés, sans rien extraire vers le stockage.
 
-Les scripts sont désactivés par défaut. Pour un fichier HTML ordinaire complet et fiable, activez le mode interactif dans les paramètres pour JavaScript, les boutons, WebGL et le stockage local. MHTML, HTML tronqué, code source et export PDF gardent les scripts désactivés. Cookies, accès direct aux fichiers/content, ponts JavaScript natifs et nouvelles fenêtres restent désactivés. Le stockage local est réservé au mode interactif, pour les préférences et scores. Le code source et le PDF utilisent un contenu assaini à nouveau.
+### Prérequis
 
-La visionneuse propose aussi la recherche dans la page, une taille de texte réglable et le choix du thème. Elle reconnaît le BOM, le jeu de caractères MIME et les déclarations d'encodage HTML placées au début. Un HTML ordinaire de plus de 8 MB demande confirmation avant de n'afficher que les premiers 8 MB avec la coupure indiquée; MHTML doit rester complet et est refusé au-delà de 8 MB.
+- Android 7.0 ou version ultérieure.
+- AutoJs6 6.8.0 ou version ultérieure.
+- Aucune autorisation de stockage n'est nécessaire; le plugin lit uniquement le fichier sélectionné et son dossier, et n'utilise le réseau que pour charger des ressources HTTPS.
 
-Choisissez `Afficher le code source` dans le menu pour consulter le texte original en lecture seule avec une police à chasse fixe, puis `Afficher l’aperçu` pour revenir. Les balises restent du texte littéral dans ce mode et toutes les requêtes sortantes sont bloquées.
+### Questions fréquentes
 
-Les ressources locales proviennent du dossier autorisé ou de l’archive MHTML sélectionnée. Le mode sûr autorise les images HTTPS publiques; le mode interactif autorise aussi scripts, styles et requêtes HTTPS publics lorsque les ressources réseau sont activées. Désactiver le réseau bloque les requêtes WebView sortantes. Les scripts interactifs peuvent envoyer des données à des services distants; réservez ce mode aux pages fiables.
+**Pourquoi les boutons et les animations ne réagissent pas**
 
-Choisissez `Exporter en PDF` pour ouvrir le panneau d'impression Android avec une copie relue, nettoyée et en thème clair. Cela reste vrai depuis l'affichage du code source et ne modifie pas l'état actuel de la visionneuse. Sélectionnez `Enregistrer au format PDF` et la destination dans l'interface système; le plugin ne demande aucune autorisation de stockage.
+Par défaut, les pages n'exécutent aucun script. Pour un fichier HTML complet de confiance, activez le "Mode interactif" dans les "Paramètres". Les fichiers MHTML, les gros fichiers dont seul le début est affiché et la vue du code source n'exécutent jamais de scripts.
 
-Explorer Action v2 prend en charge le bouton principal et le menu contextuel pour un fichier, avec une autorisation temporaire de lecture du document et de son dossier parent. AutoJs6 build 5269 ou ultérieur est requis.
+**Pourquoi certaines images ou certains styles ne s'affichent pas**
 
-Les menus et dialogues suivent la langue et le mode sombre AutoJs6, tout comme GitHub (Auto) et le thème HTML automatique. Les barres utilisent une couleur représentative des bords de la page avec du texte et des icônes noirs ou blancs contrastés. Pour les dégradés, images et animations, cette couleur reste fixe jusqu’au rechargement pour éviter le scintillement.
+Les images et styles locaux doivent se trouver dans le dossier du fichier HTML ou dans l'un de ses sous-dossiers. Les images réseau nécessitent l'option "Charger les images réseau", et seules les adresses HTTPS sont prises en charge.
+
+**Pourquoi seul le début d'un gros fichier est affiché**
+
+Pour un fichier HTML de plus de 8 MB, le plugin demande d'abord confirmation, puis n'affiche que les premiers 8 MB en indiquant l'endroit de la coupure. Les archives MHTML doivent être affichées en entier: au-delà de 8 MB, elles ne peuvent pas être prévisualisées.
+
+**Pourquoi "Prévisualiser HTML" n'apparaît pas dans le menu du fichier**
+
+Le plugin ne traite que les fichiers portant les extensions html, htm, shtm, shtml, xht, xhtml, mht, mhtml. Vérifiez l'extension du fichier et assurez-vous que le plugin est activé dans le "Centre des plugins".
+
+Plus de détails sur la [page du projet](https://github.com/SuperMonster003/AutoJs6-Plugin-HTML-Previewer).

@@ -5,20 +5,22 @@ Source of truth:
   .readme/common.json              language-neutral facts (URLs, IDs, limits)
   .readme/lang_<code>.json         localized README copy (10 languages)
   .readme/template_readme.md       README skeleton with {{ placeholder }} slots
+  .readme/template_plugin_instruction.md  Plugin Center instruction skeleton (instruction_* keys only)
   .changelog/lang_<code>.json      localized changelog labels and $data entries
   .changelog/template_changelog.md changelog skeleton
   version.properties               VERSION_NAME (must match the newest changelog entry)
   gradle/explorer-action-compatibility.properties protocol and vendored AAR audit facts
 
-Generated artifacts (25 in total, never edit them by hand):
+Generated artifacts (36 in total, never edit them by hand):
   .readme/README-<code>.md                       x 10
   README.md                                      copy of the default language
   app/src/main/assets/doc/CHANGELOG-<name>.md    x 13 (zh-Hans/HK/TW expand to Android aliases)
   app/src/main/assets/doc/CHANGELOG.md           copy of the default language
+  app/src/main/res/raw-<locale>/plugin_instruction.md  x 10
+  app/src/main/res/raw/plugin_instruction.md     copy of the Android default language
 
 Validated but not generated:
   app/src/main/res/values*/strings.xml           key parity, plugin_description sync
-  app/src/main/res/raw*/plugin_instruction.md    presence and content hygiene
 
 Usage:
   py .python/generate_markdown.py            regenerate all artifacts
@@ -90,7 +92,24 @@ CHANGELOG_DATA_KEY = "$data"
 README_LIST_KEYS = ["features", "usage_steps", "security_points"]
 README_FAQ_KEY = "faq"
 
-EXPECTED_ARTIFACT_COUNT = 25
+# Plugin Center instruction copy lives in its own keys and never borrows README fields
+# (D:/idea-projects/AUTOJS6_PLUGIN_INSTRUCTION_AGENTS.md).
+INSTRUCTION_KEY_PREFIX = "instruction_"
+INSTRUCTION_LIST_KEYS = [
+    "instruction_start_steps",
+    "instruction_features",
+    "instruction_requirements",
+]
+INSTRUCTION_FAQ_KEY = "instruction_faq"
+INSTRUCTION_REQUIRED_KEYS = [
+    "instruction_p_what",
+    "instruction_h3_start",
+    "instruction_start_steps",
+    "instruction_h3_requirements",
+    "instruction_requirements",
+]
+
+EXPECTED_ARTIFACT_COUNT = 36
 README_LATEST_RELEASES = 3
 
 PLACEHOLDER_MARKERS = (
@@ -208,6 +227,42 @@ def validate_readme_language(code: str, content: dict[str, Any]) -> None:
             isinstance(item, dict) and set(item) == {"q", "a"},
             f"README {code!r} faq[{index}] must be an object with exactly the keys 'q' and 'a'",
         )
+
+
+def validate_instruction_sources(raw_languages: dict[str, dict[str, Any]]) -> None:
+    reference = {key: value for key, value in raw_languages[LANGUAGE_CODE_DEFAULT].items() if key.startswith(INSTRUCTION_KEY_PREFIX)}
+    for code, content in raw_languages.items():
+        instruction = {key: value for key, value in content.items() if key.startswith(INSTRUCTION_KEY_PREFIX)}
+        for key in INSTRUCTION_REQUIRED_KEYS:
+            require(key in instruction, f"Instruction language {code!r} is missing {key!r}")
+        require(
+            set(instruction) == set(reference),
+            f"Instruction keys of {code!r} differ from {LANGUAGE_CODE_DEFAULT!r}: {sorted(set(instruction) ^ set(reference))}",
+        )
+        for key, value in instruction.items():
+            require(
+                shape_of(value) == shape_of(reference[key]),
+                f"Instruction field {key!r} of {code!r} does not match the {LANGUAGE_CODE_DEFAULT!r} shape",
+            )
+            if key in INSTRUCTION_LIST_KEYS:
+                valid = isinstance(value, list) and bool(value) and all(isinstance(item, str) and item for item in value)
+            elif key == INSTRUCTION_FAQ_KEY:
+                valid = isinstance(value, list) and bool(value) and all(
+                    isinstance(item, dict) and set(item) == {"q", "a"} and all(isinstance(text, str) and text for text in item.values())
+                    for item in value
+                )
+            else:
+                valid = isinstance(value, str) and bool(value)
+            require(valid, f"Instruction field {key!r} of {code!r} is empty or malformed")
+            # UI names are quoted with ASCII double quotes; an odd count means a quote was swallowed on the way in.
+            texts = [value] if isinstance(value, str) else [
+                text for item in value for text in (item.values() if isinstance(item, dict) else [item])
+            ]
+            for text in texts:
+                require(
+                    text.count('"') % 2 == 0,
+                    f"Instruction field {key!r} of {code!r} has an unpaired double quote: {text[:60]!r}",
+                )
 
 
 def validate_changelog_language(code: str, content: dict[str, Any]) -> None:
@@ -338,7 +393,7 @@ def validate_explorer_action_compatibility(root: Path, common: dict[str, Any]) -
 
 
 # ---------------------------------------------------------------------------
-# Android resource validation (validated, never generated)
+# Android string resource validation (validated, never generated)
 # ---------------------------------------------------------------------------
 
 def android_string_value(raw: str) -> str:
@@ -388,10 +443,6 @@ def validate_localized_resources(root: Path, languages: dict[str, dict[str, Any]
             not description.endswith((".", "!", "?")),
             f"plugin_description in {directory} must not end with terminal punctuation",
         )
-
-    for directory in ["raw", *ANDROID_INSTRUCTION_DIRECTORIES.values()]:
-        instruction = load_text(resources / directory / "plugin_instruction.md")
-        require(bool(instruction.strip()), f"Empty plugin_instruction.md in {directory}")
 
 
 # ---------------------------------------------------------------------------
@@ -449,6 +500,7 @@ def load_languages(root: Path) -> tuple[dict[str, dict[str, Any]], dict[str, dic
 
     validate_key_parity(raw_languages, "README")
     validate_collection_shapes(raw_languages, "README")
+    validate_instruction_sources(raw_languages)
     for code in LANGUAGE_CODES:
         validate_readme_language(code, raw_languages[code])
         validate_changelog_language(code, raw_changelogs[code])
@@ -527,6 +579,20 @@ def build_readme_values(
     return content
 
 
+def instruction_faq(items: list[dict[str, str]]) -> str:
+    return "\n\n".join(f"**{item['q']}**\n\n{item['a']}" for item in items)
+
+
+def build_instruction_values(code: str, languages: dict[str, dict[str, Any]]) -> dict[str, Any]:
+    """Only instruction_* keys reach the instruction template, so it cannot borrow README copy."""
+    values = {key: value for key, value in languages[code].items() if key.startswith(INSTRUCTION_KEY_PREFIX)}
+    for key in INSTRUCTION_LIST_KEYS:
+        render = numbered_list if key == "instruction_start_steps" else bullet_list
+        values[f"placeholder_{key}"] = render(values[key])
+    values[f"placeholder_{INSTRUCTION_FAQ_KEY}"] = instruction_faq(values[INSTRUCTION_FAQ_KEY])
+    return values
+
+
 # ---------------------------------------------------------------------------
 # Artifact construction, drift detection, and writing
 # ---------------------------------------------------------------------------
@@ -557,6 +623,19 @@ def build_artifacts(root: Path) -> dict[Path, str]:
         if code == LANGUAGE_CODE_DEFAULT:
             artifacts[root / "README.md"] = output
 
+    instruction_template = load_text(readme_dir / "template_plugin_instruction.md")
+    resources = root / "app" / "src" / "main" / "res"
+    require(
+        set(ANDROID_INSTRUCTION_DIRECTORIES) == set(LANGUAGE_CODES),
+        "Plugin instruction locale mapping must match LANGUAGE_CODES",
+    )
+    for code in LANGUAGE_CODES:
+        output = render_template(instruction_template, build_instruction_values(code, languages))
+        require("{{" not in output and "}}" not in output, f"Unrendered placeholder in the {code!r} plugin instruction")
+        artifacts[resources / ANDROID_INSTRUCTION_DIRECTORIES[code] / "plugin_instruction.md"] = output
+        if code == ANDROID_DEFAULT_LANGUAGE:
+            artifacts[resources / "raw" / "plugin_instruction.md"] = output
+
     require(
         len(artifacts) == EXPECTED_ARTIFACT_COUNT,
         f"Expected {EXPECTED_ARTIFACT_COUNT} artifacts, produced {len(artifacts)}",
@@ -571,6 +650,7 @@ def generated_inventory(root: Path) -> set[Path]:
         inventory.add(readme_default)
     inventory.update((root / ".readme").glob("README-*.md"))
     inventory.update((root / "app" / "src" / "main" / "assets" / "doc").glob("CHANGELOG*.md"))
+    inventory.update((root / "app" / "src" / "main" / "res").glob("raw*/plugin_instruction.md"))
     return inventory
 
 
