@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_html_previewer">معاينة HTML</string>
+    <string name="action_navigate_up">الانتقال إلى المستوى الأعلى</string>
     <string name="dialog_button_cancel">إلغاء</string>
     <string name="dialog_button_confirm">تأكيد</string>
     <string name="error_html_file_too_large">يتجاوز ملف HTML حد المعاينة %1$s</string>
     <string name="error_mhtml_file_too_large">يتجاوز أرشيف MHTML حد %1$s ولا يمكن معاينة جزء منه بأمان</string>
     <string name="plugin_description">معاينة ملفات HTML و MHTML</string>
     <string name="release_history">سجل الإصدارات</string>
-    <string name="release_history_unavailable">سجل الإصدارات غير متاح</string>
+    <string name="release_history_collapse_all">طيّ الكل</string>
+    <string name="release_history_collapsed">مطوي</string>
+    <string name="release_history_expand_all">توسيع الكل</string>
+    <string name="release_history_expanded">موسَّع</string>
+    <string name="release_history_load_failed">تعذر تحميل سجل الإصدارات</string>
     <string name="text_blocked_resource_count">موارد الشبكة المحظورة: %1$d</string>
     <string name="text_cannot_export_pdf">تعذر تصدير PDF</string>
     <string name="text_cannot_open_link">تعذر فتح الرابط</string>

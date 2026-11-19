@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_html_previewer">Preview HTML</string>
+    <string name="action_navigate_up">Navigate up</string>
     <string name="dialog_button_cancel">Cancel</string>
     <string name="dialog_button_confirm">Confirm</string>
     <string name="error_html_file_too_large">The HTML file exceeds the %1$s previewer limit</string>
     <string name="error_mhtml_file_too_large">The MHTML archive exceeds the %1$s limit and cannot be safely viewed in part</string>
     <string name="plugin_description">Preview HTML and MHTML files</string>
     <string name="release_history">Release history</string>
-    <string name="release_history_unavailable">Release history is unavailable</string>
+    <string name="release_history_collapse_all">Collapse all</string>
+    <string name="release_history_collapsed">Collapsed</string>
+    <string name="release_history_expand_all">Expand all</string>
+    <string name="release_history_expanded">Expanded</string>
+    <string name="release_history_load_failed">Unable to load the release history</string>
     <string name="text_blocked_resource_count">Blocked network resources: %1$d</string>
     <string name="text_cannot_export_pdf">Cannot export PDF</string>
     <string name="text_cannot_open_link">Cannot open the link</string>

@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="action_html_previewer">HTML をプレビュー</string>
+    <string name="action_navigate_up">上へ移動</string>
     <string name="dialog_button_cancel">キャンセル</string>
     <string name="dialog_button_confirm">確認</string>
     <string name="error_html_file_too_large">HTML ファイルが %1$s のプレビュー制限を超えています</string>
     <string name="error_mhtml_file_too_large">MHTML アーカイブが %1$s の上限を超えているため, 安全な部分プレビューはできません</string>
     <string name="plugin_description">HTML と MHTML ファイルをプレビュー</string>
     <string name="release_history">リリース履歴</string>
-    <string name="release_history_unavailable">リリース履歴を表示できません</string>
+    <string name="release_history_collapse_all">すべて折りたたむ</string>
+    <string name="release_history_collapsed">折りたたみ中</string>
+    <string name="release_history_expand_all">すべて展開する</string>
+    <string name="release_history_expanded">展開中</string>
+    <string name="release_history_load_failed">リリース履歴を読み込めませんでした</string>
     <string name="text_blocked_resource_count">ブロックしたネットワークリソース: %1$d</string>
     <string name="text_cannot_export_pdf">PDF をエクスポートできません</string>
     <string name="text_cannot_open_link">リンクを開けません</string>
