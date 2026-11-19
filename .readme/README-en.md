@@ -177,6 +177,15 @@ Planned capabilities and their completion status are tracked as a checkable list
 
 ******
 
+#### v1.1.8
+
+_2026/11/20_
+
+- `Improvement` The release history is now a separate page instead of a dialog showing the raw text, expanding and collapsing by version: a collapsed version shows its date and the number of entries per category, an expanded one names each category once; all versions can be expanded or collapsed at once, the newest one opens expanded and the subtitle shows the plugin name
+- `Improvement` Rewrote the instructions shown in Plugin Center in four parts: getting started, main features, requirements and FAQ
+- `Dependency` Added Jetpack Compose BOM 2026.09.00 (release history page)
+- `Dependency` Upgraded shared build plugins version 1.9.0 -> 1.9.1
+
 #### v1.1.7
 
 _2026/11/18_
@@ -188,12 +197,6 @@ _2026/11/18_
 _2026/11/08_
 
 - `Improvement` In the English interface, the file menu action is now named "Preview HTML" instead of repeating the top-level menu name "HTML Previewer"
-
-#### v1.1.5
-
-_2026/11/07_
-
-- `Improvement` "HTML Previewer" now sits under the top-level menu "HTML Previewer" in the file menu of AutoJs6 6.8.1 and later (unchanged in older AutoJs6 versions)
 
 ##### For more release history
 

@@ -177,6 +177,15 @@ Las capacidades previstas y su estado se registran como lista marcable en ROADMA
 
 ******
 
+#### v1.1.8
+
+_2026/11/20_
+
+- `Mejora` El historial de versiones es ahora una página propia en lugar de un diálogo con el texto sin formato, y se expande o contrae por versión: una versión contraída muestra su fecha y el número de entradas por categoría, una expandida nombra cada categoría una sola vez; todas las versiones se pueden expandir o contraer a la vez, la más reciente se abre expandida y el subtítulo muestra el nombre del plugin
+- `Mejora` Se reescribieron las instrucciones del Centro de plugins en cuatro partes: primeros pasos, funciones principales, requisitos y preguntas frecuentes
+- `Dependencia` Se añadió Jetpack Compose BOM 2026.09.00 (página Historial de versiones)
+- `Dependencia` Se actualizaron los plugins de compilación compartidos versión 1.9.0 -> 1.9.1
+
 #### v1.1.7
 
 _2026/11/18_
@@ -188,12 +197,6 @@ _2026/11/18_
 _2026/11/08_
 
 - `Mejora` En la interfaz en inglés, la acción del menú de archivos se llama ahora "Preview HTML" en lugar de repetir el nombre del menú de primer nivel "HTML Previewer"
-
-#### v1.1.5
-
-_2026/11/07_
-
-- `Mejora` En el menú de archivos de AutoJs6 6.8.1 y posteriores, "Vista previa de HTML" está en el menú de primer nivel "HTML Previewer" (sin cambios en versiones anteriores de AutoJs6)
 
 ##### Para consultar más historial de versiones
 
