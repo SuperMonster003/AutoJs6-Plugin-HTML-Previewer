@@ -188,7 +188,9 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.compose.animation)
     implementation(libs.compose.activity)
-    debugImplementation(libs.compose.ui.test.manifest)
+    // No ui-test-manifest: the Compose tests that set their own content run in ComposeTestActivity, a non-exported
+    // activity of the debug source set, while ui-test-manifest would merge an exported
+    // androidx.activity.ComponentActivity into the debug APK.
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.test.ext.junit)
